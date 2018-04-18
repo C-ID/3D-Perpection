@@ -1,6 +1,8 @@
 
 #include "cnn_segmentation.h"
 //#include "file.h"
+//#include <jsoncpp/json/json.h>
+#include<fstream>
 
 
 namespace apollo {
@@ -155,22 +157,28 @@ bool CNNSegmentation::Segment(const pcl_util::PointCloudPtr& pc_ptr,
 void CNNSegmentation::Write2Json(const std::vector<ObjectPtr> &objects)
 {
   std::ofstream outputfile;
-  std::string jsonfilepath = JSON_FILE;
-  std::cout << "jsonfile: " << jsonfilepath << std::endl;
+  std::string binaryfilepath = Binary_File;
+  std::cout << "binaryfile: " << binaryfilepath << std::endl;
   
   //write to Json file
+  /*
   Json::Value root;
   Json::Value temp;
   Json::Value pos;
   Json::StyledWriter writer;
-
+  */
+  
+  std::ofstream fout;
+  fout.open(binaryfilepath, std::ios::out | std::ios::in | std::ios::app);
+  fout << "Total-objects-size: " << objects.size() << '\n';
   for(size_t i=0; i<objects.size(); ++i)
     {
+        /*
         const ObjectPtr &obj = objects[i];
         temp["name"] = Json::Value(obj->type_name);
         temp["score"] = Json::Value(obj->score);
         
-
+        
         for(size_t j=0; j<obj->cloud->size(); ++j)
         {
           Json::Value po;
@@ -189,8 +197,21 @@ void CNNSegmentation::Write2Json(const std::vector<ObjectPtr> &objects)
         std::cout << "cnn obs cloud size:" << static_cast<int>(obj->cloud->size()) << std::endl;
         //root["cloud"] = Json::Value(arrays);
         //delete[] arrays;
+       */ 
+      const ObjectPtr &obj = objects[i];
+      //char temp[11] = obj->type_name;
+      fout << "type-name: " << obj->type_name <<"\n";
+      fout << "type-score: " << obj->score << '\n';
+      fout << "cloud-points size: " << obj->cloud->size() << '\n';
+      for(size_t j=0; j<obj->cloud->size(); ++j)
+      {
+        const auto &point = obj->cloud->points[j];
+
+        fout << point.x << " " << point.y << " " << point.z << '\n';
+      }
+
     }
-  
+  /*
   outputfile.open(jsonfilepath);
   if(outputfile.is_open())
   {
@@ -198,6 +219,9 @@ void CNNSegmentation::Write2Json(const std::vector<ObjectPtr> &objects)
       outputfile << writer.write(root);
   }
   outputfile.close();
+  */
+
+  fout.close();
   std::cout << "end " << std::endl;
   
 }

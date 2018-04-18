@@ -33,10 +33,10 @@
 //#include "base_segmentation.h"
 #include "cluster2d.h"
 #include "feature_generator.h"
-#include <jsoncpp/json/json.h>
-#include <fstream>
 #include <map>
 #include <string>
+
+
 namespace apollo {
 namespace perception {
 

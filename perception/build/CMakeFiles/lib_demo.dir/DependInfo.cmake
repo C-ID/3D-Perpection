@@ -11,12 +11,9 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
-  "DISABLE_OPENNI"
+  "DISABLE_LIBUSB_1_0"
   "DISABLE_PCAP"
   "DISABLE_PNG"
-  "EIGEN_USE_NEW_STDVECTOR"
-  "EIGEN_YES_I_KNOW_SPARSE_MODULE_IS_NOT_STABLE_YET"
-  "FLANN_STATIC"
   "qh_QHpointer"
   )
 
@@ -25,8 +22,9 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/opencv"
   "/home/bai/caffe/cmake_build/install/include"
   "/usr/include/vtk-5.10"
-  "/usr/local/include/pcl-1.7"
+  "/usr/local/include/pcl-1.8"
   "/usr/include/eigen3"
+  "/usr/include/ni"
   "/usr/include/openni2"
   "../"
   "/usr/local/lib"

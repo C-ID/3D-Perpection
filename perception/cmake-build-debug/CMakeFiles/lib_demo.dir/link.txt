@@ -1,2 +1,0 @@
-/usr/bin/ar qc libs/liblib_demo.a  CMakeFiles/lib_demo.dir/feature_generator.cpp.o CMakeFiles/lib_demo.dir/cnn_segmentation.cpp.o
-/usr/bin/ranlib libs/liblib_demo.a

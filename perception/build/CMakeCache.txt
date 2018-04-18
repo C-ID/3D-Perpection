@@ -232,16 +232,16 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
 //Path to a file.
-EIGEN_INCLUDE_DIRS:PATH=/usr/include/eigen3
+EIGEN_INCLUDE_DIR:PATH=/usr/include/eigen3
 
 //Path to a file.
-FLANN_INCLUDE_DIRS:PATH=/usr/include
+FLANN_INCLUDE_DIR:PATH=/usr/include
 
 //Path to a library.
-FLANN_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libflann_cpp_s.a
+FLANN_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libflann_cpp.so
 
 //Path to a library.
-FLANN_LIBRARY_DEBUG:FILEPATH=/usr/lib/x86_64-linux-gnu/libflann_cpp_s.a
+FLANN_LIBRARY_DEBUG:FILEPATH=/usr/lib/x86_64-linux-gnu/libflann_cpp.so
 
 //Path to a file.
 LIBUSB_1_INCLUDE_DIR:PATH=/usr/include
@@ -250,13 +250,13 @@ LIBUSB_1_INCLUDE_DIR:PATH=/usr/include
 LIBUSB_1_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libusb-1.0.so
 
 //Path to a file.
-OPENNI2_INCLUDE_DIRS:PATH=/usr/include/openni2
+OPENNI2_INCLUDE_DIR:PATH=/usr/include/openni2
 
 //Path to a library.
 OPENNI2_LIBRARY:FILEPATH=/usr/lib/libOpenNI2.so
 
 //Path to a file.
-OPENNI_INCLUDE_DIRS:PATH=OPENNI_INCLUDE_DIRS-NOTFOUND
+OPENNI_INCLUDE_DIR:PATH=/usr/include/ni
 
 //Path to a library.
 OPENNI_LIBRARY:FILEPATH=/usr/lib/libOpenNI.so
@@ -275,8 +275,11 @@ OpenCV_LIB_DIR_DBG:PATH=
 //Path where release OpenCV libraries are located
 OpenCV_LIB_DIR_OPT:PATH=
 
+//path to 2d headers
+PCL_2D_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.8
+
 //path to common headers
-PCL_COMMON_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.7
+PCL_COMMON_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.8
 
 //path to pcl_common library
 PCL_COMMON_LIBRARY:FILEPATH=/usr/local/lib/libpcl_common.so
@@ -285,10 +288,10 @@ PCL_COMMON_LIBRARY:FILEPATH=/usr/local/lib/libpcl_common.so
 PCL_COMMON_LIBRARY_DEBUG:FILEPATH=/usr/local/lib/libpcl_common.so
 
 //The directory containing a CMake configuration file for PCL.
-PCL_DIR:PATH=/usr/local/share/pcl-1.7
+PCL_DIR:PATH=/usr/local/share/pcl-1.8
 
 //path to features headers
-PCL_FEATURES_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.7
+PCL_FEATURES_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.8
 
 //path to pcl_features library
 PCL_FEATURES_LIBRARY:FILEPATH=/usr/local/lib/libpcl_features.so
@@ -297,7 +300,7 @@ PCL_FEATURES_LIBRARY:FILEPATH=/usr/local/lib/libpcl_features.so
 PCL_FEATURES_LIBRARY_DEBUG:FILEPATH=/usr/local/lib/libpcl_features.so
 
 //path to filters headers
-PCL_FILTERS_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.7
+PCL_FILTERS_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.8
 
 //path to pcl_filters library
 PCL_FILTERS_LIBRARY:FILEPATH=/usr/local/lib/libpcl_filters.so
@@ -306,10 +309,10 @@ PCL_FILTERS_LIBRARY:FILEPATH=/usr/local/lib/libpcl_filters.so
 PCL_FILTERS_LIBRARY_DEBUG:FILEPATH=/usr/local/lib/libpcl_filters.so
 
 //path to geometry headers
-PCL_GEOMETRY_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.7
+PCL_GEOMETRY_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.8
 
 //path to io headers
-PCL_IO_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.7
+PCL_IO_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.8
 
 //path to pcl_io library
 PCL_IO_LIBRARY:FILEPATH=/usr/local/lib/libpcl_io.so
@@ -318,7 +321,7 @@ PCL_IO_LIBRARY:FILEPATH=/usr/local/lib/libpcl_io.so
 PCL_IO_LIBRARY_DEBUG:FILEPATH=/usr/local/lib/libpcl_io.so
 
 //path to kdtree headers
-PCL_KDTREE_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.7
+PCL_KDTREE_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.8
 
 //path to pcl_kdtree library
 PCL_KDTREE_LIBRARY:FILEPATH=/usr/local/lib/libpcl_kdtree.so
@@ -327,7 +330,7 @@ PCL_KDTREE_LIBRARY:FILEPATH=/usr/local/lib/libpcl_kdtree.so
 PCL_KDTREE_LIBRARY_DEBUG:FILEPATH=/usr/local/lib/libpcl_kdtree.so
 
 //path to keypoints headers
-PCL_KEYPOINTS_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.7
+PCL_KEYPOINTS_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.8
 
 //path to pcl_keypoints library
 PCL_KEYPOINTS_LIBRARY:FILEPATH=/usr/local/lib/libpcl_keypoints.so
@@ -335,8 +338,17 @@ PCL_KEYPOINTS_LIBRARY:FILEPATH=/usr/local/lib/libpcl_keypoints.so
 //path to pcl_keypoints library debug
 PCL_KEYPOINTS_LIBRARY_DEBUG:FILEPATH=/usr/local/lib/libpcl_keypoints.so
 
+//path to ml headers
+PCL_ML_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.8
+
+//path to pcl_ml library
+PCL_ML_LIBRARY:FILEPATH=/usr/local/lib/libpcl_ml.so
+
+//path to pcl_ml library debug
+PCL_ML_LIBRARY_DEBUG:FILEPATH=/usr/local/lib/libpcl_ml.so
+
 //path to octree headers
-PCL_OCTREE_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.7
+PCL_OCTREE_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.8
 
 //path to pcl_octree library
 PCL_OCTREE_LIBRARY:FILEPATH=/usr/local/lib/libpcl_octree.so
@@ -345,7 +357,7 @@ PCL_OCTREE_LIBRARY:FILEPATH=/usr/local/lib/libpcl_octree.so
 PCL_OCTREE_LIBRARY_DEBUG:FILEPATH=/usr/local/lib/libpcl_octree.so
 
 //path to outofcore headers
-PCL_OUTOFCORE_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.7
+PCL_OUTOFCORE_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.8
 
 //path to pcl_outofcore library
 PCL_OUTOFCORE_LIBRARY:FILEPATH=/usr/local/lib/libpcl_outofcore.so
@@ -354,7 +366,7 @@ PCL_OUTOFCORE_LIBRARY:FILEPATH=/usr/local/lib/libpcl_outofcore.so
 PCL_OUTOFCORE_LIBRARY_DEBUG:FILEPATH=/usr/local/lib/libpcl_outofcore.so
 
 //path to people headers
-PCL_PEOPLE_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.7
+PCL_PEOPLE_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.8
 
 //path to pcl_people library
 PCL_PEOPLE_LIBRARY:FILEPATH=/usr/local/lib/libpcl_people.so
@@ -363,7 +375,7 @@ PCL_PEOPLE_LIBRARY:FILEPATH=/usr/local/lib/libpcl_people.so
 PCL_PEOPLE_LIBRARY_DEBUG:FILEPATH=/usr/local/lib/libpcl_people.so
 
 //path to recognition headers
-PCL_RECOGNITION_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.7
+PCL_RECOGNITION_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.8
 
 //path to pcl_recognition library
 PCL_RECOGNITION_LIBRARY:FILEPATH=/usr/local/lib/libpcl_recognition.so
@@ -372,7 +384,7 @@ PCL_RECOGNITION_LIBRARY:FILEPATH=/usr/local/lib/libpcl_recognition.so
 PCL_RECOGNITION_LIBRARY_DEBUG:FILEPATH=/usr/local/lib/libpcl_recognition.so
 
 //path to registration headers
-PCL_REGISTRATION_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.7
+PCL_REGISTRATION_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.8
 
 //path to pcl_registration library
 PCL_REGISTRATION_LIBRARY:FILEPATH=/usr/local/lib/libpcl_registration.so
@@ -381,7 +393,7 @@ PCL_REGISTRATION_LIBRARY:FILEPATH=/usr/local/lib/libpcl_registration.so
 PCL_REGISTRATION_LIBRARY_DEBUG:FILEPATH=/usr/local/lib/libpcl_registration.so
 
 //path to sample_consensus headers
-PCL_SAMPLE_CONSENSUS_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.7
+PCL_SAMPLE_CONSENSUS_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.8
 
 //path to pcl_sample_consensus library
 PCL_SAMPLE_CONSENSUS_LIBRARY:FILEPATH=/usr/local/lib/libpcl_sample_consensus.so
@@ -390,7 +402,7 @@ PCL_SAMPLE_CONSENSUS_LIBRARY:FILEPATH=/usr/local/lib/libpcl_sample_consensus.so
 PCL_SAMPLE_CONSENSUS_LIBRARY_DEBUG:FILEPATH=/usr/local/lib/libpcl_sample_consensus.so
 
 //path to search headers
-PCL_SEARCH_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.7
+PCL_SEARCH_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.8
 
 //path to pcl_search library
 PCL_SEARCH_LIBRARY:FILEPATH=/usr/local/lib/libpcl_search.so
@@ -399,7 +411,7 @@ PCL_SEARCH_LIBRARY:FILEPATH=/usr/local/lib/libpcl_search.so
 PCL_SEARCH_LIBRARY_DEBUG:FILEPATH=/usr/local/lib/libpcl_search.so
 
 //path to segmentation headers
-PCL_SEGMENTATION_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.7
+PCL_SEGMENTATION_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.8
 
 //path to pcl_segmentation library
 PCL_SEGMENTATION_LIBRARY:FILEPATH=/usr/local/lib/libpcl_segmentation.so
@@ -407,8 +419,17 @@ PCL_SEGMENTATION_LIBRARY:FILEPATH=/usr/local/lib/libpcl_segmentation.so
 //path to pcl_segmentation library debug
 PCL_SEGMENTATION_LIBRARY_DEBUG:FILEPATH=/usr/local/lib/libpcl_segmentation.so
 
+//path to stereo headers
+PCL_STEREO_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.8
+
+//path to pcl_stereo library
+PCL_STEREO_LIBRARY:FILEPATH=/usr/local/lib/libpcl_stereo.so
+
+//path to pcl_stereo library debug
+PCL_STEREO_LIBRARY_DEBUG:FILEPATH=/usr/local/lib/libpcl_stereo.so
+
 //path to surface headers
-PCL_SURFACE_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.7
+PCL_SURFACE_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.8
 
 //path to pcl_surface library
 PCL_SURFACE_LIBRARY:FILEPATH=/usr/local/lib/libpcl_surface.so
@@ -417,7 +438,7 @@ PCL_SURFACE_LIBRARY:FILEPATH=/usr/local/lib/libpcl_surface.so
 PCL_SURFACE_LIBRARY_DEBUG:FILEPATH=/usr/local/lib/libpcl_surface.so
 
 //path to tracking headers
-PCL_TRACKING_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.7
+PCL_TRACKING_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.8
 
 //path to pcl_tracking library
 PCL_TRACKING_LIBRARY:FILEPATH=/usr/local/lib/libpcl_tracking.so
@@ -426,7 +447,7 @@ PCL_TRACKING_LIBRARY:FILEPATH=/usr/local/lib/libpcl_tracking.so
 PCL_TRACKING_LIBRARY_DEBUG:FILEPATH=/usr/local/lib/libpcl_tracking.so
 
 //path to visualization headers
-PCL_VISUALIZATION_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.7
+PCL_VISUALIZATION_INCLUDE_DIR:PATH=/usr/local/include/pcl-1.8
 
 //path to pcl_visualization library
 PCL_VISUALIZATION_LIBRARY:FILEPATH=/usr/local/lib/libpcl_visualization.so
@@ -437,8 +458,8 @@ PCL_VISUALIZATION_LIBRARY_DEBUG:FILEPATH=/usr/local/lib/libpcl_visualization.so
 //pkg-config executable
 PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
 
-//Path to a file.
-QHULL_INCLUDE_DIRS:PATH=/usr/include
+//QHull include dir.
+QHULL_INCLUDE_DIR:PATH=/usr/include
 
 //Path to a library.
 QHULL_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libqhull.so
@@ -446,8 +467,14 @@ QHULL_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libqhull.so
 //Path to a library.
 QHULL_LIBRARY_DEBUG:FILEPATH=/usr/lib/x86_64-linux-gnu/libqhull.so
 
-//The directory containing a CMake configuration file for jsoncpp.
-jsoncpp_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/jsoncpp
+//Path to a file.
+USB_10_INCLUDE_DIR:PATH=/usr/include
+
+//Path to a library.
+USB_10_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libusb-1.0.so
+
+//The directory containing VTKConfig.cmake
+VTK_DIR:PATH=/usr/lib/vtk-5.10
 
 //Dependencies for the target
 lib_demo_LIB_DEPENDS:STATIC=general;jsoncpp;
@@ -547,6 +574,8 @@ CMAKE_C_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
 CMAKE_C_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_C_FLAGS_RELWITHDEBINFO
 CMAKE_C_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
+//Path to cache edit program executable.
+CMAKE_EDIT_COMMAND:INTERNAL=/usr/bin/cmake-gui
 //Executable file format
 CMAKE_EXECUTABLE_FORMAT:INTERNAL=ELF
 //ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS
@@ -642,58 +671,76 @@ CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 COMPILER_SUPPORTS_CXX0X:INTERNAL=1
 //Test COMPILER_SUPPORTS_CXX11
 COMPILER_SUPPORTS_CXX11:INTERNAL=1
-//Details about finding Flann
-FIND_PACKAGE_MESSAGE_DETAILS_Flann:INTERNAL=[/usr/lib/x86_64-linux-gnu/libflann_cpp_s.a][/usr/include][v()]
+//ADVANCED property for variable: EIGEN_INCLUDE_DIR
+EIGEN_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//Details about finding Eigen
+FIND_PACKAGE_MESSAGE_DETAILS_Eigen:INTERNAL=[/usr/include/eigen3][v()]
+//Details about finding FLANN
+FIND_PACKAGE_MESSAGE_DETAILS_FLANN:INTERNAL=[/usr/lib/x86_64-linux-gnu/libflann_cpp.so][/usr/include][v()]
+//Details about finding OpenNI
+FIND_PACKAGE_MESSAGE_DETAILS_OpenNI:INTERNAL=[/usr/lib/libOpenNI.so][/usr/include/ni][v()]
 //Details about finding OpenNI2
 FIND_PACKAGE_MESSAGE_DETAILS_OpenNI2:INTERNAL=[/usr/lib/libOpenNI2.so][/usr/include/openni2][v()]
 //Details about finding PCL
-FIND_PACKAGE_MESSAGE_DETAILS_PCL:INTERNAL=[/usr/lib/x86_64-linux-gnu/libboost_system.so;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so;/usr/lib/x86_64-linux-gnu/libboost_thread.so;/usr/lib/x86_64-linux-gnu/libboost_date_time.so;/usr/lib/x86_64-linux-gnu/libboost_iostreams.so;/usr/lib/x86_64-linux-gnu/libboost_serialization.so;/usr/lib/x86_64-linux-gnu/libboost_chrono.so;/usr/lib/x86_64-linux-gnu/libboost_atomic.so;/usr/lib/x86_64-linux-gnu/libboost_regex.so;/usr/lib/x86_64-linux-gnu/libpthread.so;optimized;/usr/local/lib/libpcl_common.so;debug;/usr/local/lib/libpcl_common.so;optimized;/usr/lib/x86_64-linux-gnu/libflann_cpp_s.a;debug;/usr/lib/x86_64-linux-gnu/libflann_cpp_s.a;optimized;/usr/local/lib/libpcl_kdtree.so;debug;/usr/local/lib/libpcl_kdtree.so;optimized;/usr/local/lib/libpcl_octree.so;debug;/usr/local/lib/libpcl_octree.so;optimized;/usr/local/lib/libpcl_search.so;debug;/usr/local/lib/libpcl_search.so;optimized;/usr/local/lib/libpcl_sample_consensus.so;debug;/usr/local/lib/libpcl_sample_consensus.so;optimized;/usr/local/lib/libpcl_filters.so;debug;/usr/local/lib/libpcl_filters.so;optimized;/usr/local/lib/libpcl_features.so;debug;/usr/local/lib/libpcl_features.so;optimized;/usr/lib/x86_64-linux-gnu/libqhull.so;debug;/usr/lib/x86_64-linux-gnu/libqhull.so;optimized;/usr/local/lib/libpcl_surface.so;debug;/usr/local/lib/libpcl_surface.so;/usr/lib/libOpenNI2.so;vtkCommon;vtkFiltering;vtkImaging;vtkGraphics;vtkGenericFiltering;vtkIO;vtkRendering;vtkVolumeRendering;vtkHybrid;vtkWidgets;vtkParallel;vtkInfovis;vtkGeovis;vtkViews;vtkCharts;optimized;/usr/local/lib/libpcl_io.so;debug;/usr/local/lib/libpcl_io.so;optimized;/usr/local/lib/libpcl_visualization.so;debug;/usr/local/lib/libpcl_visualization.so;optimized;/usr/local/lib/libpcl_keypoints.so;debug;/usr/local/lib/libpcl_keypoints.so;optimized;/usr/local/lib/libpcl_registration.so;debug;/usr/local/lib/libpcl_registration.so;optimized;/usr/local/lib/libpcl_segmentation.so;debug;/usr/local/lib/libpcl_segmentation.so;optimized;/usr/local/lib/libpcl_recognition.so;debug;/usr/local/lib/libpcl_recognition.so;optimized;/usr/local/lib/libpcl_people.so;debug;/usr/local/lib/libpcl_people.so;optimized;/usr/local/lib/libpcl_outofcore.so;debug;/usr/local/lib/libpcl_outofcore.so;optimized;/usr/local/lib/libpcl_tracking.so;debug;/usr/local/lib/libpcl_tracking.so;/usr/lib/x86_64-linux-gnu/libboost_system.so;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so;/usr/lib/x86_64-linux-gnu/libboost_thread.so;/usr/lib/x86_64-linux-gnu/libboost_date_time.so;/usr/lib/x86_64-linux-gnu/libboost_iostreams.so;/usr/lib/x86_64-linux-gnu/libboost_serialization.so;/usr/lib/x86_64-linux-gnu/libboost_chrono.so;/usr/lib/x86_64-linux-gnu/libboost_atomic.so;/usr/lib/x86_64-linux-gnu/libboost_regex.so;/usr/lib/x86_64-linux-gnu/libpthread.so;optimized;/usr/lib/x86_64-linux-gnu/libqhull.so;debug;/usr/lib/x86_64-linux-gnu/libqhull.so;/usr/lib/libOpenNI2.so;optimized;/usr/lib/x86_64-linux-gnu/libflann_cpp_s.a;debug;/usr/lib/x86_64-linux-gnu/libflann_cpp_s.a;vtkCommon;vtkFiltering;vtkImaging;vtkGraphics;vtkGenericFiltering;vtkIO;vtkRendering;vtkVolumeRendering;vtkHybrid;vtkWidgets;vtkParallel;vtkInfovis;vtkGeovis;vtkViews;vtkCharts][/usr/local/include/pcl-1.7;/usr/include/eigen3;/usr/include;/usr/include/openni2;/usr/include/vtk-5.10][v(1.7)]
+FIND_PACKAGE_MESSAGE_DETAILS_PCL:INTERNAL=[/usr/lib/x86_64-linux-gnu/libboost_system.so;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so;/usr/lib/x86_64-linux-gnu/libboost_thread.so;/usr/lib/x86_64-linux-gnu/libboost_date_time.so;/usr/lib/x86_64-linux-gnu/libboost_iostreams.so;/usr/lib/x86_64-linux-gnu/libboost_serialization.so;/usr/lib/x86_64-linux-gnu/libboost_chrono.so;/usr/lib/x86_64-linux-gnu/libboost_atomic.so;/usr/lib/x86_64-linux-gnu/libboost_regex.so;/usr/lib/x86_64-linux-gnu/libpthread.so;optimized;/usr/local/lib/libpcl_common.so;debug;/usr/local/lib/libpcl_common.so;optimized;/usr/lib/x86_64-linux-gnu/libflann_cpp.so;debug;/usr/lib/x86_64-linux-gnu/libflann_cpp.so;optimized;/usr/local/lib/libpcl_kdtree.so;debug;/usr/local/lib/libpcl_kdtree.so;optimized;/usr/local/lib/libpcl_octree.so;debug;/usr/local/lib/libpcl_octree.so;optimized;/usr/local/lib/libpcl_search.so;debug;/usr/local/lib/libpcl_search.so;optimized;/usr/local/lib/libpcl_sample_consensus.so;debug;/usr/local/lib/libpcl_sample_consensus.so;optimized;/usr/local/lib/libpcl_filters.so;debug;/usr/local/lib/libpcl_filters.so;optimized;/usr/local/lib/libpcl_features.so;debug;/usr/local/lib/libpcl_features.so;optimized;/usr/local/lib/libpcl_ml.so;debug;/usr/local/lib/libpcl_ml.so;optimized;/usr/local/lib/libpcl_segmentation.so;debug;/usr/local/lib/libpcl_segmentation.so;optimized;/usr/local/lib/libpcl_keypoints.so;debug;/usr/local/lib/libpcl_keypoints.so;optimized;/usr/local/lib/libpcl_tracking.so;debug;/usr/local/lib/libpcl_tracking.so;/usr/lib/libOpenNI.so;/usr/lib/libOpenNI2.so;vtkCommon;vtkFiltering;vtkImaging;vtkGraphics;vtkGenericFiltering;vtkIO;vtkRendering;vtkVolumeRendering;vtkHybrid;vtkWidgets;vtkParallel;vtkInfovis;vtkGeovis;vtkViews;vtkCharts;optimized;/usr/local/lib/libpcl_io.so;debug;/usr/local/lib/libpcl_io.so;optimized;/usr/local/lib/libpcl_visualization.so;debug;/usr/local/lib/libpcl_visualization.so;optimized;/usr/local/lib/libpcl_outofcore.so;debug;/usr/local/lib/libpcl_outofcore.so;optimized;/usr/lib/x86_64-linux-gnu/libqhull.so;debug;/usr/lib/x86_64-linux-gnu/libqhull.so;optimized;/usr/local/lib/libpcl_surface.so;debug;/usr/local/lib/libpcl_surface.so;optimized;/usr/local/lib/libpcl_registration.so;debug;/usr/local/lib/libpcl_registration.so;optimized;/usr/local/lib/libpcl_recognition.so;debug;/usr/local/lib/libpcl_recognition.so;optimized;/usr/local/lib/libpcl_people.so;debug;/usr/local/lib/libpcl_people.so;optimized;/usr/local/lib/libpcl_stereo.so;debug;/usr/local/lib/libpcl_stereo.so;/usr/lib/x86_64-linux-gnu/libboost_system.so;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so;/usr/lib/x86_64-linux-gnu/libboost_thread.so;/usr/lib/x86_64-linux-gnu/libboost_date_time.so;/usr/lib/x86_64-linux-gnu/libboost_iostreams.so;/usr/lib/x86_64-linux-gnu/libboost_serialization.so;/usr/lib/x86_64-linux-gnu/libboost_chrono.so;/usr/lib/x86_64-linux-gnu/libboost_atomic.so;/usr/lib/x86_64-linux-gnu/libboost_regex.so;/usr/lib/x86_64-linux-gnu/libpthread.so;optimized;/usr/lib/x86_64-linux-gnu/libqhull.so;debug;/usr/lib/x86_64-linux-gnu/libqhull.so;/usr/lib/libOpenNI.so;/usr/lib/libOpenNI2.so;optimized;/usr/lib/x86_64-linux-gnu/libflann_cpp.so;debug;/usr/lib/x86_64-linux-gnu/libflann_cpp.so;vtkCommon;vtkFiltering;vtkImaging;vtkGraphics;vtkGenericFiltering;vtkIO;vtkRendering;vtkVolumeRendering;vtkHybrid;vtkWidgets;vtkParallel;vtkInfovis;vtkGeovis;vtkViews;vtkCharts][/usr/local/include/pcl-1.8;/usr/include/eigen3;/usr/include;/usr/include/vtk-5.10;/usr/include/ni;/usr/include/openni2][v(1.7)]
+//Details about finding PCL_2D
+FIND_PACKAGE_MESSAGE_DETAILS_PCL_2D:INTERNAL=[/usr/local/include/pcl-1.8][v()]
 //Details about finding PCL_COMMON
-FIND_PACKAGE_MESSAGE_DETAILS_PCL_COMMON:INTERNAL=[/usr/local/lib/libpcl_common.so][/usr/local/include/pcl-1.7][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_PCL_COMMON:INTERNAL=[/usr/local/lib/libpcl_common.so][/usr/local/include/pcl-1.8][v()]
 //Details about finding PCL_FEATURES
-FIND_PACKAGE_MESSAGE_DETAILS_PCL_FEATURES:INTERNAL=[/usr/local/lib/libpcl_features.so][/usr/local/include/pcl-1.7][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_PCL_FEATURES:INTERNAL=[/usr/local/lib/libpcl_features.so][/usr/local/include/pcl-1.8][v()]
 //Details about finding PCL_FILTERS
-FIND_PACKAGE_MESSAGE_DETAILS_PCL_FILTERS:INTERNAL=[/usr/local/lib/libpcl_filters.so][/usr/local/include/pcl-1.7][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_PCL_FILTERS:INTERNAL=[/usr/local/lib/libpcl_filters.so][/usr/local/include/pcl-1.8][v()]
 //Details about finding PCL_GEOMETRY
-FIND_PACKAGE_MESSAGE_DETAILS_PCL_GEOMETRY:INTERNAL=[/usr/local/include/pcl-1.7][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_PCL_GEOMETRY:INTERNAL=[/usr/local/include/pcl-1.8][v()]
 //Details about finding PCL_IO
-FIND_PACKAGE_MESSAGE_DETAILS_PCL_IO:INTERNAL=[/usr/local/lib/libpcl_io.so][/usr/local/include/pcl-1.7][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_PCL_IO:INTERNAL=[/usr/local/lib/libpcl_io.so][/usr/local/include/pcl-1.8][v()]
 //Details about finding PCL_KDTREE
-FIND_PACKAGE_MESSAGE_DETAILS_PCL_KDTREE:INTERNAL=[/usr/local/lib/libpcl_kdtree.so][/usr/local/include/pcl-1.7][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_PCL_KDTREE:INTERNAL=[/usr/local/lib/libpcl_kdtree.so][/usr/local/include/pcl-1.8][v()]
 //Details about finding PCL_KEYPOINTS
-FIND_PACKAGE_MESSAGE_DETAILS_PCL_KEYPOINTS:INTERNAL=[/usr/local/lib/libpcl_keypoints.so][/usr/local/include/pcl-1.7][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_PCL_KEYPOINTS:INTERNAL=[/usr/local/lib/libpcl_keypoints.so][/usr/local/include/pcl-1.8][v()]
+//Details about finding PCL_ML
+FIND_PACKAGE_MESSAGE_DETAILS_PCL_ML:INTERNAL=[/usr/local/lib/libpcl_ml.so][/usr/local/include/pcl-1.8][v()]
 //Details about finding PCL_OCTREE
-FIND_PACKAGE_MESSAGE_DETAILS_PCL_OCTREE:INTERNAL=[/usr/local/lib/libpcl_octree.so][/usr/local/include/pcl-1.7][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_PCL_OCTREE:INTERNAL=[/usr/local/lib/libpcl_octree.so][/usr/local/include/pcl-1.8][v()]
 //Details about finding PCL_OUTOFCORE
-FIND_PACKAGE_MESSAGE_DETAILS_PCL_OUTOFCORE:INTERNAL=[/usr/local/lib/libpcl_outofcore.so][/usr/local/include/pcl-1.7][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_PCL_OUTOFCORE:INTERNAL=[/usr/local/lib/libpcl_outofcore.so][/usr/local/include/pcl-1.8][v()]
 //Details about finding PCL_PEOPLE
-FIND_PACKAGE_MESSAGE_DETAILS_PCL_PEOPLE:INTERNAL=[/usr/local/lib/libpcl_people.so][/usr/local/include/pcl-1.7][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_PCL_PEOPLE:INTERNAL=[/usr/local/lib/libpcl_people.so][/usr/local/include/pcl-1.8][v()]
 //Details about finding PCL_RECOGNITION
-FIND_PACKAGE_MESSAGE_DETAILS_PCL_RECOGNITION:INTERNAL=[/usr/local/lib/libpcl_recognition.so][/usr/local/include/pcl-1.7][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_PCL_RECOGNITION:INTERNAL=[/usr/local/lib/libpcl_recognition.so][/usr/local/include/pcl-1.8][v()]
 //Details about finding PCL_REGISTRATION
-FIND_PACKAGE_MESSAGE_DETAILS_PCL_REGISTRATION:INTERNAL=[/usr/local/lib/libpcl_registration.so][/usr/local/include/pcl-1.7][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_PCL_REGISTRATION:INTERNAL=[/usr/local/lib/libpcl_registration.so][/usr/local/include/pcl-1.8][v()]
 //Details about finding PCL_SAMPLE_CONSENSUS
-FIND_PACKAGE_MESSAGE_DETAILS_PCL_SAMPLE_CONSENSUS:INTERNAL=[/usr/local/lib/libpcl_sample_consensus.so][/usr/local/include/pcl-1.7][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_PCL_SAMPLE_CONSENSUS:INTERNAL=[/usr/local/lib/libpcl_sample_consensus.so][/usr/local/include/pcl-1.8][v()]
 //Details about finding PCL_SEARCH
-FIND_PACKAGE_MESSAGE_DETAILS_PCL_SEARCH:INTERNAL=[/usr/local/lib/libpcl_search.so][/usr/local/include/pcl-1.7][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_PCL_SEARCH:INTERNAL=[/usr/local/lib/libpcl_search.so][/usr/local/include/pcl-1.8][v()]
 //Details about finding PCL_SEGMENTATION
-FIND_PACKAGE_MESSAGE_DETAILS_PCL_SEGMENTATION:INTERNAL=[/usr/local/lib/libpcl_segmentation.so][/usr/local/include/pcl-1.7][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_PCL_SEGMENTATION:INTERNAL=[/usr/local/lib/libpcl_segmentation.so][/usr/local/include/pcl-1.8][v()]
+//Details about finding PCL_STEREO
+FIND_PACKAGE_MESSAGE_DETAILS_PCL_STEREO:INTERNAL=[/usr/local/lib/libpcl_stereo.so][/usr/local/include/pcl-1.8][v()]
 //Details about finding PCL_SURFACE
-FIND_PACKAGE_MESSAGE_DETAILS_PCL_SURFACE:INTERNAL=[/usr/local/lib/libpcl_surface.so][/usr/local/include/pcl-1.7][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_PCL_SURFACE:INTERNAL=[/usr/local/lib/libpcl_surface.so][/usr/local/include/pcl-1.8][v()]
 //Details about finding PCL_TRACKING
-FIND_PACKAGE_MESSAGE_DETAILS_PCL_TRACKING:INTERNAL=[/usr/local/lib/libpcl_tracking.so][/usr/local/include/pcl-1.7][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_PCL_TRACKING:INTERNAL=[/usr/local/lib/libpcl_tracking.so][/usr/local/include/pcl-1.8][v()]
 //Details about finding PCL_VISUALIZATION
-FIND_PACKAGE_MESSAGE_DETAILS_PCL_VISUALIZATION:INTERNAL=[/usr/local/lib/libpcl_visualization.so][/usr/local/include/pcl-1.7][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_PCL_VISUALIZATION:INTERNAL=[/usr/local/lib/libpcl_visualization.so][/usr/local/include/pcl-1.8][v()]
 //Details about finding PkgConfig
 FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/usr/bin/pkg-config][v0.29.1()]
+//Details about finding Qhull
+FIND_PACKAGE_MESSAGE_DETAILS_Qhull:INTERNAL=[/usr/lib/x86_64-linux-gnu/libqhull.so][/usr/include][v()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
-//Details about finding eigen
-FIND_PACKAGE_MESSAGE_DETAILS_eigen:INTERNAL=[/usr/include/eigen3][v()]
+//Details about finding USB_10
+FIND_PACKAGE_MESSAGE_DETAILS_USB_10:INTERNAL=[/usr/lib/x86_64-linux-gnu/libusb-1.0.so][/usr/include][v()]
 //Details about finding libusb-1.0
 FIND_PACKAGE_MESSAGE_DETAILS_libusb-1.0:INTERNAL=[/usr/include][v()]
-//Details about finding qhull
-FIND_PACKAGE_MESSAGE_DETAILS_qhull:INTERNAL=[/usr/lib/x86_64-linux-gnu/libqhull.so][/usr/include][v()]
+//ADVANCED property for variable: FLANN_INCLUDE_DIR
+FLANN_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: FLANN_LIBRARY
+FLANN_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: FLANN_LIBRARY_DEBUG
+FLANN_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
 JSONCPP_CFLAGS:INTERNAL=-I/usr/include/jsoncpp
 JSONCPP_CFLAGS_I:INTERNAL=
 JSONCPP_CFLAGS_OTHER:INTERNAL=
@@ -738,70 +785,120 @@ OpenCV_CONFIG_PATH-ADVANCED:INTERNAL=1
 OpenCV_LIB_DIR_DBG-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OpenCV_LIB_DIR_OPT
 OpenCV_LIB_DIR_OPT-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCL_2D_INCLUDE_DIR
+PCL_2D_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCL_COMMON_INCLUDE_DIR
+PCL_COMMON_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_COMMON_LIBRARY
 PCL_COMMON_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_COMMON_LIBRARY_DEBUG
 PCL_COMMON_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCL_FEATURES_INCLUDE_DIR
+PCL_FEATURES_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_FEATURES_LIBRARY
 PCL_FEATURES_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_FEATURES_LIBRARY_DEBUG
 PCL_FEATURES_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCL_FILTERS_INCLUDE_DIR
+PCL_FILTERS_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_FILTERS_LIBRARY
 PCL_FILTERS_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_FILTERS_LIBRARY_DEBUG
 PCL_FILTERS_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCL_GEOMETRY_INCLUDE_DIR
+PCL_GEOMETRY_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCL_IO_INCLUDE_DIR
+PCL_IO_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_IO_LIBRARY
 PCL_IO_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_IO_LIBRARY_DEBUG
 PCL_IO_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCL_KDTREE_INCLUDE_DIR
+PCL_KDTREE_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_KDTREE_LIBRARY
 PCL_KDTREE_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_KDTREE_LIBRARY_DEBUG
 PCL_KDTREE_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCL_KEYPOINTS_INCLUDE_DIR
+PCL_KEYPOINTS_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_KEYPOINTS_LIBRARY
 PCL_KEYPOINTS_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_KEYPOINTS_LIBRARY_DEBUG
 PCL_KEYPOINTS_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCL_ML_INCLUDE_DIR
+PCL_ML_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCL_ML_LIBRARY
+PCL_ML_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCL_ML_LIBRARY_DEBUG
+PCL_ML_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCL_OCTREE_INCLUDE_DIR
+PCL_OCTREE_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_OCTREE_LIBRARY
 PCL_OCTREE_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_OCTREE_LIBRARY_DEBUG
 PCL_OCTREE_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCL_OUTOFCORE_INCLUDE_DIR
+PCL_OUTOFCORE_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_OUTOFCORE_LIBRARY
 PCL_OUTOFCORE_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_OUTOFCORE_LIBRARY_DEBUG
 PCL_OUTOFCORE_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCL_PEOPLE_INCLUDE_DIR
+PCL_PEOPLE_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_PEOPLE_LIBRARY
 PCL_PEOPLE_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_PEOPLE_LIBRARY_DEBUG
 PCL_PEOPLE_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCL_RECOGNITION_INCLUDE_DIR
+PCL_RECOGNITION_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_RECOGNITION_LIBRARY
 PCL_RECOGNITION_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_RECOGNITION_LIBRARY_DEBUG
 PCL_RECOGNITION_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCL_REGISTRATION_INCLUDE_DIR
+PCL_REGISTRATION_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_REGISTRATION_LIBRARY
 PCL_REGISTRATION_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_REGISTRATION_LIBRARY_DEBUG
 PCL_REGISTRATION_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCL_SAMPLE_CONSENSUS_INCLUDE_DIR
+PCL_SAMPLE_CONSENSUS_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_SAMPLE_CONSENSUS_LIBRARY
 PCL_SAMPLE_CONSENSUS_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_SAMPLE_CONSENSUS_LIBRARY_DEBUG
 PCL_SAMPLE_CONSENSUS_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCL_SEARCH_INCLUDE_DIR
+PCL_SEARCH_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_SEARCH_LIBRARY
 PCL_SEARCH_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_SEARCH_LIBRARY_DEBUG
 PCL_SEARCH_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCL_SEGMENTATION_INCLUDE_DIR
+PCL_SEGMENTATION_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_SEGMENTATION_LIBRARY
 PCL_SEGMENTATION_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_SEGMENTATION_LIBRARY_DEBUG
 PCL_SEGMENTATION_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCL_STEREO_INCLUDE_DIR
+PCL_STEREO_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCL_STEREO_LIBRARY
+PCL_STEREO_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCL_STEREO_LIBRARY_DEBUG
+PCL_STEREO_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCL_SURFACE_INCLUDE_DIR
+PCL_SURFACE_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_SURFACE_LIBRARY
 PCL_SURFACE_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_SURFACE_LIBRARY_DEBUG
 PCL_SURFACE_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCL_TRACKING_INCLUDE_DIR
+PCL_TRACKING_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_TRACKING_LIBRARY
 PCL_TRACKING_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_TRACKING_LIBRARY_DEBUG
 PCL_TRACKING_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCL_VISUALIZATION_INCLUDE_DIR
+PCL_VISUALIZATION_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_VISUALIZATION_LIBRARY
 PCL_VISUALIZATION_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PCL_VISUALIZATION_LIBRARY_DEBUG
@@ -874,60 +971,122 @@ PC_FLANN_flann_INCLUDEDIR:INTERNAL=
 PC_FLANN_flann_LIBDIR:INTERNAL=
 PC_FLANN_flann_PREFIX:INTERNAL=
 PC_FLANN_flann_VERSION:INTERNAL=
-PC_OPENNI2_CFLAGS:INTERNAL=
+PC_OPENNI2_CFLAGS:INTERNAL=-I/usr/include/openni2
 PC_OPENNI2_CFLAGS_I:INTERNAL=
 PC_OPENNI2_CFLAGS_OTHER:INTERNAL=
-PC_OPENNI2_FOUND:INTERNAL=
-PC_OPENNI2_INCLUDEDIR:INTERNAL=
-PC_OPENNI2_LIBDIR:INTERNAL=
+PC_OPENNI2_FOUND:INTERNAL=1
+PC_OPENNI2_INCLUDEDIR:INTERNAL=/usr/include/openni2
+PC_OPENNI2_INCLUDE_DIRS:INTERNAL=/usr/include/openni2
+PC_OPENNI2_LDFLAGS:INTERNAL=-L/usr/lib/OpenNI2/Drivers;-lOpenNI2;-lDummyDevice;-lOniFile;-lPS1080
+PC_OPENNI2_LDFLAGS_OTHER:INTERNAL=
+PC_OPENNI2_LIBDIR:INTERNAL=/usr/lib
+PC_OPENNI2_LIBRARIES:INTERNAL=OpenNI2;DummyDevice;OniFile;PS1080
+PC_OPENNI2_LIBRARY_DIRS:INTERNAL=/usr/lib/OpenNI2/Drivers
 PC_OPENNI2_LIBS:INTERNAL=
 PC_OPENNI2_LIBS_L:INTERNAL=
 PC_OPENNI2_LIBS_OTHER:INTERNAL=
 PC_OPENNI2_LIBS_PATHS:INTERNAL=
-PC_OPENNI2_PREFIX:INTERNAL=
-PC_OPENNI2_STATIC_CFLAGS:INTERNAL=
+PC_OPENNI2_PREFIX:INTERNAL=/usr
+PC_OPENNI2_STATIC_CFLAGS:INTERNAL=-I/usr/include/openni2
 PC_OPENNI2_STATIC_CFLAGS_I:INTERNAL=
 PC_OPENNI2_STATIC_CFLAGS_OTHER:INTERNAL=
+PC_OPENNI2_STATIC_INCLUDE_DIRS:INTERNAL=/usr/include/openni2
+PC_OPENNI2_STATIC_LDFLAGS:INTERNAL=-L/usr/lib/OpenNI2/Drivers;-lOpenNI2;-lDummyDevice;-lOniFile;-lPS1080
+PC_OPENNI2_STATIC_LDFLAGS_OTHER:INTERNAL=
 PC_OPENNI2_STATIC_LIBDIR:INTERNAL=
+PC_OPENNI2_STATIC_LIBRARIES:INTERNAL=OpenNI2;DummyDevice;OniFile;PS1080
+PC_OPENNI2_STATIC_LIBRARY_DIRS:INTERNAL=/usr/lib/OpenNI2/Drivers
 PC_OPENNI2_STATIC_LIBS:INTERNAL=
 PC_OPENNI2_STATIC_LIBS_L:INTERNAL=
 PC_OPENNI2_STATIC_LIBS_OTHER:INTERNAL=
 PC_OPENNI2_STATIC_LIBS_PATHS:INTERNAL=
-PC_OPENNI2_VERSION:INTERNAL=
-PC_OPENNI2_openni2-dev_INCLUDEDIR:INTERNAL=
-PC_OPENNI2_openni2-dev_LIBDIR:INTERNAL=
-PC_OPENNI2_openni2-dev_PREFIX:INTERNAL=
-PC_OPENNI2_openni2-dev_VERSION:INTERNAL=
-PC_OPENNI_CFLAGS:INTERNAL=
+PC_OPENNI2_VERSION:INTERNAL=2.2.0.3
+PC_OPENNI2_libopenni2_INCLUDEDIR:INTERNAL=
+PC_OPENNI2_libopenni2_LIBDIR:INTERNAL=
+PC_OPENNI2_libopenni2_PREFIX:INTERNAL=
+PC_OPENNI2_libopenni2_VERSION:INTERNAL=
+PC_OPENNI_CFLAGS:INTERNAL=-I/usr/include/ni
 PC_OPENNI_CFLAGS_I:INTERNAL=
 PC_OPENNI_CFLAGS_OTHER:INTERNAL=
-PC_OPENNI_FOUND:INTERNAL=
-PC_OPENNI_INCLUDEDIR:INTERNAL=
-PC_OPENNI_LIBDIR:INTERNAL=
+PC_OPENNI_FOUND:INTERNAL=1
+PC_OPENNI_INCLUDEDIR:INTERNAL=/usr/include/ni
+PC_OPENNI_INCLUDE_DIRS:INTERNAL=/usr/include/ni
+PC_OPENNI_LDFLAGS:INTERNAL=-lOpenNI
+PC_OPENNI_LDFLAGS_OTHER:INTERNAL=
+PC_OPENNI_LIBDIR:INTERNAL=/usr/lib
+PC_OPENNI_LIBRARIES:INTERNAL=OpenNI
+PC_OPENNI_LIBRARY_DIRS:INTERNAL=
 PC_OPENNI_LIBS:INTERNAL=
 PC_OPENNI_LIBS_L:INTERNAL=
 PC_OPENNI_LIBS_OTHER:INTERNAL=
 PC_OPENNI_LIBS_PATHS:INTERNAL=
-PC_OPENNI_PREFIX:INTERNAL=
-PC_OPENNI_STATIC_CFLAGS:INTERNAL=
+PC_OPENNI_PREFIX:INTERNAL=/usr
+PC_OPENNI_STATIC_CFLAGS:INTERNAL=-I/usr/include/ni
 PC_OPENNI_STATIC_CFLAGS_I:INTERNAL=
 PC_OPENNI_STATIC_CFLAGS_OTHER:INTERNAL=
+PC_OPENNI_STATIC_INCLUDE_DIRS:INTERNAL=/usr/include/ni
+PC_OPENNI_STATIC_LDFLAGS:INTERNAL=-lOpenNI
+PC_OPENNI_STATIC_LDFLAGS_OTHER:INTERNAL=
 PC_OPENNI_STATIC_LIBDIR:INTERNAL=
+PC_OPENNI_STATIC_LIBRARIES:INTERNAL=OpenNI
+PC_OPENNI_STATIC_LIBRARY_DIRS:INTERNAL=
 PC_OPENNI_STATIC_LIBS:INTERNAL=
 PC_OPENNI_STATIC_LIBS_L:INTERNAL=
 PC_OPENNI_STATIC_LIBS_OTHER:INTERNAL=
 PC_OPENNI_STATIC_LIBS_PATHS:INTERNAL=
-PC_OPENNI_VERSION:INTERNAL=
-PC_OPENNI_openni-dev_INCLUDEDIR:INTERNAL=
-PC_OPENNI_openni-dev_LIBDIR:INTERNAL=
-PC_OPENNI_openni-dev_PREFIX:INTERNAL=
-PC_OPENNI_openni-dev_VERSION:INTERNAL=
+PC_OPENNI_VERSION:INTERNAL=1.5.4.0
+PC_OPENNI_libopenni_INCLUDEDIR:INTERNAL=
+PC_OPENNI_libopenni_LIBDIR:INTERNAL=
+PC_OPENNI_libopenni_PREFIX:INTERNAL=
+PC_OPENNI_libopenni_VERSION:INTERNAL=
+PC_USB_10_CFLAGS:INTERNAL=-I/usr/include/libusb-1.0
+PC_USB_10_CFLAGS_I:INTERNAL=
+PC_USB_10_CFLAGS_OTHER:INTERNAL=
+PC_USB_10_FOUND:INTERNAL=1
+PC_USB_10_INCLUDEDIR:INTERNAL=/usr/include
+PC_USB_10_INCLUDE_DIRS:INTERNAL=/usr/include/libusb-1.0
+PC_USB_10_LDFLAGS:INTERNAL=-lusb-1.0
+PC_USB_10_LDFLAGS_OTHER:INTERNAL=
+PC_USB_10_LIBDIR:INTERNAL=/usr/lib/x86_64-linux-gnu
+PC_USB_10_LIBRARIES:INTERNAL=usb-1.0
+PC_USB_10_LIBRARY_DIRS:INTERNAL=
+PC_USB_10_LIBS:INTERNAL=
+PC_USB_10_LIBS_L:INTERNAL=
+PC_USB_10_LIBS_OTHER:INTERNAL=
+PC_USB_10_LIBS_PATHS:INTERNAL=
+PC_USB_10_PREFIX:INTERNAL=/usr
+PC_USB_10_STATIC_CFLAGS:INTERNAL=-I/usr/include/libusb-1.0
+PC_USB_10_STATIC_CFLAGS_I:INTERNAL=
+PC_USB_10_STATIC_CFLAGS_OTHER:INTERNAL=
+PC_USB_10_STATIC_INCLUDE_DIRS:INTERNAL=/usr/include/libusb-1.0
+PC_USB_10_STATIC_LDFLAGS:INTERNAL=-lusb-1.0;-ludev;-pthread
+PC_USB_10_STATIC_LDFLAGS_OTHER:INTERNAL=-pthread
+PC_USB_10_STATIC_LIBDIR:INTERNAL=
+PC_USB_10_STATIC_LIBRARIES:INTERNAL=usb-1.0;udev
+PC_USB_10_STATIC_LIBRARY_DIRS:INTERNAL=
+PC_USB_10_STATIC_LIBS:INTERNAL=
+PC_USB_10_STATIC_LIBS_L:INTERNAL=
+PC_USB_10_STATIC_LIBS_OTHER:INTERNAL=
+PC_USB_10_STATIC_LIBS_PATHS:INTERNAL=
+PC_USB_10_VERSION:INTERNAL=1.0.20
+PC_USB_10_libusb-1.0_INCLUDEDIR:INTERNAL=
+PC_USB_10_libusb-1.0_LIBDIR:INTERNAL=
+PC_USB_10_libusb-1.0_PREFIX:INTERNAL=
+PC_USB_10_libusb-1.0_VERSION:INTERNAL=
 //ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
 PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
+//QHull header
+QHULL_HEADER:INTERNAL=/usr/include/libqhull/libqhull.h
+//ADVANCED property for variable: QHULL_INCLUDE_DIR
+QHULL_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: QHULL_LIBRARY
+QHULL_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: QHULL_LIBRARY_DEBUG
+QHULL_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
 //Last used BOOST_INCLUDEDIR value.
 _BOOST_INCLUDEDIR_LAST:INTERNAL=/usr/include
 //Last used Boost_ADDITIONAL_VERSIONS value.
-_Boost_ADDITIONAL_VERSIONS_LAST:INTERNAL=1.47;1.47.0
+_Boost_ADDITIONAL_VERSIONS_LAST:INTERNAL=1.58.0;1.58;1.66.0;1.66;1.65.1;1.65.0;1.65;1.64.0;1.64;1.63.0;1.63;1.62.0;1.62;1.61.0;1.61;1.60.0;1.60;1.59.0;1.59;1.58.0;1.58;1.57.0;1.57;1.56.0;1.56;1.55.0;1.55;1.54.0;1.54;1.53.0;1.53;1.52.0;1.52;1.51.0;1.51;1.50.0;1.50;1.49.0;1.49;1.48.0;1.48;1.47.0;1.47
 //Components requested for this build tree.
 _Boost_COMPONENTS_SEARCHED:INTERNAL=atomic;chrono;date_time;filesystem;iostreams;regex;serialization;system;thread
 //Last used Boost_INCLUDE_DIR value.
@@ -945,5 +1104,6 @@ __pkg_config_checked_PC_EIGEN:INTERNAL=1
 __pkg_config_checked_PC_FLANN:INTERNAL=1
 __pkg_config_checked_PC_OPENNI:INTERNAL=1
 __pkg_config_checked_PC_OPENNI2:INTERNAL=1
+__pkg_config_checked_PC_USB_10:INTERNAL=1
 prefix_result:INTERNAL=/usr/lib/x86_64-linux-gnu
 

@@ -121,8 +121,8 @@ void start()
 	shared_ptr<CNNSegmentation> cnn_segmentor_;
 	cnn_segmentor_.reset(new CNNSegmentation());
 	cnn_segmentor_->Init();
-	for (int i = 0; i < 10; ++i)
-		cnn_segmentor_->Segment(in_pc, valid_idx, &out_objects);
+	//for (int i = 0; i < 10; ++i)
+	cnn_segmentor_->Segment(in_pc, valid_idx, &out_objects);
 	cnn_segmentor_->Write2Json(out_objects);
 	/*
 	uint8_t r(255), g(128), b(128);
@@ -159,3 +159,6 @@ int main()
 
 	return 0;
 }
+
+
+//ssh tongyao.bai@yz-gpu032.hogpu.cc

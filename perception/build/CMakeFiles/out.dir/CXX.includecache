@@ -45,10 +45,6 @@ cluster2d.h
 /home/bai/Project/perception/cluster2d.h
 feature_generator.h
 /home/bai/Project/perception/feature_generator.h
-jsoncpp/json/json.h
--
-fstream
--
 map
 -
 string
@@ -1730,11 +1726,39 @@ vtkActor.h
 vtkActor2D.h
 /usr/include/vtk-5.10/vtkActor2D.h
 
+/usr/include/vtk-5.10/vtkLineSource.h
+vtkPolyDataAlgorithm.h
+/usr/include/vtk-5.10/vtkPolyDataAlgorithm.h
+
+/usr/include/vtk-5.10/vtkLookupTable.h
+vtkScalarsToColors.h
+/usr/include/vtk-5.10/vtkScalarsToColors.h
+vtkUnsignedCharArray.h
+/usr/include/vtk-5.10/vtkUnsignedCharArray.h
+
 /usr/include/vtk-5.10/vtkMapper.h
 vtkAbstractMapper3D.h
 /usr/include/vtk-5.10/vtkAbstractMapper3D.h
 vtkScalarsToColors.h
 /usr/include/vtk-5.10/vtkScalarsToColors.h
+
+/usr/include/vtk-5.10/vtkMath.h
+vtkObject.h
+/usr/include/vtk-5.10/vtkObject.h
+vtkPolynomialSolversUnivariate.h
+/usr/include/vtk-5.10/vtkPolynomialSolversUnivariate.h
+assert.h
+-
+vtkMathConfigure.h
+/usr/include/vtk-5.10/vtkMathConfigure.h
+assert.h
+-
+
+/usr/include/vtk-5.10/vtkMathConfigure.h
+cmath
+-
+float.h
+-
 
 /usr/include/vtk-5.10/vtkMatrix4x4.h
 vtkObject.h
@@ -1803,6 +1827,10 @@ vtkTexture.h
 /usr/include/vtk-5.10/vtkPolygon.h
 vtkCell.h
 /usr/include/vtk-5.10/vtkCell.h
+
+/usr/include/vtk-5.10/vtkPolynomialSolversUnivariate.h
+vtkObject.h
+/usr/include/vtk-5.10/vtkObject.h
 
 /usr/include/vtk-5.10/vtkProp.h
 vtkObject.h
@@ -1990,7 +2018,7 @@ windows.h
 
 /usr/include/vtk-5.10/vtksys/DateStamp.h
 
-/usr/local/include/pcl-1.7/pcl/ModelCoefficients.h
+/usr/local/include/pcl-1.8/pcl/ModelCoefficients.h
 string
 -
 vector
@@ -2000,7 +2028,7 @@ ostream
 pcl/PCLHeader.h
 -
 
-/usr/local/include/pcl-1.7/pcl/PCLHeader.h
+/usr/local/include/pcl-1.8/pcl/PCLHeader.h
 string
 -
 vector
@@ -2012,7 +2040,7 @@ pcl/pcl_macros.h
 ostream
 -
 
-/usr/local/include/pcl-1.7/pcl/PCLImage.h
+/usr/local/include/pcl-1.8/pcl/PCLImage.h
 string
 -
 vector
@@ -2022,7 +2050,7 @@ ostream
 pcl/PCLHeader.h
 -
 
-/usr/local/include/pcl-1.7/pcl/PCLPointCloud2.h
+/usr/local/include/pcl-1.8/pcl/PCLPointCloud2.h
 string
 -
 vector
@@ -2036,7 +2064,7 @@ pcl/PCLHeader.h
 pcl/PCLPointField.h
 -
 
-/usr/local/include/pcl-1.7/pcl/PCLPointField.h
+/usr/local/include/pcl-1.8/pcl/PCLPointField.h
 string
 -
 vector
@@ -2048,7 +2076,7 @@ boost/shared_ptr.hpp
 pcl/pcl_macros.h
 -
 
-/usr/local/include/pcl-1.7/pcl/PointIndices.h
+/usr/local/include/pcl-1.8/pcl/PointIndices.h
 string
 -
 vector
@@ -2058,7 +2086,7 @@ ostream
 pcl/PCLHeader.h
 -
 
-/usr/local/include/pcl-1.7/pcl/PolygonMesh.h
+/usr/local/include/pcl-1.8/pcl/PolygonMesh.h
 string
 -
 vector
@@ -2072,7 +2100,7 @@ pcl/PCLPointCloud2.h
 pcl/Vertices.h
 -
 
-/usr/local/include/pcl-1.7/pcl/TextureMesh.h
+/usr/local/include/pcl-1.8/pcl/TextureMesh.h
 Eigen/Core
 -
 string
@@ -2082,17 +2110,19 @@ pcl/PCLPointCloud2.h
 pcl/Vertices.h
 -
 
-/usr/local/include/pcl-1.7/pcl/Vertices.h
+/usr/local/include/pcl-1.8/pcl/Vertices.h
 string
 -
 vector
 -
 ostream
 -
+boost/shared_ptr.hpp
+-
 pcl/pcl_macros.h
 -
 
-/usr/local/include/pcl-1.7/pcl/cloud_iterator.h
+/usr/local/include/pcl-1.8/pcl/cloud_iterator.h
 pcl/point_cloud.h
 -
 pcl/PointIndices.h
@@ -2102,7 +2132,7 @@ pcl/correspondence.h
 pcl/impl/cloud_iterator.hpp
 -
 
-/usr/local/include/pcl-1.7/pcl/common/centroid.h
+/usr/local/include/pcl-1.8/pcl/common/centroid.h
 pcl/point_cloud.h
 -
 pcl/point_traits.h
@@ -2116,15 +2146,19 @@ pcl/common/impl/accumulators.hpp
 pcl/common/impl/centroid.hpp
 -
 
-/usr/local/include/pcl-1.7/pcl/common/concatenate.h
+/usr/local/include/pcl-1.8/pcl/common/colors.h
+pcl/pcl_macros.h
+-
+
+/usr/local/include/pcl-1.8/pcl/common/concatenate.h
 pcl/conversions.h
 -
 
-/usr/local/include/pcl-1.7/pcl/common/copy_point.h
+/usr/local/include/pcl-1.8/pcl/common/copy_point.h
 pcl/common/impl/copy_point.hpp
 -
 
-/usr/local/include/pcl-1.7/pcl/common/eigen.h
+/usr/local/include/pcl-1.8/pcl/common/eigen.h
 cmath
 -
 pcl/ModelCoefficients.h
@@ -2148,7 +2182,7 @@ Eigen/Eigenvalues
 pcl/common/impl/eigen.hpp
 -
 
-/usr/local/include/pcl-1.7/pcl/common/impl/accumulators.hpp
+/usr/local/include/pcl-1.8/pcl/common/impl/accumulators.hpp
 map
 -
 boost/mpl/filter_view.hpp
@@ -2162,7 +2196,7 @@ boost/fusion/include/as_vector.hpp
 pcl/point_types.h
 -
 
-/usr/local/include/pcl-1.7/pcl/common/impl/centroid.hpp
+/usr/local/include/pcl-1.8/pcl/common/impl/centroid.hpp
 pcl/common/centroid.h
 -
 pcl/conversions.h
@@ -2170,7 +2204,7 @@ pcl/conversions.h
 boost/mpl/size.hpp
 -
 
-/usr/local/include/pcl-1.7/pcl/common/impl/copy_point.hpp
+/usr/local/include/pcl-1.8/pcl/common/impl/copy_point.hpp
 pcl/point_types.h
 -
 pcl/point_traits.h
@@ -2180,11 +2214,11 @@ pcl/for_each_type.h
 pcl/common/concatenate.h
 -
 
-/usr/local/include/pcl-1.7/pcl/common/impl/eigen.hpp
+/usr/local/include/pcl-1.8/pcl/common/impl/eigen.hpp
 pcl/console/print.h
 -
 
-/usr/local/include/pcl-1.7/pcl/common/impl/io.hpp
+/usr/local/include/pcl-1.8/pcl/common/impl/io.hpp
 pcl/common/concatenate.h
 -
 pcl/common/copy_point.h
@@ -2192,9 +2226,9 @@ pcl/common/copy_point.h
 pcl/point_types.h
 -
 
-/usr/local/include/pcl-1.7/pcl/common/impl/transforms.hpp
+/usr/local/include/pcl-1.8/pcl/common/impl/transforms.hpp
 
-/usr/local/include/pcl-1.7/pcl/common/io.h
+/usr/local/include/pcl-1.8/pcl/common/io.h
 string
 -
 pcl/pcl_base.h
@@ -2210,19 +2244,21 @@ locale
 pcl/common/impl/io.hpp
 -
 
-/usr/local/include/pcl-1.7/pcl/common/point_tests.h
+/usr/local/include/pcl-1.8/pcl/common/point_tests.h
 Eigen/src/StlSupport/details.h
 -
 
-/usr/local/include/pcl-1.7/pcl/common/time.h
+/usr/local/include/pcl-1.8/pcl/common/time.h
 cmath
+-
+queue
 -
 string
 -
 boost/date_time/posix_time/posix_time.hpp
 -
 
-/usr/local/include/pcl-1.7/pcl/common/transforms.h
+/usr/local/include/pcl-1.8/pcl/common/transforms.h
 pcl/point_cloud.h
 -
 pcl/point_types.h
@@ -2236,7 +2272,7 @@ pcl/PointIndices.h
 pcl/common/impl/transforms.hpp
 -
 
-/usr/local/include/pcl-1.7/pcl/console/print.h
+/usr/local/include/pcl-1.8/pcl/console/print.h
 stdio.h
 -
 stdarg.h
@@ -2246,7 +2282,7 @@ pcl/pcl_exports.h
 pcl/pcl_config.h
 -
 
-/usr/local/include/pcl-1.7/pcl/conversions.h
+/usr/local/include/pcl-1.8/pcl/conversions.h
 pcl/PCLPointField.h
 -
 pcl/PCLPointCloud2.h
@@ -2266,7 +2302,7 @@ pcl/console/print.h
 boost/foreach.hpp
 -
 
-/usr/local/include/pcl-1.7/pcl/correspondence.h
+/usr/local/include/pcl-1.8/pcl/correspondence.h
 boost/shared_ptr.hpp
 -
 Eigen/StdVector
@@ -2276,7 +2312,7 @@ Eigen/Geometry
 pcl/pcl_exports.h
 -
 
-/usr/local/include/pcl-1.7/pcl/exceptions.h
+/usr/local/include/pcl-1.8/pcl/exceptions.h
 stdexcept
 -
 sstream
@@ -2286,7 +2322,7 @@ pcl/pcl_macros.h
 boost/current_function.hpp
 -
 
-/usr/local/include/pcl-1.7/pcl/for_each_type.h
+/usr/local/include/pcl-1.8/pcl/for_each_type.h
 boost/mpl/is_sequence.hpp
 -
 boost/mpl/begin_end.hpp
@@ -2308,7 +2344,7 @@ boost/mpl/aux_/unwrap.hpp
 boost/type_traits/is_same.hpp
 -
 
-/usr/local/include/pcl-1.7/pcl/geometry/planar_polygon.h
+/usr/local/include/pcl-1.8/pcl/geometry/planar_polygon.h
 pcl/common/eigen.h
 -
 pcl/point_cloud.h
@@ -2316,11 +2352,11 @@ pcl/point_cloud.h
 pcl/ModelCoefficients.h
 -
 
-/usr/local/include/pcl-1.7/pcl/impl/cloud_iterator.hpp
+/usr/local/include/pcl-1.8/pcl/impl/cloud_iterator.hpp
 pcl/cloud_iterator.h
 -
 
-/usr/local/include/pcl-1.7/pcl/impl/pcl_base.hpp
+/usr/local/include/pcl-1.8/pcl/impl/pcl_base.hpp
 pcl/pcl_base.h
 -
 pcl/console/print.h
@@ -2328,7 +2364,7 @@ pcl/console/print.h
 cstddef
 -
 
-/usr/local/include/pcl-1.7/pcl/impl/point_types.hpp
+/usr/local/include/pcl-1.8/pcl/impl/point_types.hpp
 Eigen/Core
 -
 ostream
@@ -2336,7 +2372,9 @@ ostream
 pcl/common/point_tests.h
 -
 
-/usr/local/include/pcl-1.7/pcl/io/boost.h
+/usr/local/include/pcl-1.8/pcl/io/boost.h
+boost/version.hpp
+-
 boost/numeric/conversion/cast.hpp
 -
 boost/thread/mutex.hpp
@@ -2373,8 +2411,6 @@ boost/mpl/transform.hpp
 -
 boost/mpl/vector.hpp
 -
-boost/algorithm/string.hpp
--
 boost/date_time/posix_time/posix_time.hpp
 -
 boost/chrono.hpp
@@ -2385,8 +2421,6 @@ boost/foreach.hpp
 -
 boost/shared_array.hpp
 -
-boost/interprocess/sync/file_lock.hpp
--
 boost/interprocess/permissions.hpp
 -
 boost/iostreams/device/mapped_file.hpp
@@ -2395,8 +2429,12 @@ boost/signals2.hpp
 -
 boost/signals2/slot.hpp
 -
+boost/algorithm/string.hpp
+-
+boost/interprocess/sync/file_lock.hpp
+-
 
-/usr/local/include/pcl-1.7/pcl/io/file_io.h
+/usr/local/include/pcl-1.8/pcl/io/file_io.h
 pcl/pcl_macros.h
 -
 pcl/common/io.h
@@ -2412,7 +2450,7 @@ pcl/PolygonMesh.h
 pcl/TextureMesh.h
 -
 
-/usr/local/include/pcl-1.7/pcl/io/impl/pcd_io.hpp
+/usr/local/include/pcl-1.8/pcl/io/impl/pcd_io.hpp
 fstream
 -
 fcntl.h
@@ -2436,15 +2474,15 @@ sys/mman.h
 pcl/io/lzf.h
 -
 
-/usr/local/include/pcl-1.7/pcl/io/io.h
+/usr/local/include/pcl-1.8/pcl/io/io.h
 pcl/common/io.h
 -
 
-/usr/local/include/pcl-1.7/pcl/io/lzf.h
+/usr/local/include/pcl-1.8/pcl/io/lzf.h
 pcl/pcl_macros.h
 -
 
-/usr/local/include/pcl-1.7/pcl/io/pcd_io.h
+/usr/local/include/pcl-1.8/pcl/io/pcd_io.h
 pcl/point_cloud.h
 -
 pcl/io/file_io.h
@@ -2452,11 +2490,11 @@ pcl/io/file_io.h
 pcl/io/impl/pcd_io.hpp
 -
 
-/usr/local/include/pcl-1.7/pcl/kdtree/flann.h
+/usr/local/include/pcl-1.8/pcl/kdtree/flann.h
 flann/flann.hpp
 -
 
-/usr/local/include/pcl-1.7/pcl/kdtree/impl/kdtree_flann.hpp
+/usr/local/include/pcl-1.8/pcl/kdtree/impl/kdtree_flann.hpp
 cstdio
 -
 pcl/kdtree/kdtree_flann.h
@@ -2466,7 +2504,7 @@ pcl/kdtree/flann.h
 pcl/console/print.h
 -
 
-/usr/local/include/pcl-1.7/pcl/kdtree/kdtree.h
+/usr/local/include/pcl-1.8/pcl/kdtree/kdtree.h
 limits.h
 -
 pcl/pcl_macros.h
@@ -2480,7 +2518,7 @@ pcl/common/io.h
 pcl/common/copy_point.h
 -
 
-/usr/local/include/pcl-1.7/pcl/kdtree/kdtree_flann.h
+/usr/local/include/pcl-1.8/pcl/kdtree/kdtree_flann.h
 pcl/kdtree/kdtree.h
 -
 pcl/kdtree/flann.h
@@ -2490,7 +2528,7 @@ boost/shared_array.hpp
 pcl/kdtree/impl/kdtree_flann.hpp
 -
 
-/usr/local/include/pcl-1.7/pcl/pcl_base.h
+/usr/local/include/pcl-1.8/pcl/pcl_base.h
 pcl/pcl_macros.h
 -
 boost/shared_ptr.hpp
@@ -2508,11 +2546,11 @@ pcl/PCLPointCloud2.h
 pcl/impl/pcl_base.hpp
 -
 
-/usr/local/include/pcl-1.7/pcl/pcl_config.h
+/usr/local/include/pcl-1.8/pcl/pcl_config.h
 
-/usr/local/include/pcl-1.7/pcl/pcl_exports.h
+/usr/local/include/pcl-1.8/pcl/pcl_exports.h
 
-/usr/local/include/pcl-1.7/pcl/pcl_macros.h
+/usr/local/include/pcl-1.8/pcl/pcl_macros.h
 pcl/pcl_config.h
 -
 boost/cstdint.hpp
@@ -2537,8 +2575,10 @@ stdio.h
 -
 math.h
 -
+mm_malloc.h
+-
 
-/usr/local/include/pcl-1.7/pcl/point_cloud.h
+/usr/local/include/pcl-1.8/pcl/point_cloud.h
 Eigen/StdVector
 -
 Eigen/Geometry
@@ -2550,7 +2590,7 @@ pcl/exceptions.h
 pcl/point_traits.h
 -
 
-/usr/local/include/pcl-1.7/pcl/point_representation.h
+/usr/local/include/pcl-1.8/pcl/point_representation.h
 pcl/point_types.h
 -
 pcl/pcl_macros.h
@@ -2558,9 +2598,9 @@ pcl/pcl_macros.h
 pcl/for_each_type.h
 -
 
-/usr/local/include/pcl-1.7/pcl/point_traits.h
+/usr/local/include/pcl-1.8/pcl/point_traits.h
 pcl/pcl_macros.h
-/usr/local/include/pcl-1.7/pcl/pcl/pcl_macros.h
+/usr/local/include/pcl-1.8/pcl/pcl/pcl_macros.h
 pcl/PCLPointField.h
 -
 boost/type_traits/remove_all_extents.hpp
@@ -2576,7 +2616,7 @@ Eigen/Core
 Eigen/src/StlSupport/details.h
 -
 
-/usr/local/include/pcl-1.7/pcl/point_types.h
+/usr/local/include/pcl-1.8/pcl/point_types.h
 pcl/pcl_macros.h
 -
 bitset
@@ -2592,7 +2632,7 @@ boost/mpl/vector.hpp
 pcl/impl/point_types.hpp
 -
 
-/usr/local/include/pcl-1.7/pcl/register_point_struct.h
+/usr/local/include/pcl-1.8/pcl/register_point_struct.h
 pcl/pcl_macros.h
 -
 pcl/point_traits.h
@@ -2616,17 +2656,17 @@ boost/type_traits.hpp
 stddef.h
 -
 
-/usr/local/include/pcl-1.7/pcl/search/impl/kdtree.hpp
+/usr/local/include/pcl-1.8/pcl/search/impl/kdtree.hpp
 pcl/search/kdtree.h
 -
 pcl/search/impl/search.hpp
 -
 
-/usr/local/include/pcl-1.7/pcl/search/impl/search.hpp
+/usr/local/include/pcl-1.8/pcl/search/impl/search.hpp
 pcl/search/search.h
 -
 
-/usr/local/include/pcl-1.7/pcl/search/kdtree.h
+/usr/local/include/pcl-1.8/pcl/search/kdtree.h
 pcl/search/search.h
 -
 pcl/kdtree/kdtree_flann.h
@@ -2634,7 +2674,7 @@ pcl/kdtree/kdtree_flann.h
 pcl/search/impl/kdtree.hpp
 -
 
-/usr/local/include/pcl-1.7/pcl/search/search.h
+/usr/local/include/pcl-1.8/pcl/search/search.h
 pcl/point_cloud.h
 -
 pcl/for_each_type.h
@@ -2646,11 +2686,11 @@ pcl/common/copy_point.h
 pcl/search/impl/search.hpp
 -
 
-/usr/local/include/pcl-1.7/pcl/visualization/area_picking_event.h
+/usr/local/include/pcl-1.8/pcl/visualization/area_picking_event.h
 pcl/pcl_macros.h
 -
 
-/usr/local/include/pcl-1.7/pcl/visualization/boost.h
+/usr/local/include/pcl-1.8/pcl/visualization/boost.h
 boost/function.hpp
 -
 boost/shared_array.hpp
@@ -2682,13 +2722,15 @@ boost/date_time/posix_time/posix_time.hpp
 boost/filesystem.hpp
 -
 
-/usr/local/include/pcl-1.7/pcl/visualization/cloud_viewer.h
+/usr/local/include/pcl-1.8/pcl/visualization/cloud_viewer.h
 pcl/visualization/pcl_visualizer.h
+-
+boost/scoped_ptr.hpp
 -
 string
 -
 
-/usr/local/include/pcl-1.7/pcl/visualization/common/actor_map.h
+/usr/local/include/pcl-1.8/pcl/visualization/common/actor_map.h
 pcl/visualization/point_cloud_handlers.h
 -
 vector
@@ -2708,19 +2750,23 @@ pcl/PCLPointCloud2.h
 pcl/visualization/boost.h
 -
 
-/usr/local/include/pcl-1.7/pcl/visualization/common/common.h
+/usr/local/include/pcl-1.8/pcl/visualization/common/common.h
 pcl/pcl_macros.h
 -
 pcl/visualization/eigen.h
 -
 vtkMatrix4x4.h
 -
+vtkSmartPointer.h
+-
+vtkLookupTable.h
+-
 pcl/visualization/common/impl/common.hpp
 -
 
-/usr/local/include/pcl-1.7/pcl/visualization/common/impl/common.hpp
+/usr/local/include/pcl-1.8/pcl/visualization/common/impl/common.hpp
 
-/usr/local/include/pcl-1.7/pcl/visualization/common/impl/shapes.hpp
+/usr/local/include/pcl-1.8/pcl/visualization/common/impl/shapes.hpp
 vtkSmartPointer.h
 -
 vtkPoints.h
@@ -2730,13 +2776,13 @@ vtkPolygon.h
 vtkUnstructuredGrid.h
 -
 
-/usr/local/include/pcl-1.7/pcl/visualization/common/ren_win_interact_map.h
+/usr/local/include/pcl-1.8/pcl/visualization/common/ren_win_interact_map.h
 map
 -
 string
 -
 
-/usr/local/include/pcl-1.7/pcl/visualization/common/shapes.h
+/usr/local/include/pcl-1.8/pcl/visualization/common/shapes.h
 pcl/ModelCoefficients.h
 -
 pcl/point_cloud.h
@@ -2748,13 +2794,13 @@ pcl/geometry/planar_polygon.h
 pcl/visualization/common/impl/shapes.hpp
 -
 
-/usr/local/include/pcl-1.7/pcl/visualization/eigen.h
+/usr/local/include/pcl-1.8/pcl/visualization/eigen.h
 Eigen/Geometry
 -
 Eigen/Dense
 -
 
-/usr/local/include/pcl-1.7/pcl/visualization/impl/pcl_visualizer.hpp
+/usr/local/include/pcl-1.8/pcl/visualization/impl/pcl_visualizer.hpp
 vtkVersion.h
 -
 vtkSmartPointer.h
@@ -2768,6 +2814,8 @@ vtkVectorText.h
 vtkAlgorithmOutput.h
 -
 vtkFollower.h
+-
+vtkMath.h
 -
 vtkSphereSource.h
 -
@@ -2797,18 +2845,26 @@ vtkTextProperty.h
 -
 vtkLODActor.h
 -
+vtkLineSource.h
+-
 pcl/visualization/common/shapes.h
 -
 
-/usr/local/include/pcl-1.7/pcl/visualization/impl/point_cloud_color_handlers.hpp
+/usr/local/include/pcl-1.8/pcl/visualization/impl/point_cloud_color_handlers.hpp
+set
+-
+map
+-
+pcl/pcl_macros.h
+-
+pcl/common/colors.h
+-
+
+/usr/local/include/pcl-1.8/pcl/visualization/impl/point_cloud_geometry_handlers.hpp
 pcl/pcl_macros.h
 -
 
-/usr/local/include/pcl-1.7/pcl/visualization/impl/point_cloud_geometry_handlers.hpp
-pcl/pcl_macros.h
--
-
-/usr/local/include/pcl-1.7/pcl/visualization/interactor_style.h
+/usr/local/include/pcl-1.8/pcl/visualization/interactor_style.h
 pcl/console/print.h
 -
 pcl/visualization/common/actor_map.h
@@ -2828,15 +2884,15 @@ boost/signals2/signal.hpp
 vtkInteractorStyleRubberBandPick.h
 -
 
-/usr/local/include/pcl-1.7/pcl/visualization/keyboard_event.h
+/usr/local/include/pcl-1.8/pcl/visualization/keyboard_event.h
 string
 -
 
-/usr/local/include/pcl-1.7/pcl/visualization/mouse_event.h
+/usr/local/include/pcl-1.8/pcl/visualization/mouse_event.h
 pcl/visualization/keyboard_event.h
 -
 
-/usr/local/include/pcl-1.7/pcl/visualization/pcl_visualizer.h
+/usr/local/include/pcl-1.8/pcl/visualization/pcl_visualizer.h
 pcl/correspondence.h
 -
 pcl/ModelCoefficients.h
@@ -2864,7 +2920,7 @@ pcl/visualization/interactor_style.h
 pcl/visualization/impl/pcl_visualizer.hpp
 -
 
-/usr/local/include/pcl-1.7/pcl/visualization/point_cloud_color_handlers.h
+/usr/local/include/pcl-1.8/pcl/visualization/point_cloud_color_handlers.h
 pcl/point_cloud.h
 -
 pcl/common/io.h
@@ -2882,7 +2938,7 @@ vtkUnsignedCharArray.h
 pcl/visualization/impl/point_cloud_color_handlers.hpp
 -
 
-/usr/local/include/pcl-1.7/pcl/visualization/point_cloud_geometry_handlers.h
+/usr/local/include/pcl-1.8/pcl/visualization/point_cloud_geometry_handlers.h
 pcl/point_cloud.h
 -
 pcl/common/io.h
@@ -2896,13 +2952,13 @@ vtkFloatArray.h
 pcl/visualization/impl/point_cloud_geometry_handlers.hpp
 -
 
-/usr/local/include/pcl-1.7/pcl/visualization/point_cloud_handlers.h
+/usr/local/include/pcl-1.8/pcl/visualization/point_cloud_handlers.h
 pcl/visualization/point_cloud_geometry_handlers.h
 -
 pcl/visualization/point_cloud_color_handlers.h
 -
 
-/usr/local/include/pcl-1.7/pcl/visualization/point_picking_event.h
+/usr/local/include/pcl-1.8/pcl/visualization/point_picking_event.h
 pcl/pcl_macros.h
 -
 vector
