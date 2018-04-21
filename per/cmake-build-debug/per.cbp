@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="per"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\Library\;CMake Files\..\..\Library\caffe\;CMake Files\..\..\Library\caffe\build1\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\local\;CMake Files\..\..\..\..\usr\local\share\;CMake Files\..\..\..\..\usr\local\share\pcl-1.8\;CMake Files\..\..\..\..\usr\local\share\pcl-1.8\Modules\;CMake Files\..\..\..\..\usr\lib\;CMake Files\..\..\..\..\usr\lib\vtk-5.10\;CMake Files\..\..\..\..\usr\lib\vtk-5.10\CMake\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/bai/Project/per/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/bai/Project/per/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="out">
+				<Option output="/home/bai/Project/per/cmake-build-debug/libs/out" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/bai/Project/per/cmake-build-debug/libs"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-Dqh_QHpointer"/>
+					<Add option="-DDISABLE_PCAP"/>
+					<Add option="-DDISABLE_PNG"/>
+					<Add option="-DDISABLE_LIBUSB_1_0"/>
+					<Add option="-DUSE_LMDB"/>
+					<Add option="-DUSE_LEVELDB"/>
+					<Add option="-DCPU_ONLY"/>
+					<Add directory="/home/bai/Library/caffe/include"/>
+					<Add directory="/home/bai/Library/caffe/build1/lib"/>
+					<Add directory="/usr/include/vtk-5.10"/>
+					<Add directory="/usr/local/include/pcl-1.8"/>
+					<Add directory="/usr/include/eigen3"/>
+					<Add directory="/usr/include/ni"/>
+					<Add directory="/usr/include/openni2"/>
+					<Add directory="/home/bai/Project/per"/>
+					<Add directory="/usr/local/lib"/>
+					<Add directory="/usr/lib"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/hdf5/serial"/>
+					<Add directory="/usr/include/atlas"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 out"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="out/fast">
+				<Option output="/home/bai/Project/per/cmake-build-debug/libs/out" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/bai/Project/per/cmake-build-debug/libs"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-Dqh_QHpointer"/>
+					<Add option="-DDISABLE_PCAP"/>
+					<Add option="-DDISABLE_PNG"/>
+					<Add option="-DDISABLE_LIBUSB_1_0"/>
+					<Add option="-DUSE_LMDB"/>
+					<Add option="-DUSE_LEVELDB"/>
+					<Add option="-DCPU_ONLY"/>
+					<Add directory="/home/bai/Library/caffe/include"/>
+					<Add directory="/home/bai/Library/caffe/build1/lib"/>
+					<Add directory="/usr/include/vtk-5.10"/>
+					<Add directory="/usr/local/include/pcl-1.8"/>
+					<Add directory="/usr/include/eigen3"/>
+					<Add directory="/usr/include/ni"/>
+					<Add directory="/usr/include/openni2"/>
+					<Add directory="/home/bai/Project/per"/>
+					<Add directory="/usr/local/lib"/>
+					<Add directory="/usr/lib"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/hdf5/serial"/>
+					<Add directory="/usr/include/atlas"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 out/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/bai/Project/per/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lib_demo">
+				<Option output="/home/bai/Project/per/cmake-build-debug/libs/liblib_demo.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/bai/Project/per/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-Dqh_QHpointer"/>
+					<Add option="-DDISABLE_PCAP"/>
+					<Add option="-DDISABLE_PNG"/>
+					<Add option="-DDISABLE_LIBUSB_1_0"/>
+					<Add directory="/home/bai/Library/caffe/include"/>
+					<Add directory="/home/bai/Library/caffe/build1/lib"/>
+					<Add directory="/usr/include/vtk-5.10"/>
+					<Add directory="/usr/local/include/pcl-1.8"/>
+					<Add directory="/usr/include/eigen3"/>
+					<Add directory="/usr/include/ni"/>
+					<Add directory="/usr/include/openni2"/>
+					<Add directory="/home/bai/Project/per"/>
+					<Add directory="/usr/local/lib"/>
+					<Add directory="/usr/lib"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 lib_demo"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lib_demo/fast">
+				<Option output="/home/bai/Project/per/cmake-build-debug/libs/liblib_demo.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/bai/Project/per/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-Dqh_QHpointer"/>
+					<Add option="-DDISABLE_PCAP"/>
+					<Add option="-DDISABLE_PNG"/>
+					<Add option="-DDISABLE_LIBUSB_1_0"/>
+					<Add directory="/home/bai/Library/caffe/include"/>
+					<Add directory="/home/bai/Library/caffe/build1/lib"/>
+					<Add directory="/usr/include/vtk-5.10"/>
+					<Add directory="/usr/local/include/pcl-1.8"/>
+					<Add directory="/usr/include/eigen3"/>
+					<Add directory="/usr/include/ni"/>
+					<Add directory="/usr/include/openni2"/>
+					<Add directory="/home/bai/Project/per"/>
+					<Add directory="/usr/local/lib"/>
+					<Add directory="/usr/lib"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 lib_demo/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/bai/Project/per/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/bai/Project/per/cnn_segmentation.cpp">
+			<Option target="lib_demo"/>
+		</Unit>
+		<Unit filename="/home/bai/Project/per/cnn_segmentation.h">
+			<Option target="lib_demo"/>
+		</Unit>
+		<Unit filename="/home/bai/Project/per/feature_generator.cpp">
+			<Option target="lib_demo"/>
+		</Unit>
+		<Unit filename="/home/bai/Project/per/feature_generator.h">
+			<Option target="lib_demo"/>
+		</Unit>
+		<Unit filename="/home/bai/Project/per/run.cpp">
+			<Option target="out"/>
+		</Unit>
+		<Unit filename="/home/bai/Project/per/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/bai/Project/per/../../Library/caffe/build1/CaffeConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\Library\caffe\build1\"/>
+		</Unit>
+		<Unit filename="/home/bai/Project/per/../../Library/caffe/build1/CaffeTargets.cmake">
+			<Option virtualFolder="CMake Files\..\..\Library\caffe\build1\"/>
+		</Unit>
+		<Unit filename="/home/bai/Project/per/../../../../usr/local/share/pcl-1.8/PCLConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\pcl-1.8\"/>
+		</Unit>
+		<Unit filename="/home/bai/Project/per/../../../../usr/local/share/pcl-1.8/PCLConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\pcl-1.8\"/>
+		</Unit>
+		<Unit filename="/home/bai/Project/per/../../../../usr/local/share/pcl-1.8/Modules/FindEigen.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\pcl-1.8\Modules\"/>
+		</Unit>
+		<Unit filename="/home/bai/Project/per/../../../../usr/local/share/pcl-1.8/Modules/FindFLANN.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\pcl-1.8\Modules\"/>
+		</Unit>
+		<Unit filename="/home/bai/Project/per/../../../../usr/local/share/pcl-1.8/Modules/FindOpenNI.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\pcl-1.8\Modules\"/>
+		</Unit>
+		<Unit filename="/home/bai/Project/per/../../../../usr/local/share/pcl-1.8/Modules/FindOpenNI2.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\pcl-1.8\Modules\"/>
+		</Unit>
+		<Unit filename="/home/bai/Project/per/../../../../usr/local/share/pcl-1.8/Modules/FindQhull.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\pcl-1.8\Modules\"/>
+		</Unit>
+		<Unit filename="/home/bai/Project/per/../../../../usr/lib/vtk-5.10/UseVTK.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\vtk-5.10\"/>
+		</Unit>
+		<Unit filename="/home/bai/Project/per/../../../../usr/lib/vtk-5.10/VTKConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\vtk-5.10\"/>
+		</Unit>
+		<Unit filename="/home/bai/Project/per/../../../../usr/lib/vtk-5.10/VTKConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\vtk-5.10\"/>
+		</Unit>
+		<Unit filename="/home/bai/Project/per/../../../../usr/lib/vtk-5.10/VTKTargets-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\vtk-5.10\"/>
+		</Unit>
+		<Unit filename="/home/bai/Project/per/../../../../usr/lib/vtk-5.10/VTKTargets.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\vtk-5.10\"/>
+		</Unit>
+		<Unit filename="/home/bai/Project/per/../../../../usr/lib/vtk-5.10/CMake/vtkMakeInstantiator.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\vtk-5.10\CMake\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

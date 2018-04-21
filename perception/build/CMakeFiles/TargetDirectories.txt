@@ -1,4 +1,0 @@
-/home/bai/Project/perception/build/CMakeFiles/rebuild_cache.dir
-/home/bai/Project/perception/build/CMakeFiles/out.dir
-/home/bai/Project/perception/build/CMakeFiles/edit_cache.dir
-/home/bai/Project/perception/build/CMakeFiles/lib_demo.dir
