@@ -23,14 +23,10 @@
 
 #include "caffe/caffe.hpp"
 #include "Config.h"
+#include <stdlib.h>
 
-//#include "cnnseg.pb.h"
-
-//#include "log.h"
-//#include "timer.h"
 #include "pcl_types.h"
 #include "object.h"
-//#include "base_segmentation.h"
 #include "cluster2d.h"
 #include "feature_generator.h"
 #include <map>

@@ -662,6 +662,9 @@ USB_10_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libusb-1.0.so
 //The directory containing a CMake configuration file for VTK.
 VTK_DIR:PATH=/usr/lib/cmake/vtk-6.2
 
+//The directory containing a CMake configuration file for catkin.
+catkin_DIR:PATH=catkin_DIR-NOTFOUND
+
 //Dependencies for the target
 lib_demo_LIB_DEPENDS:STATIC=general;jsoncpp;
 

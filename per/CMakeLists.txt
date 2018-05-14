@@ -15,17 +15,15 @@ else()
     message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
 endif()
 
+#include Glog
 find_package (Glog)
 set(GLOG_LIBRARIES glog::glog)
-
 
 #include Caffe library
 set(Caffe_DIR /home/bai/Library/caffe/build1)
 find_package(Caffe)
 include_directories(${Caffe_INCLUDE_DIRS} /home/bai/Library/caffe/include /home/bai/Library/caffe/build1/lib)
-add_definitions(${Caffe_DEFINITIONS} -D CPU_ONLY=ON) 
-
-
+add_definitions(${Caffe_DEFINITIONS} -D CPU_ONLY=ON)
 
 #inlcude PCl library
 find_package(PCL 1.7 REQUIRED)
@@ -35,10 +33,20 @@ add_definitions(${PCL_DEFINITIONS})
 #include opencv2
 set(CUDA_USE_STATIC_CUDA_RUNTIME OFF)
 
+#include opencv
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS} /usr/local/lib /home/bai/Library/opencv/build1/lib)
 
-
+#include ros
+#find_package(catkin REQUIRED COMPONENTS
+#        roscpp
+#        rospy
+#        std_msgs
+#        geometry_msgs
+#        message_generation
+#        )
+#include_directories(${catkin_INCLUDE_DIRS})
+#catkin_package()
 
 
 

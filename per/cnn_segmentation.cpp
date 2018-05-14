@@ -2,9 +2,11 @@
 #include "cnn_segmentation.h"
 
 #include <jsoncpp/json/json.h>
-#include<fstream>
+#include <fstream>
 #include <string>
-
+//#include <ros/ros.h>
+//#include <pcl_ros/point_cloud.h>
+#include <unistd.h>
 
 namespace apollo {
 namespace perception {
@@ -14,9 +16,11 @@ using std::string;
 using std::vector;
 
 bool CNNSegmentation::Init() {
-  
-  std::string proto_file = PROTO_FILE;
-  std::string weight_file = WEIGHT_FILE;
+  char* pwd = NULL;
+  pwd = getcwd(NULL, 0);
+  std::string root(pwd);
+  std::string proto_file = root + "/../../dataset/deploy.prototxt";
+  std::string weight_file = root + "/../../dataset/deploy.caffemodel";
   
   /*
   if (!GetConfigs(&config_file, &proto_file, &weight_file)) {
@@ -102,7 +106,7 @@ bool CNNSegmentation::Init() {
     std::cout << "Fail to Init feature generator for CNNSegmentation" << std::endl;
     return false;
   }
-
+  free(pwd);
   return true;
 }
 
