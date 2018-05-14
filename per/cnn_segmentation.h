@@ -56,7 +56,7 @@ class CNNSegmentation {
   float range() const { return range_; }
   int width() const { return width_; }
   int height() const { return height_; }
-  void Write2Json(const std::vector<ObjectPtr> &objects);
+  void Write2Json(const std::vector<ObjectPtr> &objects, const std::string& json_path);
                   
 
 

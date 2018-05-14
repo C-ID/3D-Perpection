@@ -8,7 +8,7 @@ VTK visualization object
 import vtk
 from vtk.util import numpy_support
 import numpy as np
-import tensorflow as tf
+
 class VTKObject:
     """VTK visualization object
     Class that sets up the necessary VTK pipeline for displaying

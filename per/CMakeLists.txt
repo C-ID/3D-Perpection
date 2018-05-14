@@ -1,5 +1,6 @@
 
 cmake_minimum_required (VERSION 3.0)
+set(OpenCV_DIR /home/bai/Library/opencv/build1)
 project (per)
 
 SET(CMAKE_C_COMPILER /usr/bin/g++)
@@ -7,15 +8,16 @@ include(CheckCXXCompilerFlag)
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
 CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
 if(COMPILER_SUPPORTS_CXX11)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 ")
 elseif(COMPILER_SUPPORTS_CXX0X)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x ")
 else()
     message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
 endif()
 
 find_package (Glog)
 set(GLOG_LIBRARIES glog::glog)
+
 
 #include Caffe library
 set(Caffe_DIR /home/bai/Library/caffe/build1)
@@ -29,6 +31,14 @@ add_definitions(${Caffe_DEFINITIONS} -D CPU_ONLY=ON)
 find_package(PCL 1.7 REQUIRED)
 include_directories(${PCL_INCLUDE_DIRS})
 add_definitions(${PCL_DEFINITIONS})
+
+#include opencv2
+set(CUDA_USE_STATIC_CUDA_RUNTIME OFF)
+
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS} /usr/local/lib /home/bai/Library/opencv/build1/lib)
+
+
 
 
 
@@ -55,4 +65,4 @@ link_libraries(lib_demo)
 add_executable(out run.cpp)
 
 link_directories(/home/bai/Library/caffe/build/lib)
-target_link_libraries(out ${Caffe_LIBRARIES} ${PCL_LIBRARIES} lib_demo glog)
+target_link_libraries(out ${Caffe_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBS} lib_demo glog)

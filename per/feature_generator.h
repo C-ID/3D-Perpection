@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 #include "caffe/caffe.hpp"
-
+#include <jsoncpp/json/json.h>
 #include "pcl_types.h"
 //#include "cnnseg.pb.h"
 
@@ -58,11 +58,14 @@ class FeatureGenerator {
   // point index in feature map
   std::vector<int> map_idx_;
 
-  //input file
-  std::string input_file = "/home/bai/Project/perception/dataset/input.txt";
-
   // output Caffe blob
   caffe::Blob<Dtype>* out_blob_ = nullptr;
+
+  Json::Value root;
+  Json::Value feature;
+  Json::Value temp;
+  Json::StyledWriter writer;
+
 };
 
 typedef FeatureGenerator<float> FP32FeatureGenerator;

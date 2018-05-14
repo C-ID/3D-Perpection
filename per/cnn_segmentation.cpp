@@ -1,8 +1,9 @@
 
 #include "cnn_segmentation.h"
-//#include "file.h"
+
 #include <jsoncpp/json/json.h>
 #include<fstream>
+#include <string>
 
 
 namespace apollo {
@@ -98,7 +99,7 @@ bool CNNSegmentation::Init() {
 
   feature_generator_.reset(new cnnseg::FeatureGenerator<float>());
   if (!feature_generator_->Init(feature_blob_.get())) {
-    std::cout << "Fail to Init feature generator for CNNSegmentation";
+    std::cout << "Fail to Init feature generator for CNNSegmentation" << std::endl;
     return false;
   }
 
@@ -116,11 +117,8 @@ bool CNNSegmentation::Segment(const pcl_util::PointCloudPtr& pc_ptr,
   }
 
   use_full_cloud_ = false;
-      
-
 
   // generate raw features
-  std::cout << "feature" << std::endl;
   feature_generator_->Generate(pc_ptr);
   // network forward process
   std::cout << "start forward" << std::endl;
@@ -151,11 +149,11 @@ bool CNNSegmentation::Segment(const pcl_util::PointCloudPtr& pc_ptr,
   return true;
 }
 
-void CNNSegmentation::Write2Json(const std::vector<ObjectPtr> &objects)
+void CNNSegmentation::Write2Json(const std::vector<ObjectPtr> &objects , const std::string &json_path)
 {
   std::ofstream outputfile;
-  std::string binaryfilepath = JSON_FILE;
-  std::cout << "binaryfile: " << binaryfilepath << std::endl;
+  //std::string binaryfilepath = json_path;
+  std::cout << "binaryfile: " << json_path << std::endl;
   
   //write to Json file
   
@@ -173,7 +171,7 @@ void CNNSegmentation::Write2Json(const std::vector<ObjectPtr> &objects)
     {
         
         const ObjectPtr &obj = objects[i];
-        //temp["name"] = Json::Value(obj->type_name);
+        temp["name"] = Json::Value(obj->type_name);
         temp["score"] = Json::Value(obj->score);
         
         
@@ -212,7 +210,7 @@ void CNNSegmentation::Write2Json(const std::vector<ObjectPtr> &objects)
 
     }
   
-  outputfile.open(binaryfilepath);
+  outputfile.open(json_path);
   if(outputfile.is_open())
   {
     std::cout << "start open " << std::endl;

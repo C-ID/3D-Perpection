@@ -47,7 +47,7 @@ bool FeatureGenerator<Dtype>::Init(caffe::Blob<Dtype>* out_blob) {
 
   // compute direction and distance features
   int siz = height_ * width_;
-  vector<Dtype> direction_data(siz);
+  vector<Dtype> direction_data( siz);
   vector<Dtype> distance_data(siz);
   
   
@@ -68,33 +68,31 @@ bool FeatureGenerator<Dtype>::Init(caffe::Blob<Dtype>* out_blob) {
   caffe::caffe_copy(siz, direction_data.data(), direction_data_);
   caffe::caffe_copy(siz, distance_data.data(), distance_data_);
 
-  
   //input txt
-  std::ofstream in;
-  in.open(input_file, std::ios::out | std::ios::app);
 
-  in << "direction_data: " << "\n";
+  /*
   for (int i=0; i<siz; i++)
   {
-    in << direction_data[i] << " ";  
+      //pos["data"] = Json::Value(direction_data[i]);
+      temp["data"].append(Json::Value(direction_data[i]));
   }
-  in << "\n" << "distance_data: " << "\n"; 
+  feature["channel-3"].append(temp);
+  temp.clear();
+
   for(int i=0; i<siz; ++i)
   {
-     in << distance_data[i] << " ";
-  } 
-
-  in.close();
-  
-  return true;
+      //pos["data"] = Json::Value(distance_data[i]);
+      temp["data"].append(Json::Value(distance_data[i]));
+  }
+  feature["channel-6"].append(temp);
+  temp.clear();
+   */
 }
 
 template <typename Dtype>
 void FeatureGenerator<Dtype>::Generate(
     const apollo::perception::pcl_util::PointCloudConstPtr& pc_ptr) {
   const auto& points = pc_ptr->points;
-  std::ofstream in1;
-  in1.open(input_file, std::ios::out | std::ios::app);
   // DO NOT remove this line!!!
   // Otherwise, the gpu_data will not be updated for the later frames.
   // It marks the head at cpu for blob.
@@ -109,10 +107,8 @@ void FeatureGenerator<Dtype>::Generate(
   caffe::caffe_set(siz, Dtype(0), nonempty_data_);
 
   map_idx_.resize(points.size());
-  float inv_res_x =
-      0.5 * static_cast<float>(width_) / static_cast<float>(range_);
-  float inv_res_y =
-      0.5 * static_cast<float>(height_) / static_cast<float>(range_);
+  float inv_res_x = 0.5 * static_cast<float>(width_) / static_cast<float>(range_);
+  float inv_res_y = 0.5 * static_cast<float>(height_) / static_cast<float>(range_);
 
   for (size_t i = 0; i < points.size(); ++i) {
     if (points[i].z <= min_height_ || points[i].z >= max_height_) {
@@ -145,54 +141,76 @@ void FeatureGenerator<Dtype>::Generate(
     const double EPS = 1e-6;
     if (count_data_[i] < EPS) {
       max_height_data_[i] = Dtype(0);
+
     } else {
       mean_height_data_[i] /= count_data_[i];
+
       mean_intensity_data_[i] /= count_data_[i];
+
       nonempty_data_[i] = Dtype(1);
+
     }
     count_data_[i] = LogCount(static_cast<int>(count_data_[i]));
   }
 
-  /*
-  //record info
-  in1 << "\n" << "max_height_data_: " << "\n"; 
-  for(int i=0; i<siz; ++i)
-  {
-     in1 << max_height_data_[i] << " ";
-  } 
+    /*
+    for(int i=0; i<siz; ++i)
+    {
+        temp["data"].append(Json::Value(max_height_data_[i]));
+    }
+    feature["channel-0"].append(temp);
+    temp.clear();
 
-  in1 << "\n" << "mean_height_data_: " << "\n"; 
-  for(int i=0; i<siz; ++i)
-  {
-     in1 << mean_height_data_[i] << " ";
-  } 
 
-  in1 << "\n" << "count_data_: " << "\n"; 
-  for(int i=0; i<siz; ++i)
-  {
-     in1 << count_data_[i] << " ";
-  } 
+    for(int i=0; i<siz; ++i)
+    {
+        temp["data"].append(mean_height_data_[i]);
+    }
+    feature["channel-1"].append(temp);
+    temp.clear();
 
-  in1 << "\n" << "mean_intensity_data_: " << "\n"; 
-  for(int i=0; i<siz; ++i)
-  {
-     in1 << mean_intensity_data_[i] << " ";
-  } 
 
-  in1 << "\n" << "nonempty_data_: " << "\n"; 
-  for(int i=0; i<siz; ++i)
-  {
-     in1 << nonempty_data_[i] << " ";
-  } 
+    for(int i=0; i<siz; ++i)
+    {
+        temp["data"].append(Json::Value(count_data_[i]));
+    }
+    feature["channel-2"].append(temp);
+    temp.clear();
 
-  in1 << "\n" << "top_intensity_data_: " << "\n"; 
-  for(int i=0; i<siz; ++i)
-  {
-     in1 << top_intensity_data_[i] << " ";
-  } 
 
-  in1.close();
-  */
+    for(int i=0; i<siz; ++i)
+    {
+        temp["data"].append(Json::Value(mean_intensity_data_[i]));
+    }
+    feature["channel-5"].append(temp);
+    temp.clear();
+
+
+    for(int i=0; i<siz; ++i)
+    {
+        temp["data"].append(Json::Value(nonempty_data_[i]));
+    }
+    feature["channel-7"].append(temp);
+    temp.clear();
+
+
+    for(int i=0; i<siz; ++i)
+    {
+        temp["data"].append(Json::Value(top_intensity_data_[i]));
+    }
+    feature["channel-4"].append(temp);
+    temp.clear();
+
+    root["feature"].append(feature);
+    std::ofstream outputfile;
+    outputfile.open("/home/bai/Project/cnn_seg/dataset/feature.json");
+    if(outputfile.is_open())
+    {
+        std::cout << "start write feature to json " << std::endl;
+        outputfile << writer.write(root);
+    }
+    outputfile.close();
+     */
 }
 
 template bool FeatureGenerator<float>::Init(caffe::Blob<float>* blob);

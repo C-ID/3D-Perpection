@@ -76,7 +76,7 @@ struct alignas(16) Object {
   bool is_background = false;
 
   //type name
-  //std::string type_name;
+  std::string type_name;
 
   // tracking information
   int track_id = 0;
