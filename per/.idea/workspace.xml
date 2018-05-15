@@ -48,7 +48,7 @@
       <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
+            <state relative-caret-position="426">
               <caret line="75" column="61" selection-start-line="75" selection-start-column="61" selection-end-line="75" selection-end-column="61" />
               <folding>
                 <marker date="1526311549327" expanded="true" signature="1259:1472" ph="..." />
@@ -127,8 +127,8 @@
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" extendedState="4">
     <option name="x" value="64" />
-    <option name="y" value="24" />
-    <option name="width" value="1853" />
+    <option name="y" value="1104" />
+    <option name="width" value="1854" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectView">
@@ -207,12 +207,12 @@
       <workItem from="1526264128553" duration="2116000" />
       <workItem from="1526275169174" duration="802000" />
       <workItem from="1526279496865" duration="5455000" />
-      <workItem from="1526302314696" duration="6226000" />
+      <workItem from="1526302314696" duration="6480000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="116756000" />
+    <option name="totallyTimeSpent" value="117010000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -224,7 +224,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="24" width="1853" height="1056" extended-state="4" />
+    <frame x="696" y="24" width="1853" height="1056" extended-state="4" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1273224" />
@@ -455,7 +455,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
+        <state relative-caret-position="426">
           <caret line="75" column="61" selection-start-line="75" selection-start-column="61" selection-end-line="75" selection-end-column="61" />
           <folding>
             <marker date="1526311549327" expanded="true" signature="1259:1472" ph="..." />
