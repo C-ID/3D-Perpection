@@ -37,7 +37,7 @@
         <entry file="file://$PROJECT_DIR$/cnn_segmentation.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="242">
-              <caret line="119" column="40" lean-forward="true" selection-start-line="119" selection-start-column="40" selection-end-line="119" selection-end-column="40" />
+              <caret line="119" column="40" selection-start-line="119" selection-start-column="40" selection-end-line="119" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -135,7 +135,7 @@
       <find>MAX_META_TYPE</find>
       <find>objects</find>
       <find>Obstacle</find>
-      <find>obs cl</find>
+      <find />
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -169,7 +169,7 @@
     <option name="x" value="694" />
     <option name="y" value="24" />
     <option name="width" value="1854" />
-    <option name="height" value="1020" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -252,7 +252,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="139312000" />
+    <option name="totallyTimeSpent" value="140511000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -546,7 +546,7 @@
     <entry file="file://$PROJECT_DIR$/cnn_segmentation.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
-          <caret line="119" column="40" lean-forward="true" selection-start-line="119" selection-start-column="40" selection-end-line="119" selection-end-column="40" />
+          <caret line="119" column="40" selection-start-line="119" selection-start-column="40" selection-end-line="119" selection-end-column="40" />
         </state>
       </provider>
     </entry>
