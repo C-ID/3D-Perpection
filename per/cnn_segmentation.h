@@ -30,7 +30,7 @@
 #include "feature_generator.h"
 #include <map>
 #include <string>
-
+#include "Eigen/Core"
 
 
 namespace apollo {
@@ -54,11 +54,21 @@ class CNNSegmentation {
   float range() const { return range_; }
   int width() const { return width_; }
   int height() const { return height_; }
-  void Write2Json(const std::vector<ObjectPtr> &objects, const std::string& json_path);
+
+  void Write2Json(const std::vector<ObjectPtr> &objects, const std::string &json_path);
+
+  void Preparefortracking(const std::vector<ObjectPtr> &objects, std::string &frame_id, uint64_t &stamp);
+
+  bool IsValidRowCol(int row, int rows, int col, int cols) {
+      return row >= 0 && row < rows && col >= 0 && col < cols;
+  }
+
+  int F2I(float val, float ori, float scale) {
+      return static_cast<int>(std::floor((ori - val) * scale));
+  }
 
 
-
- private:
+private:
   // range of bird-view field (for each side)
   float range_ = 0.0;
   // number of cells in bird-view width
@@ -95,6 +105,9 @@ class CNNSegmentation {
   // clustering model for post-processing
   std::shared_ptr<cnnseg::Cluster2D> cluster2d_;
 
+  //length of each cell
+  float inv_res_x;
+  float inv_res_y;
 
 };
 

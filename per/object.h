@@ -1,13 +1,11 @@
 
-#ifndef MODULES_PERCEPTION_OBSTACLE_BASE_OBJECT_H_
-#define MODULES_PERCEPTION_OBSTACLE_BASE_OBJECT_H_
+#ifndef OBJECT_H_
+#define OBJECT_H_
 
 #include <memory>
 #include <string>
 #include <vector>
-
 #include "Eigen/Core"
-
 #include "pcl_types.h"
 #include "types.h"
 
@@ -53,7 +51,7 @@ struct alignas(16) Object {
   std::vector<float> type_probs;
 
   //8 vertices of each object
-  std::vector<float> vertices;
+  std::vector<Eigen::Vector3d> vertices;
 
   //point cloud frame_id & stamp
   std::string frame_id;

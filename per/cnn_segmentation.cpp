@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include <unistd.h>
+#include <float.h>
 
 namespace apollo {
 namespace perception {
@@ -22,6 +23,10 @@ bool CNNSegmentation::Init() {
   range_ = 60;
   width_ = 640;
   height_ = 640;
+
+  float inv_res_x = 0.5 * static_cast<float>(width_) / range_;
+  float inv_res_y = 0.5 * static_cast<float>(height_) / range_;
+
   /// Instantiate Caffe net
   caffe::Caffe::set_mode(caffe::Caffe::CPU);
   caffe_net_.reset(new caffe::Net<float>(proto_file, caffe::TEST));
@@ -117,6 +122,62 @@ bool CNNSegmentation::Segment(const pcl_util::PointCloudPtr& pc_ptr,
 
 
   return true;
+}
+
+void CNNSegmentation::Preparefortracking(const std::vector<apollo::perception::ObjectPtr> &objects, string &fream_id, uint64_t &stamp)
+{
+  for(size_t i=0; i<objects.size(); ++i)
+  {
+    const ObjectPtr &obj = objects[i];
+    CHECK_GT(obj->cloud->size(), 0);
+
+    float x_min = FLT_MAX;
+    float y_min = FLT_MAX;
+    float z_min = FLT_MAX;
+    float x_max = FLT_MIN;
+    float y_max = FLT_MIN;
+    float z_max = FLT_MIN;
+
+    for (size_t j = 0; j < obj->cloud->size(); ++j) {
+      const auto &point = obj->cloud->points[j];
+      int col = F2I(point.y, range_, inv_res_x);  // col
+      int row = F2I(point.x, range_, inv_res_y);  // row
+      if(!IsValidRowCol(row, height_, col, width_)) continue;
+      x_min = x_min > point.x ? point.x : x_min;
+      x_max = x_max < point.x ? point.x : x_max;
+
+      y_min = y_min > point.y ? point.y : y_min;
+      y_max = y_max < point.y ? point.y : y_max;
+
+
+      z_min = z_min > point.z ? point.z : z_min;
+      z_max = z_max < point.z ? point.z : z_max;
+    }
+
+    obj->height = static_cast<double>(z_max - z_min);
+    obj->width = static_cast<double>(y_max - y_min);
+    obj->length = static_cast<double>(x_max - x_min);
+    obj->stamp = stamp;
+    obj->frame_id = fream_id;
+//    std::cout << "height: " << obj->height << " " << "width: " << obj->width << " " << "length: " << obj->length << std::endl;
+//    std::cout << "stamp: " << obj->stamp << " " << "frame_id: " << obj->frame_id << std::endl;
+    double center_x = static_cast<double>((x_max - x_min) / 2);
+    double center_y = static_cast<double>((y_max - y_min) / 2);
+    double center_z = static_cast<double>((z_max - z_min) / 2);
+    Eigen::Vector3d center = Eigen::Vector3d(center_x, center_y, center_z);
+    obj->center = center;
+//    std::cout << "center: " << obj->center << std::endl;
+    //Follow the order of the requirements. counterclockwise
+    obj->vertices.push_back(Eigen::Vector3d(static_cast<double>(x_max), static_cast<double>(y_max), static_cast<double>(z_max)));
+    obj->vertices.push_back(Eigen::Vector3d(static_cast<double>(x_min), static_cast<double>(y_max), static_cast<double>(z_max)));
+    obj->vertices.push_back(Eigen::Vector3d(static_cast<double>(x_min), static_cast<double>(y_min), static_cast<double>(z_max)));
+    obj->vertices.push_back(Eigen::Vector3d(static_cast<double>(x_max), static_cast<double>(y_min), static_cast<double>(z_max)));
+    obj->vertices.push_back(Eigen::Vector3d(static_cast<double>(x_max), static_cast<double>(y_max), static_cast<double>(z_min)));
+    obj->vertices.push_back(Eigen::Vector3d(static_cast<double>(x_min), static_cast<double>(y_max), static_cast<double>(z_min)));
+    obj->vertices.push_back(Eigen::Vector3d(static_cast<double>(x_min), static_cast<double>(y_min), static_cast<double>(z_min)));
+    obj->vertices.push_back(Eigen::Vector3d(static_cast<double>(x_max), static_cast<double>(y_min), static_cast<double>(z_min)));
+//    for(int i=0; i<8; ++i) std::cout << "vectices: " << obj->vertices[i] << std::endl;
+  }
 }
 
 

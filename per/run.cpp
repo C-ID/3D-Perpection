@@ -198,6 +198,12 @@ void DrawDetection(const PointCloudPtr &pc_ptr, const PointIndices &valid_idx,
             y_max = std::max(row, y_max);
         }
 
+        std::cout << "length: " << obj->length << std::endl;
+        std::cout << "width: " << obj->width << std::endl;
+
+        std::cout << "apollo-length: " << (x_max - x_min)/inv_res_y << std::endl;
+        std::cout << "apollo- width: " << (y_max - y_min)/inv_res_x << std::endl;
+        std::cout << std::endl;
         // fillConvexPoly(img, list.data(), list.size(), cv::Scalar(positive_prob *
         // segm_color));
         cv::Vec3b bbox_color = GetTypeColor(obj->type);
@@ -245,10 +251,16 @@ void start(const string &pcd_file, const string& json_path, const string& png_pa
 	cnn_segmentor_->Init();
 	//for (int i = 0; i < 10; ++i)
 	cnn_segmentor_->Segment(in_pc, valid_idx, &out_objects);
-    DrawDetection(in_pc, valid_idx, cnn_segmentor_->height(),
+    string frame_id = "abc";
+    uint64_t stamp = 10;
+    cnn_segmentor_->Preparefortracking(out_objects, frame_id, stamp);
+	DrawDetection(in_pc, valid_idx, cnn_segmentor_->height(),
                   cnn_segmentor_->width(), cnn_segmentor_->range(), out_objects,
                   png_path);
+
+
 	//cnn_segmentor_->Write2Json(out_objects, json_path);
+
 }
 
 
@@ -256,11 +268,11 @@ void start(const string &pcd_file, const string& json_path, const string& png_pa
 
 int main(int argc, char* argv[])
 {
-    string pcd_path = "/home/bai/hobot_pcd/1524038206.297796000.pcd";
-    PointCloudPtr in_pc;
-    in_pc.reset(new PointCloud());
-    GetPointCloudFromFile(pcd_path, in_pc);
-	//start(argv[1], argv[2], argv[3]);
+//    string pcd_path = "/home/bai/hobot_pcd/1524038206.297796000.pcd";
+//    PointCloudPtr in_pc;
+//    in_pc.reset(new PointCloud());
+//    GetPointCloudFromFile(pcd_path, in_pc);
+	start(argv[1], argv[2], argv[3]);
 	return 0;
 }
 
