@@ -27,7 +27,7 @@ typedef pcl::PointCloud<pcl::PointXYZI>::Ptr Ptr_cloud;
 
 
 bool GetPointCloudFromFile(const string &pcd_file, PointCloudPtr cloud) {
-	pcl::PointCloud<PointXYZIT> pre_ori_cloud;
+	pcl::PointCloud<pcl::PointXYZI> pre_ori_cloud;
 	if (pcl::io::loadPCDFile(pcd_file, pre_ori_cloud) < 0) {
 		AERROR << "Failed to load pcd file: " << pcd_file;
 		return false;
@@ -35,8 +35,7 @@ bool GetPointCloudFromFile(const string &pcd_file, PointCloudPtr cloud) {
 
 
 	cloud->points.reserve(pre_ori_cloud.points.size());
-    cloud->header.frame_id = "abc";
-    cloud->header.stamp = 100;
+
 	for (size_t i = 0; i < pre_ori_cloud.points.size(); ++i) {
 		apollo::perception::pcl_util::Point point;
 		point.x = pre_ori_cloud.points[i].x;
@@ -79,7 +78,6 @@ bool GetPointCloudFromBin(const string &bin_file, PointCloudPtr cloud) {
             point.intensity = po.intensity;
 
             count++;
-            std::cout << "x: "<<  point.x << " y: " << point.y << " z: " << point.z << " intensity: " << point.intensity << std::endl;
 
             cloud->push_back(point);
 
@@ -214,7 +212,7 @@ void DrawDetection(const PointCloudPtr &pc_ptr, const PointIndices &valid_idx,
     if (!cv::imwrite(result_file, img)) {
         return;
     }
-    std::cout << "save done " << std::endl;
+
     /*
     // write image intensity values into file
     FILE *f_res;
@@ -263,17 +261,46 @@ void start(const string &pcd_file, const string& json_path, const string& png_pa
 
 }
 
+std::vector<ObjectPtr> start_tracking(pcl::PointCloud<pcl::PointXYZI>::Ptr msg)
+{
+    PointCloudPtr cloud;
+    cloud.reset(new PointCloud());
+    cloud->points.reserve(msg->points.size());
+    for (size_t i = 0; i < msg->points.size(); ++i) {
+        apollo::perception::pcl_util::Point point;
+        point.x = msg->points[i].x;
+        point.y = msg->points[i].y;
+        point.z = msg->points[i].z;
+        point.intensity = msg->points[i].intensity;
+        if (std::isnan(msg->points[i].x)) {
+            continue;
+        }
+        cloud->push_back(point);
+    }
+    PointIndices valid_idx;
+    auto &indices = valid_idx.indices;
+    indices.resize(cloud->size());
+    std::iota(indices.begin(), indices.end(), 0);
+    std::vector<ObjectPtr> out_objects;
+
+
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr show_cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
+    shared_ptr<CNNSegmentation> cnn_segmentor_;
+    cnn_segmentor_.reset(new CNNSegmentation());
+    cnn_segmentor_->Init();
+    //for (int i = 0; i < 10; ++i)
+    cnn_segmentor_->Segment(cloud, valid_idx, &out_objects);
+    cnn_segmentor_->Preparefortracking(out_objects, msg->header.frame_id, msg->header.stamp);
+    return out_objects;
+}
+
 
 
 
 int main(int argc, char* argv[])
 {
-//    string pcd_path = "/home/bai/hobot_pcd/1524038206.297796000.pcd";
-//    PointCloudPtr in_pc;
-//    in_pc.reset(new PointCloud());
-//    GetPointCloudFromFile(pcd_path, in_pc);
 	start(argv[1], argv[2], argv[3]);
-	return 0;
+    return 0;
 }
 
 

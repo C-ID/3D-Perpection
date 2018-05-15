@@ -260,11 +260,9 @@ class Cluster2D {
         continue;
       }
 
-      std::cout << "obs cloud size:" << static_cast<int>(obs->cloud->size()) << std::endl;
       //apollo::perception::Object o;
       //std::cout << "obj size: " << sizeof(o) << std::endl;
       apollo::perception::ObjectPtr out_obj(new apollo::perception::Object);
-      //std::cout << "123" << std::endl;
       out_obj->cloud = obs->cloud;
       out_obj->score = obs->score;
       out_obj->score_type = ScoreType::SCORE_CNN;
@@ -273,10 +271,7 @@ class Cluster2D {
       out_obj->type_name = GetTypeText(out_obj->type);
       out_obj->track_id = obstacle_id;
       objects->push_back(out_obj);
-
-
-
-      std::cout << "Type of this obj: " << GetTypeText(out_obj->type) << std::endl;
+//      std::cout << "Type of this obj: " << GetTypeText(out_obj->type) << std::endl;
     }
     std::cout << "size of objects: " << (*objects).size() << std::endl;
   }

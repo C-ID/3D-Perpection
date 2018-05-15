@@ -95,10 +95,9 @@ bool CNNSegmentation::Segment(const pcl_util::PointCloudPtr& pc_ptr,
   // generate raw features
   feature_generator_->Generate(pc_ptr);
   // network forward process
-  std::cout << "start forward" << std::endl;
   caffe::Caffe::set_mode(caffe::Caffe::CPU);
   caffe_net_->Forward();
-  std::cout << "forward done"<<std::endl;
+
   //PERF_BLOCK_END("[CNNSeg] CNN forward");
 
   // clutser points and construct segments/objects
@@ -155,18 +154,17 @@ void CNNSegmentation::Preparefortracking(const std::vector<apollo::perception::O
     }
 
     obj->height = static_cast<double>(z_max - z_min);
-    obj->width = static_cast<double>(y_max - y_min);
-    obj->length = static_cast<double>(x_max - x_min);
+    obj->length = static_cast<double>(y_max - y_min);
+    obj->width = static_cast<double>(x_max - x_min);
     obj->stamp = stamp;
     obj->frame_id = fream_id;
-//    std::cout << "height: " << obj->height << " " << "width: " << obj->width << " " << "length: " << obj->length << std::endl;
-//    std::cout << "stamp: " << obj->stamp << " " << "frame_id: " << obj->frame_id << std::endl;
+
     double center_x = static_cast<double>((x_max - x_min) / 2);
     double center_y = static_cast<double>((y_max - y_min) / 2);
     double center_z = static_cast<double>((z_max - z_min) / 2);
     Eigen::Vector3d center = Eigen::Vector3d(center_x, center_y, center_z);
     obj->center = center;
-//    std::cout << "center: " << obj->center << std::endl;
+
     //Follow the order of the requirements. counterclockwise
     obj->vertices.push_back(Eigen::Vector3d(static_cast<double>(x_max), static_cast<double>(y_max), static_cast<double>(z_max)));
     obj->vertices.push_back(Eigen::Vector3d(static_cast<double>(x_min), static_cast<double>(y_max), static_cast<double>(z_max)));
@@ -176,7 +174,7 @@ void CNNSegmentation::Preparefortracking(const std::vector<apollo::perception::O
     obj->vertices.push_back(Eigen::Vector3d(static_cast<double>(x_min), static_cast<double>(y_max), static_cast<double>(z_min)));
     obj->vertices.push_back(Eigen::Vector3d(static_cast<double>(x_min), static_cast<double>(y_min), static_cast<double>(z_min)));
     obj->vertices.push_back(Eigen::Vector3d(static_cast<double>(x_max), static_cast<double>(y_min), static_cast<double>(z_min)));
-//    for(int i=0; i<8; ++i) std::cout << "vectices: " << obj->vertices[i] << std::endl;
+
   }
 }
 
