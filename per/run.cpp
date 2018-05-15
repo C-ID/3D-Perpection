@@ -48,7 +48,6 @@ bool GetPointCloudFromFile(const string &pcd_file, PointCloudPtr cloud) {
 		cloud->push_back(point);
 	}
 	std::cout << "pcl read: " << cloud->size() << std::endl;
-
 	return true;
 }
 
