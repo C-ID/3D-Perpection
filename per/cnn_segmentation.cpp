@@ -1,17 +1,14 @@
 
 #include "cnn_segmentation.h"
-
 #include <jsoncpp/json/json.h>
 #include <fstream>
 #include <string>
-//#include <ros/ros.h>
-//#include <pcl_ros/point_cloud.h>
 #include <unistd.h>
 
 namespace apollo {
 namespace perception {
 
-//using apollo::common::util::GetAbsolutePath;
+;
 using std::string;
 using std::vector;
 
@@ -21,39 +18,7 @@ bool CNNSegmentation::Init() {
   std::string root(pwd);
   std::string proto_file = root + "/../../dataset/deploy.prototxt";
   std::string weight_file = root + "/../../dataset/deploy.caffemodel";
-  
-  /*
-  if (!GetConfigs(&config_file, &proto_file, &weight_file)) {
-    return false;
-  }
-  AINFO << "--    config_file: " << config_file;
-  AINFO << "--     proto_file: " << proto_file;
-  AINFO << "--    weight_file: " << weight_file;
 
-  if (!apollo::common::util::GetProtoFromFile(config_file, &cnnseg_param_)) {
-    AERROR << "Failed to load config file of CNNSegmentation.";
-  }
-
-  /// set parameters
-  auto network_param = cnnseg_param_.network_param();
-  auto feature_param = cnnseg_param_.feature_param();
-
-  if (feature_param.has_point_cloud_range()) {
-    range_ = static_cast<float>(feature_param.point_cloud_range());
-  } else {
-    range_ = 60.0;
-  }
-  if (feature_param.has_width()) {
-    width_ = static_cast<int>(feature_param.width());
-  } else {
-    width_ = 640;
-  }
-  if (feature_param.has_height()) {
-    height_ = static_cast<int>(feature_param.height());
-  } else {
-    height_ = 640;
-  }
-  */
   range_ = 60;
   width_ = 640;
   height_ = 640;
@@ -150,13 +115,14 @@ bool CNNSegmentation::Segment(const pcl_util::PointCloudPtr& pc_ptr,
                          objects);
   //PERF_BLOCK_END("[CNNSeg] post-processing");
 
+
   return true;
 }
+
 
 void CNNSegmentation::Write2Json(const std::vector<ObjectPtr> &objects , const std::string &json_path)
 {
   std::ofstream outputfile;
-  //std::string binaryfilepath = json_path;
   std::cout << "binaryfile: " << json_path << std::endl;
   
   //write to Json file
@@ -165,12 +131,7 @@ void CNNSegmentation::Write2Json(const std::vector<ObjectPtr> &objects , const s
   Json::Value temp;
   Json::Value pos;
   Json::StyledWriter writer;
-  
-  /*
-  std::ofstream fout;
-  fout.open(binaryfilepath, std::ios::out | std::ios::in | std::ios::app);
-  fout << "Total-objects-size: " << objects.size() << '\n';
-  */
+
   for(size_t i=0; i<objects.size(); ++i)
     {
         
@@ -187,17 +148,13 @@ void CNNSegmentation::Write2Json(const std::vector<ObjectPtr> &objects , const s
           pos["x"] = Json::Value(point.x);
           pos["y"] = Json::Value(point.y);
           pos["z"] = Json::Value(point.z);
-      
-          //std::cout << point.x << " " << point.y << " " << point.z << std::endl;
           
           temp["points"].append(pos);
         }
         root["object"].append(temp);
         temp.clear();
         std::cout << "cnn obs cloud size:" << static_cast<int>(obj->cloud->size()) << std::endl;
-        //root["cloud"] = Json::Value(arrays);
-        //delete[] arrays;
-       
+
       /*
       const ObjectPtr &obj = objects[i];
       //char temp[11] = obj->type_name;
@@ -221,11 +178,6 @@ void CNNSegmentation::Write2Json(const std::vector<ObjectPtr> &objects , const s
       outputfile << writer.write(root);
   }
   outputfile.close();
-  
-
-  //fout.close();
-  std::cout << "end " << std::endl;
-  
 }
 }  // namespace perception
 }  // namespace apollo

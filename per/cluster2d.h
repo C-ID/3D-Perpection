@@ -5,9 +5,7 @@
 
 #include <algorithm>
 #include <vector>
-
 #include "caffe/caffe.hpp"
-
 #include "glog/logging.h"
 #include "disjoint_set.h"
 #include "pcl_types.h"
@@ -26,6 +24,7 @@ namespace cnnseg {
 using apollo::common::util::DisjointSetMakeSet;
 using apollo::common::util::DisjointSetFind;
 using apollo::common::util::DisjointSetUnion;
+
 
 enum class MetaType {
   META_UNKNOWN,
@@ -114,11 +113,6 @@ class Cluster2D {
       for (int col = 0; col < cols_; ++col) {
         int grid = RowCol2Grid(row, col);
 
-        //temp["instance_pt_x"].append(Json::Value(instance_pt_x_data[grid]));
-        //temp["instance_pt_y"].append(Json::Value(instance_pt_y_data[grid]));
-        //temp["category_pt"].append(Json::Value(category_pt_data[grid]));
-
-
         Node* node = &nodes[row][col];
         DisjointSetMakeSet(node);
         node->is_object =
@@ -205,17 +199,6 @@ class Cluster2D {
       obs->cloud.reset(new apollo::perception::pcl_util::PointCloud);
     }
 
-    //record
-    /*
-      for (int row = 0; row < rows_; ++row) {
-          for (int col = 0; col < cols_; ++col) {
-              int grid = RowCol2Grid(row, col);
-              temp["confidence_pt"].append(Json::Value(confidence_pt_data[grid]));
-              temp["height_pt"].append(Json::Value(height_pt_data[grid]));
-          }
-    }
-     */
-
   }
 
   void Classify(const caffe::Blob<float>& classify_pt_blob) {
@@ -239,30 +222,6 @@ class Cluster2D {
       }
       obs->meta_type = static_cast<MetaType>(meta_type_id);
     }
-
-    //record
-    /*
-    for (int k = 0; k < num_classes; k++){
-      for (int row = 0; row < rows_; ++row) {
-        for (int col = 0; col < cols_; ++col) {
-            int grid = RowCol2Grid(row, col);
-            temp["classify_pt"].append(classify_pt_data[k * grids_ + grid]);
-        }
-      }
-    }
-
-    feature["output"].append(temp);
-
-    std::ofstream out;
-    out.open("/home/bai/Project/cnn_seg/dataset/output.json");
-    if(out.is_open())
-    {
-      std::cout << "start write output pred to json " << std::endl;
-      out << writer.write(feature);
-    }
-    out.close();
-     */
-
   }
 
   void GetObjects(const float confidence_thresh, const float height_thresh,
@@ -312,7 +271,11 @@ class Cluster2D {
       out_obj->type = GetObjectType(obs->meta_type);
       out_obj->type_probs = GetObjectTypeProbs(obs->meta_type_probs);
       out_obj->type_name = GetTypeText(out_obj->type);
+      out_obj->track_id = obstacle_id;
       objects->push_back(out_obj);
+
+
+
       std::cout << "Type of this obj: " << GetTypeText(out_obj->type) << std::endl;
     }
     std::cout << "size of objects: " << (*objects).size() << std::endl;

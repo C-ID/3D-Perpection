@@ -22,6 +22,7 @@ using apollo::perception::ObjectType;
 using std::shared_ptr;
 using std::string;
 using std::vector;
+typedef pcl::PointCloud<pcl::PointXYZI>::Ptr Ptr_cloud;
 
 
 
@@ -249,6 +250,9 @@ void start(const string &pcd_file, const string& json_path, const string& png_pa
                   png_path);
 	//cnn_segmentor_->Write2Json(out_objects, json_path);
 }
+
+
+
 
 int main(int argc, char* argv[])
 {

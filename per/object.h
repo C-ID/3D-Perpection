@@ -8,8 +8,6 @@
 
 #include "Eigen/Core"
 
-
-//#include "modules/perception/proto/perception_obstacle.pb.h"
 #include "pcl_types.h"
 #include "types.h"
 
@@ -21,26 +19,8 @@ struct alignas(16) Object {
   Object(){
   cloud.reset(new pcl_util::PointCloud);
   type_probs.resize(static_cast<int>(ObjectType::MAX_OBJECT_TYPE), 0);
-  //position_uncertainty << 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01;
-  //velocity_uncertainty << 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01;
   };
-  // deep copy
-  /*
-  void clone(const Object& rhs)
-  {
-    *this = rhs;
-    pcl::copyPointCloud<pcl_util::Point, pcl_util::Point>(*(rhs.cloud), *cloud);
-    radar_supplement = nullptr;
-    if (rhs.radar_supplement != nullptr) {
-    radar_supplement.reset(new RadarSupplement(*rhs.radar_supplement));
-    }
-    camera_supplement = nullptr;
-    if (rhs.camera_supplement != nullptr) {
-    camera_supplement.reset(new CameraSupplement());
-    camera_supplement->clone(*(rhs.camera_supplement));
-    }
-  }
-  */
+
   // object id per frame
   int id = 0;
   // point cloud of the object
@@ -71,6 +51,13 @@ struct alignas(16) Object {
   ObjectType type = ObjectType::UNKNOWN;
   // Probability of each type, used for track type.
   std::vector<float> type_probs;
+
+  //8 vertices of each object
+  std::vector<float> vertices;
+
+  //point cloud frame_id & stamp
+  std::string frame_id;
+  uint64_t stamp=0;
 
   // fg/bg flag
   bool is_background = false;

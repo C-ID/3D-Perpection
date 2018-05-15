@@ -23,7 +23,6 @@
 
 #include "caffe/caffe.hpp"
 #include "Config.h"
-#include <stdlib.h>
 
 #include "pcl_types.h"
 #include "object.h"
@@ -33,12 +32,11 @@
 #include <string>
 
 
+
 namespace apollo {
 namespace perception {
 
-struct tracked_obstacle{
 
-};
 
 class CNNSegmentation {
  public:
@@ -57,7 +55,7 @@ class CNNSegmentation {
   int width() const { return width_; }
   int height() const { return height_; }
   void Write2Json(const std::vector<ObjectPtr> &objects, const std::string& json_path);
-                  
+
 
 
  private:
@@ -96,7 +94,7 @@ class CNNSegmentation {
 
   // clustering model for post-processing
   std::shared_ptr<cnnseg::Cluster2D> cluster2d_;
-  
+
 
 };
 
