@@ -36,6 +36,10 @@
 namespace apollo {
 namespace perception {
 
+struct tracked_obstacle{
+
+};
+
 class CNNSegmentation {
  public:
   CNNSegmentation() {}

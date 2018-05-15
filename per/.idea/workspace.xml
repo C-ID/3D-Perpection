@@ -27,8 +27,8 @@
       <file leaf-file-name="cluster2d.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cluster2d.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4809">
-              <caret line="334" column="20" lean-forward="true" selection-start-line="334" selection-start-column="20" selection-end-line="334" selection-end-column="20" />
+            <state relative-caret-position="-3340">
+              <caret line="15" column="17" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -36,8 +36,8 @@
       <file leaf-file-name="cnn_segmentation.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cnn_segmentation.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="107" column="3" lean-forward="true" selection-start-line="107" selection-start-column="3" selection-end-line="107" selection-end-column="3" />
+            <state relative-caret-position="1113">
+              <caret line="107" column="3" selection-start-line="107" selection-start-column="3" selection-end-line="107" selection-end-column="3" />
               <folding>
                 <element signature="e#1#30#0" expanded="true" />
               </folding>
@@ -45,13 +45,46 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="run.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/run.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+              <folding>
+                <element signature="e#1#20#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PCLHeader.h" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/local/include/pcl-1.8/pcl/PCLHeader.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="293">
+              <caret line="26" column="17" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="17" />
+              <folding>
+                <element signature="e#198#215#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pcl_types.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pcl_types.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="513">
+              <caret line="75" column="10" selection-start-line="75" selection-start-column="2" selection-end-line="75" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
-              <caret line="75" column="61" selection-start-line="75" selection-start-column="61" selection-end-line="75" selection-end-column="61" />
+            <state relative-caret-position="903">
+              <caret line="43" column="17" lean-forward="true" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
               <folding>
-                <marker date="1526311549327" expanded="true" signature="1259:1472" ph="..." />
+                <marker date="1526353712831" expanded="true" signature="1259:1472" ph="..." />
               </folding>
             </state>
           </provider>
@@ -60,8 +93,8 @@
       <file leaf-file-name="cnn_segmentation.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cnn_segmentation.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="52" column="38" lean-forward="true" selection-start-line="52" selection-start-column="38" selection-end-line="52" selection-end-column="38" />
+            <state relative-caret-position="602">
+              <caret line="39" selection-start-line="39" selection-end-line="39" />
               <folding>
                 <element signature="e#853#870#0" expanded="true" />
               </folding>
@@ -106,12 +139,12 @@
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/feature_generator.h" />
         <option value="$PROJECT_DIR$/feature_generator.cpp" />
-        <option value="$PROJECT_DIR$/run.cpp" />
         <option value="$PROJECT_DIR$/Config.h" />
         <option value="$PROJECT_DIR$/cluster2d.h" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/cnn_segmentation.h" />
         <option value="$PROJECT_DIR$/cnn_segmentation.cpp" />
+        <option value="$PROJECT_DIR$/cnn_segmentation.h" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/run.cpp" />
       </list>
     </option>
   </component>
@@ -207,12 +240,12 @@
       <workItem from="1526264128553" duration="2116000" />
       <workItem from="1526275169174" duration="802000" />
       <workItem from="1526279496865" duration="5455000" />
-      <workItem from="1526302314696" duration="6480000" />
+      <workItem from="1526302314696" duration="10083000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="117010000" />
+    <option name="totallyTimeSpent" value="120613000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -224,10 +257,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="696" y="24" width="1853" height="1056" extended-state="4" />
+    <frame x="64" y="1104" width="1854" height="1056" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1273224" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12725286" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32901832" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.37540454" />
       <window_info anchor="bottom" id="CMake" order="11" weight="0.32901832" />
@@ -259,9 +292,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/cnn_segmentation.h" />
-    <entry file="file://$PROJECT_DIR$/cluster2d.h" />
-    <entry file="file://$PROJECT_DIR$/Config.h" />
     <entry file="file://$PROJECT_DIR$/feature_generator.cpp" />
     <entry file="file://$PROJECT_DIR$/Makefile" />
     <entry file="file://$PROJECT_DIR$/run.cpp">
@@ -328,7 +358,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pcl_types.h" />
     <entry file="file://$PROJECT_DIR$/types.h" />
     <entry file="file:///usr/local/include/opencv2/core/mat.hpp">
       <provider selected="true" editor-type-id="text-editor">
@@ -384,20 +413,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/run.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="98" selection-start-line="98" selection-end-line="98" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster2d.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4809">
-          <caret line="334" column="20" lean-forward="true" selection-start-line="334" selection-start-column="20" selection-end-line="334" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Makefile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="412">
@@ -409,16 +424,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="301" column="24" selection-start-line="301" selection-start-column="18" selection-end-line="301" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cnn_segmentation.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="52" column="38" lean-forward="true" selection-start-line="52" selection-start-column="38" selection-end-line="52" selection-end-column="38" />
-          <folding>
-            <element signature="e#853#870#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -443,22 +448,82 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#12#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cnn_segmentation.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="602">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+          <folding>
+            <element signature="e#853#870#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster2d.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3340">
+          <caret line="15" column="17" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/cnn_segmentation.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="107" column="3" lean-forward="true" selection-start-line="107" selection-start-column="3" selection-end-line="107" selection-end-column="3" />
+        <state relative-caret-position="1113">
+          <caret line="107" column="3" selection-start-line="107" selection-start-column="3" selection-end-line="107" selection-end-column="3" />
           <folding>
             <element signature="e#1#30#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file:///usr/local/include/pcl-1.8/pcl/impl/point_types.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="192" column="23" selection-start-line="192" selection-start-column="8" selection-end-line="192" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pcl_types.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="75" column="10" selection-start-line="75" selection-start-column="2" selection-end-line="75" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="75" column="61" selection-start-line="75" selection-start-column="61" selection-end-line="75" selection-end-column="61" />
+        <state relative-caret-position="903">
+          <caret line="43" column="17" lean-forward="true" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
           <folding>
-            <marker date="1526311549327" expanded="true" signature="1259:1472" ph="..." />
+            <marker date="1526353712831" expanded="true" signature="1259:1472" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/pcl-1.8/pcl/PCLHeader.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="26" column="17" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="17" />
+          <folding>
+            <element signature="e#198#215#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+          <folding>
+            <element signature="e#1#20#0" expanded="true" />
           </folding>
         </state>
       </provider>
