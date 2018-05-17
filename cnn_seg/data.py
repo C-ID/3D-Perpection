@@ -29,10 +29,9 @@ def generator_input(args, width, height, channel, range_, maxh, minh):
     :return: input feature
     """
     bin = np.fromfile(args, np.float32).reshape([-1, 4])
-    a = bin[0,3]
     assert isinstance(width, int) and isinstance(height, int), "Wrong type for input channel map"
     channel_map = np.zeros([width, height, channel])
-    channel_map[:,:,0].fill(-5)
+    channel_map[:,:,0].fill(-5.)
     inv_res_x = 0.5 * width / range_  #length of each grid(x: meters)
     inv_res_y = 0.5 * height / range_  #length of each grid(y: meters)
 
@@ -69,36 +68,27 @@ def count_data(bin, channel_map, max_height, min_height, inv_res_x, inv_res_y, r
             channel_map[pos_y,pos_x,4] = pi   #top intensity data
         channel_map[pos_y,pos_x,1] += pz    #mean height data
         channel_map[pos_y,pos_x,5] += pi    #mean intensity data
-        channel_map[pos_y,pos_x,2] += 1     #count data
+        channel_map[pos_y,pos_x,2] += 1.     #count data
         # print(channel_map[pos_y, pos_x, 0])
 
     for i in range(width):
         for j in range(height):
-            if channel_map[i,j,2] <= 1e-6: channel_map[i,j,0] = 0
+            if channel_map[i,j,2] <= 1e-6: channel_map[i,j,0] = 0.
             else:
                 channel_map[i,j,1] /= channel_map[i,j,2]
                 channel_map[i,j,5] /= channel_map[i,j,2]
-                channel_map[i,j,7] = 1
+                channel_map[i,j,7] = 1.
             channel_map[i,j,2] = LogCount(int(channel_map[i, j, 2]))
-    #print(np.where(channel_map[:,:, 7]==1))
+
     return channel_map
 
 
 def gt_label(label_path, width, height, channel):
-    # bin = np.fromfile(args, np.float32).reshape([-1, 4])
     objs = parse_kitti_label(label_path)
-
     label = np.zeros([width, height, channel])
-    channel = get_instance(label, objs)
-    # print(channel[:,:,1].max())
-    show_channel_label(channel, (width, height))
-    # category = label[:,:,0]
-    # instance = label[:,:,1:3]
-    # confidence = label[:,:,3:4]
-    # classify_pt = label[:,:,4:10]
-    # heading = label[:,:,10:11]
-    # height = label[:,:,11]
-
+    feature = get_label_channel(label, objs)
+    #show_channel_label(channel, (width, height))
+    return feature
 
 def parse_kitti_label(label_file):
     lines = open(label_file).readlines()
@@ -131,23 +121,21 @@ def compute_3d_corners(l, w, h, t, yaw):
     corners_3D += np.array(t).reshape((3,1))
     return corners_3D
 
-def get_height(channel, obj):
-    pass
-
-def get_category(channel):
-    pass
-
-def get_instance(channel, obj):
+def get_label_channel(channel, obj):
     num_obj = len(obj)
+    car = ['Car', 'Van', 'Truck', 'Tram', 'Misc']
+    person = ['Pedestrian', 'Person_sitting']
     for o in obj:
         box3d = compute_3d_corners(o['l'], o['w'], o['h'], o['t'], o['yaw'])
-        #print(box3d[0,:].shape)
+
         x = F2I(box3d[0,:], 60, 0.5*640/60)
-        #top_right = F2I(box3d[1,:], 60, 0.5*640/60)
         y = F2I(box3d[2,:], 60, 0.5*640/60)
+
+        height = box3d[1,0] - box3d[1,4]
         center = o['t']
         center_x = F2I(center[0], 60, 0.5*640/60)    #col
         center_y = F2I(center[2], 60, 0.5*640/60)    #row
+        if (center_x >= 640 or center_x < 0 or center_y >= 640 or center_y < 0): continue
 
         step_x =[i for i in range(int(x.min()), int(x.max())+1, 1)]
         step_z =[i for i in range(int(y.min()), int(y.max())+1, 1)]
@@ -155,61 +143,26 @@ def get_instance(channel, obj):
         #generator center offset
         center_offset_x = (np.array(step_x) - int(center_x))
         center_offset_y = (np.array(step_z) - int(center_y))
+
+
         for i in range(len(step_x)):
             for j in range(len(step_z)):
-                channel[step_x[i], step_z[j], 1] = center_offset_x[i]
-                channel[step_x[i], step_z[j], 2] = center_offset_y[j]
-        return channel
+                channel[step_x[i], step_z[j], 0] = 1.  #category_pt
+                channel[step_x[i], step_z[j], 1] = center_offset_x[i]  #instance_x
+                channel[step_x[i], step_z[j], 2] = center_offset_y[j]  #instance_y
+                channel[step_x[i], step_z[j], 3] = 1.                   #confidence_pt
+                channel[step_x[i], step_z[j], 11] = height             #height_pt
+                if o['type'] in car: channel[step_x[i], step_z[j], 5:7] = 1.   #classify_pt :4-8
+                elif o['type'] in person: channel[step_x[i], step_z[j], 8] = 1.
+                elif o['type'] == 'DontCare': channel[step_x[i], step_z[j], 4] = 1.
+                elif o['type'] == 'Cyclist' : channel[step_x[i], step_z[j], 7] = 1.
 
-
-
-
-
-
-
-
-
-
-
-
-
-def get_confidence(channel):
-    pass
-
-def get_classify(channel):
-    pass
-
-def get_height(channel):
-    pass
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    return channel
 
 def args():
     def str2bool(v): return v.lower() in ("yes", "true", "t", "1", True)
     parser = argparse.ArgumentParser(prog="Python", description="Aim at testing cnn_seg results through VTK rendering")
-    parser.add_argument("--pcd-path", type=str, required=True, help="path for pcd file")
+    parser.add_argument("--bin-path", type=str, required=True, help="path for pcd file")
     args = parser.parse_args()
     return args
 
@@ -217,7 +170,7 @@ if __name__ == "__main__":
     bin_path = "./dataset/007480.bin"
     label_path = "./dataset/007480.txt"
     start = time.time()
-    chan = generator_input(bin_path, 640, 640, 8, 60, 5, -5)
-    show_channel_input(chan, (640, 640))
-    #gt = gt_label(label_path, 640, 640, 12)
+    #chan = generator_input(bin_path, 640, 640, 8, 60, 5, -5)
+    #show_channel_input(chan, (640, 640))
+    gt = gt_label(label_path, 640, 640, 12)
     print(time.time() - start)

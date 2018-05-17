@@ -5,7 +5,7 @@ import numpy as np
 
 
 
-def net(input, batch_size, width, height, test=False):
+def net(input, batch_size, width, height, istest=False):
 
     conv = tf.layers.conv2d(input, 24, 1, strides=(1,1), padding="VALID", activation=tf.nn.relu, name="conv0_1")
     conv = tf.layers.conv2d(conv, 24, 3, strides=(1,1), padding="SAME", activation=tf.nn.relu, name="conv0")
@@ -53,10 +53,9 @@ def net(input, batch_size, width, height, test=False):
     classify_pt = tf.slice(conv_final, [0, 0, 0, 4], [batch_size, width, height, 5])
     heading_pt = tf.slice(conv_final, [0, 0, 0, 9], [batch_size, width, height, 2])
     height_pt = tf.slice(conv_final, [0, 0, 0, 11], [batch_size, width, height, 1])
-    mask = tf.slice(input, [0,0,0,6], [batch_size, width, height, 1])
 
-
-    if test:
+    if istest:
+        mask = tf.slice(input, [0, 0, 0, 6], [batch_size, width, height, 1])
         all_category_score = tf.sigmoid(category_pt, name="all_category_score")
         category_score = tf.multiply(mask, all_category_score, name="instance_ignore_layer")
         confidence_score = tf.sigmoid(confidence_pt, name="confidence_score")
@@ -64,21 +63,42 @@ def net(input, batch_size, width, height, test=False):
 
         return instacnce_pt, height_pt, class_score, confidence_score, category_score
 
-    return conv_final
+    return category_pt, instacnce_pt, confidence_pt, classify_pt, heading_pt, height_pt
 
 
 
 
-def loss(pre, gt):
-    pass
+def computeloss(category_pt, instance_pt, confidence_pt, classify_pt, heading_pt, height_pt, gt):
+    objectness_loss = tf.reduce_mean(tf.sqrt(tf.pow(category_pt - gt[:,:,:,0:0], 2)))
+    instance_loss = tf.reduce_mean(tf.sqrt(tf.pow(instance_pt - gt[:,:,:,1:3], 2)))
+    confidence_loss = tf.reduce_mean(tf.sqrt(tf.pow(confidence_pt - gt[:,:,:,3:3], 2)))
+    classify_loss = tf.reduce_mean(tf.sqrt(tf.pow(classify_pt-gt[:,:,:,4:9], 2)))
+    heading_loss = tf.reduce_mean(tf.sqrt(tf.pow(heading_pt - gt[:,:,:,9:11], 2)))
+    height_loss = tf.reduce_mean(tf.sqrt(tf.pow(height_pt - gt[:,:,:,11:11], 2)))
+    total_loss = objectness_loss + instance_loss + confidence_loss + classify_loss + heading_loss + height_loss
+
+    tf.summary.scalar('loss/objectness_loss',objectness_loss)
+    tf.summary.scalar('loss/instance_loss', instance_loss)
+    tf.summary.scalar('loss/confidence_loss', confidence_loss)
+    tf.summary.scalar('loss/classify_loss', classify_loss)
+    tf.summary.scalar('loss/heading_loss', heading_loss)
+    tf.summary.scalar('loss/height_loss', height_loss)
+    tf.summary.scalar('loss/total_loss', total_loss)
+    return total_loss
 
 
 
 if __name__ == "__main__":
     input = np.ones((1, 640, 640, 8))
+    label = np.ones((1, 640, 640, 12))
     sess = tf.Session()
     x = tf.placeholder(dtype=tf.float32, shape=[None, 640, 640, 8],name="input")
-    y = tf.placeholder(dtype=tf.float32, shape=[None, 12], name="output")
-    a, b, c, d, e = net(x, 1, 640, 640, test=True)
+    y = tf.placeholder(dtype=tf.float32, shape=[None, 640, 640, 12], name="output")
+
+    a, b, c, d, e, f = net(x, 1, 640, 640, istest=False)
+    lo = computeloss(a, b, c, d, e, f, y)
+    opt = tf.train.AdamOptimizer(learning_rate=0.01)
+    train_op = opt.compute_gradients(loss=lo)
     sess.run(tf.global_variables_initializer())
-    print(sess.run(tf.shape(e), feed_dict={x:input}))
+    for i in range(10):
+        sess.run(train_op, feed_dict = {x:input, y:label})
