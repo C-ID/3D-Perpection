@@ -15,27 +15,24 @@ class apollo(object):
 
     def train(self):
         input, label = self.read_tfrecord(self.train_tfrecord)
-        category_pt, instacnce_pt, confidence_pt, classify_pt, heading_pt, height_pt=net(input,16,640,640,istest=False)
+        category_pt, instacnce_pt, confidence_pt, classify_pt, heading_pt, height_pt=net(input,4,640,640,istest=False)
         total_loss = computeloss(category_pt, instacnce_pt, confidence_pt, classify_pt, heading_pt, height_pt, label)
         global_step = 1000000
         learing_rate = 0.01
-        opt = tf.train.AdamOptimizer(learing_rate)
-        train_op = opt.compute_gradients(total_loss)
+        train_op = tf.train.AdamOptimizer(learing_rate).minimize(total_loss)
         summary_op = tf.summary.merge_all()
         saver = tf.train.Saver(tf.global_variables(), max_to_keep=1000, keep_checkpoint_every_n_hours=1)
 
         with tf.Session(config=tf.ConfigProto(allow_soft_placement=True,
                                               log_device_placement=False)) as sess:
             summary_writer = tf.summary.FileWriter(self.train_dir, sess.graph)
-            sess.run(tf.global_variables_initializer())
-            sess.run(tf.local_variables_initializer())
-
+            init_op = tf.group(tf.global_variables_initializer(), tf.local_variables_initializer())
+            sess.run(init_op)
+            coord = tf.train.Coordinator()
+            threads = tf.train.start_queue_runners(sess=sess, coord=coord)
             for step in  range(global_step):
                 start_time = time.time()
-                try:
-                    loss = sess.run([total_loss])
-                except (tf.errors.OutOfRangeError, tf.errors.CancelledError):
-                    break
+                loss = sess.run([train_op])
                 duration = time.time() - start_time
                 num_examples_per_step = input.shape[0]
                 examples_per_sec = num_examples_per_step / duration
@@ -55,6 +52,8 @@ class apollo(object):
                     saver.save(sess, checkpoint_path, global_step=step)
 
             summary_writer.close()
+            coord.request_stop()
+            coord.join(threads)
 
         return input
 
@@ -82,10 +81,10 @@ class apollo(object):
         input = tf.reshape(input, [640, 640, 8])
         label = tf.reshape(label, [640, 640, 12])
 
-        input, label = tf.train.shuffle_batch([input, label],num_threads=4,
-                batch_size=16,
-                capacity=100,
-                min_after_dequeue=50)
+        input, label = tf.train.batch([input, label],num_threads=4,
+                batch_size=4,
+                capacity=16
+                )
         return input, label
 
 if __name__ == "__main__":
