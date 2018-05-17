@@ -48,16 +48,16 @@ def get_data_paths(bin_id, data_dir):
     return bin_file, label_file
 
 def start(width, height, in_channel, lab_channel, range_, maxh, minh):
-    data_dir = '/home/bai/Project/cnn_seg/dataset'
+    data_dir = '/home/bai/Project/segmentation/cnn_seg/dataset'
     bin_id = glob.glob('%s/*.bin' % (data_dir))
-    out_dir = '/home/bai/Project/cnn_seg/data'
+    out_dir = '/home/bai/Project/segmentation/cnn_seg/dataset'
     if os.path.isfile(os.path.join(out_dir, "kitti.tfrecords")):
         os.remove(os.path.join(out_dir, "kitti.tfrecords"))
 
     # bin_indices = map(lambda x: os.path.basename(x).split('.')[0], bin_id)
     writer = tf.python_io.TFRecordWriter(os.path.join(out_dir, "kitti.tfrecords"))
     #for i, idx in enumerate(bin_indices):
-    for i in range(100):
+    for i in range(10):
         bin_path, label_path = get_data_paths('007480', data_dir)
         print("final path: {} {}".format(bin_path, label_path))
         input, label = create_kitti(bin_path, label_path, width, height, in_channel, lab_channel, range_, maxh, minh)
@@ -69,9 +69,9 @@ def start(width, height, in_channel, lab_channel, range_, maxh, minh):
     print("create done!!!")
 
 def creat_test(width, height, in_channel, lab_channel, range_, maxh, minh):
-    data_dir = '/home/users/tongyao.bai/data/kitti/testing/velodyne'
+    data_dir = '/home/bai/Project/cnn_seg/dataset/'
     bin_id = glob.glob('%s/*.bin'%(data_dir))
-    out_dir = '/home/bai/Project/cnn_seg/data'
+    out_dir = '/home/bai/Project/cnn_seg/dataset'
     if os.path.isfile(os.path.join(out_dir, "test.tfrecords")):
         os.remove(os.path.join(out_dir, "test.tfrecords"))
     bin_indices = map(lambda x: os.path.basename(x).split('.')[0], bin_id)
@@ -87,4 +87,4 @@ def creat_test(width, height, in_channel, lab_channel, range_, maxh, minh):
 
 if __name__ == "__main__":
     start(640, 640, 8, 12, 60, 5, -5)
-    creat_test(640, 640, 8, 12, 60, 5, -5)
+    #creat_test(640, 640, 8, 12, 60, 5, -5)
