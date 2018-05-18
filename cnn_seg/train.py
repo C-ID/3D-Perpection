@@ -18,17 +18,20 @@ class apollo(object):
 
     def train(self):
         input, label = self.read_tfrecord(self.train_tfrecord)
-        image_batch = tf.reshape(input, [self.batch_size, 640, 640, 8])
-        label_batch = tf.reshape(label, [self.batch_size, 640, 640, 12])
+        image_batch = tf.cast(input, tf.float32)
+        label_batch = tf.cast(label, tf.float32)
+        #image_batch1 = tf.reshape(image_batch, [self.batch_size, 640, 640, 8])
+        #label_batch1 = tf.reshape(label_batch, [self.batch_size, 640, 640, 12])
+
         global_step = self.global_step
         learing_rate = self.learning_rate
 
         #construct network graph
         feature = tf.placeholder(dtype=tf.float32, shape=[None, 640, 640, 8], name="input-feature")
         unknow_label = tf.placeholder(dtype=tf.float32, shape=[None, 640, 640, 12], name="input-label")
-        category_pt, instacnce_pt, confidence_pt, classify_pt, heading_pt, height_pt = net(input, self.batch_size, 640, 640,
+        category_pt, instacnce_pt, confidence_pt, classify_pt, heading_pt, height_pt = net(feature, self.batch_size, 640, 640,
                                                                                            istest=False)
-        total_loss = computeloss(category_pt, instacnce_pt, confidence_pt, classify_pt, heading_pt, height_pt, label)
+        total_loss = computeloss(category_pt, instacnce_pt, confidence_pt, classify_pt, heading_pt, height_pt, unknow_label, self.batch_size)
 
         #construct optimizer
         train_op = tf.train.AdamOptimizer(learing_rate).minimize(total_loss)
@@ -43,36 +46,33 @@ class apollo(object):
             sess.run(init_op)
             coord = tf.train.Coordinator()
             threads = tf.train.start_queue_runners(coord=coord)
-            try:
-                for step in range(global_step):
-                    start_time = time.time()
+
+            for step in range(global_step):
+                start_time = time.time()
+                try:
                     image_batch_in, label_batch_in= sess.run([image_batch, label_batch])
-                    loss, _ = sess.run([total_loss, train_op], feed_dict={
+                    loss, _, summary_str = sess.run([total_loss, train_op, summary_op], feed_dict={
                         feature:image_batch_in,
                         unknow_label:label_batch_in
                     })
-                    duration = time.time() - start_time
-                    num_examples_per_step = input.shape[0]
-                    examples_per_sec = num_examples_per_step / duration
-                    sec_per_batch = float(duration)
-                    format_str = ('step %d, loss = %.2f, lr=%.3f (%.1f examples/sec; %.3f '
-                                  'sec/batch)')
-                    log.info(format_str % (step, loss, -np.log10(learing_rate),
-                                           examples_per_sec, sec_per_batch))
-                    if step % 100 == 0:
-                        summary_str = sess.run(summary_op)
-                        summary_writer.add_summary(summary_str, step)
+                except tf.errors.OutOfRangeError:
+                    break
+                duration = time.time() - start_time
+                num_examples_per_step = self.batch_size
+                examples_per_sec = num_examples_per_step / duration
+                sec_per_batch = float(duration)
+                format_str = ('step: {}, loss={}, lr={} ({} examples/sec; {} '
+                              'sec/batch)')
+                print(format_str.format(step, loss, learing_rate, examples_per_sec, sec_per_batch))
+                if step % 100 == 0:
+                    summary_writer.add_summary(summary_str, step)
 
-                    if step % 1000 == 0 and step > 0:
-                        summary_writer.flush()
-                        log.debug("Saving checkpoint...")
-                        checkpoint_path = os.path.join(self.train_dir, 'cnn_seg.ckpt')
-                        saver.save(sess, checkpoint_path, global_step=step)
-                        summary_writer.close()
-            except tf.errors.OutOfRangeError:
-                pass
-            finally:
-                coord.request_stop()
+                if step % 1000 == 0 and step > 0:
+                    summary_writer.flush()
+                    # log.debug("Saving checkpoint...")
+                    checkpoint_path = os.path.join(self.train_dir, 'cnn_seg.ckpt')
+                    saver.save(sess, checkpoint_path, global_step=step)
+            summary_writer.close()
         coord.request_stop()
         coord.join(threads)
 
@@ -94,13 +94,13 @@ class apollo(object):
                 'label': tf.FixedLenFeature([], tf.string)
             })
 
-        input = tf.decode_raw(features['input'], tf.float32)
-        label = tf.decode_raw(features['label'], tf.float32)
+        input = tf.decode_raw(features['input'], tf.float64)
+        label = tf.decode_raw(features['label'], tf.float64)
 
         input = tf.reshape(input, [640, 640, 8])
         label = tf.reshape(label, [640, 640, 12])
 
-        input, label = tf.train.batch([input, label],num_threads=1,
+        input, label = tf.train.batch([input, label],num_threads=2,
                 batch_size=self.batch_size,
                 capacity=4,
 
@@ -114,7 +114,7 @@ if __name__ == "__main__":
     train_dir = os.path.join(os.getcwd(), "train_dir")
     if not os.path.exists(train_dir):
         os.mkdir(train_dir)
-    apollo = apollo(tfrecord, tfrecord, 0.01, 10, train_dir, 1)
+    apollo = apollo(tfrecord, tfrecord, 0.01, 10, train_dir, 2)
     # sess = tf.Session()
     # for i in range(1):
     #     a, b = apollo.read_tfrecord(tfrecord)

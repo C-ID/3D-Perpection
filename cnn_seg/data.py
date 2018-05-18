@@ -30,7 +30,7 @@ def generator_input(args, width, height, channel, range_, maxh, minh):
     """
     bin = np.fromfile(args, np.float32).reshape([-1, 4])
     assert isinstance(width, int) and isinstance(height, int), "Wrong type for input channel map"
-    channel_map = np.zeros([width, height, channel])
+    channel_map = np.zeros([width, height, channel], dtype=np.float64)
     channel_map[:,:,0].fill(-5.)
     inv_res_x = 0.5 * width / range_  #length of each grid(x: meters)
     inv_res_y = 0.5 * height / range_  #length of each grid(y: meters)
@@ -85,7 +85,7 @@ def count_data(bin, channel_map, max_height, min_height, inv_res_x, inv_res_y, r
 
 def gt_label(label_path, width, height, channel):
     objs = parse_kitti_label(label_path)
-    label = np.zeros([width, height, channel])
+    label = np.zeros([width, height, channel], dtype=np.float64)
     feature = get_label_channel(label, objs)
     #show_channel_label(channel, (width, height))
     return feature

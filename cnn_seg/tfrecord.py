@@ -28,6 +28,7 @@ def _convert_to_example(input, label):
     # all_cats = cats.tolist()
     feature = input.flatten().tostring()
     gt = label.flatten().tostring()
+
     example = tf.train.Example(features=tf.train.Features(feature={
         'input': _bytes_feature(feature),
         'label': _bytes_feature(gt)
@@ -48,9 +49,9 @@ def get_data_paths(bin_id, data_dir):
     return bin_file, label_file
 
 def start(width, height, in_channel, lab_channel, range_, maxh, minh):
-    data_dir = '/home/bai/Project/segmentation/cnn_seg/dataset'
+    data_dir = '/home/bai/Project/cnn_seg/dataset'
     bin_id = glob.glob('%s/*.bin' % (data_dir))
-    out_dir = '/home/bai/Project/segmentation/cnn_seg/dataset'
+    out_dir = '/home/bai/Project/cnn_seg/dataset'
     if os.path.isfile(os.path.join(out_dir, "kitti.tfrecords")):
         os.remove(os.path.join(out_dir, "kitti.tfrecords"))
 
@@ -69,7 +70,7 @@ def start(width, height, in_channel, lab_channel, range_, maxh, minh):
     print("create done!!!")
 
 def creat_test(width, height, in_channel, lab_channel, range_, maxh, minh):
-    data_dir = '/home/bai/Project/cnn_seg/dataset/'
+    data_dir = '/home/users/tongyao.bai/data/kitti/testing/velodyne'
     bin_id = glob.glob('%s/*.bin'%(data_dir))
     out_dir = '/home/bai/Project/cnn_seg/dataset'
     if os.path.isfile(os.path.join(out_dir, "test.tfrecords")):

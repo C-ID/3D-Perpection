@@ -68,13 +68,21 @@ def net(input, batch_size, width, height, istest=False):
 
 
 
-def computeloss(category_pt, instance_pt, confidence_pt, classify_pt, heading_pt, height_pt, gt):
-    objectness_loss = tf.reduce_mean(tf.sqrt(tf.pow(category_pt - gt[:,:,:,0:0], 2)))
-    instance_loss = tf.reduce_mean(tf.sqrt(tf.pow(instance_pt - gt[:,:,:,1:3], 2)))
-    confidence_loss = tf.reduce_mean(tf.sqrt(tf.pow(confidence_pt - gt[:,:,:,3:3], 2)))
-    classify_loss = tf.reduce_mean(tf.sqrt(tf.pow(classify_pt-gt[:,:,:,4:9], 2)))
-    heading_loss = tf.reduce_mean(tf.sqrt(tf.pow(heading_pt - gt[:,:,:,9:11], 2)))
-    height_loss = tf.reduce_mean(tf.sqrt(tf.pow(height_pt - gt[:,:,:,11:11], 2)))
+def computeloss(category_pt, instance_pt, confidence_pt, classify_pt, heading_pt, height_pt, gt, batch_size):
+
+    obj = tf.slice(gt, [0,0,0,0], [batch_size,640,640,1])
+    ins = tf.slice(gt, [0,0,0,1], [batch_size,640,640,2])
+    conf = tf.slice(gt, [0,0,0,3], [batch_size, 640,640,1])
+    cla = tf.slice(gt, [0,0,0,4], [batch_size, 640,640,5])
+    hea = tf.slice(gt, [0,0,0,9], [batch_size, 640,640,2])
+    heig = tf.slice(gt, [0,0,0,11], [batch_size, 640,640,1])
+
+    objectness_loss = tf.losses.mean_squared_error(labels=obj, predictions=category_pt)
+    instance_loss = tf.losses.mean_squared_error(labels=ins, predictions=instance_pt)
+    confidence_loss = tf.losses.mean_squared_error(labels=conf, predictions=confidence_pt)
+    classify_loss = tf.losses.mean_squared_error(labels=cla, predictions=classify_pt)
+    heading_loss = tf.losses.mean_squared_error(labels=hea, predictions=heading_pt)
+    height_loss = tf.losses.mean_squared_error(labels=heig, predictions=height_pt)
     total_loss = objectness_loss + instance_loss + confidence_loss + classify_loss + heading_loss + height_loss
 
     tf.summary.scalar('loss/objectness_loss',objectness_loss)
@@ -92,8 +100,8 @@ if __name__ == "__main__":
     input = np.ones((1, 640, 640, 8))
     label = np.ones((1, 640, 640, 12))
     sess = tf.Session()
-    x = tf.placeholder(dtype=tf.float32, shape=[None, 640, 640, 8],name="input")
-    y = tf.placeholder(dtype=tf.float32, shape=[None, 640, 640, 12], name="output")
+    x = tf.placeholder(dtype=tf.float64, shape=[None, 640, 640, 8],name="input")
+    y = tf.placeholder(dtype=tf.float64, shape=[None, 640, 640, 12], name="output")
 
     a, b, c, d, e, f = net(x, 1, 640, 640, istest=False)
     lo = computeloss(a, b, c, d, e, f, y)
