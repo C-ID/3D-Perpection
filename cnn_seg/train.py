@@ -3,9 +3,8 @@ import numpy as np
 import os
 from cnn_seg import net, computeloss
 import time
-import logging
 
-log = logging.getLogger()
+os.environ["CUDA_VISIBLE_DEVICES"] = "0, 1"
 
 class apollo(object):
     def __init__(self, train_tfrecord, test_tfrecord, learning_rate, global_step, train_dir, batch_size):
@@ -64,10 +63,10 @@ class apollo(object):
                 format_str = ('step: {}, loss={}, lr={} ({} examples/sec; {} '
                               'sec/batch)')
                 print(format_str.format(step, loss, learing_rate, examples_per_sec, sec_per_batch))
-                if step % 100 == 0:
-                    summary_writer.add_summary(summary_str, step)
 
-                if step % 1000 == 0 and step > 0:
+                summary_writer.add_summary(summary_str, step)
+
+                if step % 100 == 0 and step > 0:
                     summary_writer.flush()
                     # log.debug("Saving checkpoint...")
                     checkpoint_path = os.path.join(self.train_dir, 'cnn_seg.ckpt')
@@ -77,7 +76,17 @@ class apollo(object):
         coord.join(threads)
 
     def test(self):
-        input, label = self.read_tfrecord(self.test_tfrecord)
+        self.batch_size = 1
+        input= self.read_tfrecord(self.test_tfrecord)
+        image_batch = tf.cast(input, tf.float32)
+        # label_batch = tf.cast(label, tf.float32)
+        feature = tf.placeholder(dtype=tf.float32, shape=[None, 640, 640, 8], name="input-feature")
+        instacnce_pt, height_pt, class_score, confidence_score, category_score = net(feature, self.batch_size, 640, 640,
+                                                                                           istest=True)
+        with tf.Session(config=tf.ConfigProto(allow_soft_placement=True,
+                                              log_device_placement=False)) as sess:
+            pass
+
 
     def __call__(self, *args, **kwargs):
         pass
@@ -100,24 +109,17 @@ class apollo(object):
         input = tf.reshape(input, [640, 640, 8])
         label = tf.reshape(label, [640, 640, 12])
 
-        input, label = tf.train.batch([input, label],num_threads=2,
+        input, label = tf.train.batch([input, label],num_threads=4,
                 batch_size=self.batch_size,
                 capacity=4,
-
-                # shapes=[[640,640,8], [640,640,12]],
-                # allow_smaller_final_batch=True
                 )
         return input, label
 
 if __name__ == "__main__":
-    tfrecord = os.path.join(os.getcwd(), "dataset/kitti.tfrecords")
+    tfrecord = os.path.join(os.getcwd(), "../../data/tongyao.bai/kitti.tfrecords")
     train_dir = os.path.join(os.getcwd(), "train_dir")
     if not os.path.exists(train_dir):
         os.mkdir(train_dir)
-    apollo = apollo(tfrecord, tfrecord, 0.01, 10, train_dir, 2)
-    # sess = tf.Session()
-    # for i in range(1):
-    #     a, b = apollo.read_tfrecord(tfrecord)
-    #     print(sess.run([a, b]))
+    apollo = apollo(tfrecord, tfrecord, 0.0001, 1000, train_dir, 8)
     apollo.train()
-    # print(input)
+

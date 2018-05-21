@@ -4,6 +4,246 @@ import argparse
 import time
 from render import *
 
+class data_provider(object):
+    def __init__(self, width, height, in_channel, out_channel, range_):
+
+        assert isinstance(width, int) and isinstance(height, int), "Wrong type, need int type for channel size"
+        self.width = width
+        self.height = height
+        self.in_channel = in_channel
+        self.out_channel = out_channel
+        self.range = range_
+        self.max_height = 5
+        self.min_height = -5
+        self.inv_res_x = 0.5 * width / range_  # length of each grid(x: meters)
+        self.inv_res_y = 0.5 * height / range_  # length of each grid(y: meters)
+        # log_table_ = np.arange(0, 256 + 1)
+        # self.log_table_ = np.log1p(1 + log_table_)
+
+        #prepare func fo eight channel input feature
+        self.functions = self.func()
+
+        self.grid_limits = [[-range_, range_], [-range_, range_]]  # axis for X, Y, Z
+        self.cell_sizes = [self.inv_res_x, self.inv_res_y]
+
+        self.num_cells = [640, 640]
+        self.start_limits = np.array([l[0] for l in self.grid_limits]).reshape((-1, 2))
+
+
+
+    def pix2pc(self, in_pixel, in_size, out_range):
+        res = 2.0 * out_range / in_size
+        return out_range - (in_pixel + .5) * res
+
+    def F2I(self, val, ori, scale):
+        return np.floor((ori - val) * scale)
+
+    def LogCount(self, count):
+        log_table_ = np.arange(0, 256 + 1)
+        log_table_ = np.log1p(1+log_table_)
+        if count < len(log_table_):
+            return log_table_[count]
+        return np.log(1+count)
+
+    def get_point_cloud_grids(self, bin):
+        data = np.fromfile(bin, np.float32).reshape([-1, 4])
+        cell_id_quantized = np.floor((data[:, :2] - self.start_limits) * np.array(self.cell_sizes).reshape((-1, 2))).astype(np.int32)
+        cells = {}
+        for i in range(data.shape[0]):
+            pt = data[i]
+            cell_id = cell_id_quantized[i]
+            if np.any(cell_id < 0) or np.any(cell_id >= np.array(self.num_cells)):
+                continue
+            cell_id_key = '_'.join(map(str, cell_id))
+            if cell_id_key not in cells:
+                cells[cell_id_key] = []
+            cells[cell_id_key].append(pt)
+        for k in cells:
+            cells[k] = np.vstack(cells[k])
+        return cells
+
+    def get_cell_features(self, cells):
+        channel_map = np.zeros(list(self.num_cells) + [len(self.functions)], dtype='float32')
+        channel_map[:,:,0].fill(-5.)
+        for i, func in enumerate(self.functions):
+            fs = map(lambda k: [map(int, k.split('_')), func(cells[k])], cells)
+            for ids, f in fs:
+                ids = list(ids)
+                channel_map[ids[0],ids[1], i] = f
+
+        # for i in range(self.width):
+        #     for j in range(self.height):
+        #         if channel_map[i,j,2] <= 1e-6: channel_map[i,j,0] = 0.
+        #         else:
+        #             channel_map[i,j,1] /= channel_map[i,j,2]
+        #             channel_map[i,j,5] /= channel_map[i,j,2]
+        #             channel_map[i,j,7] = 1.
+        #         channel_map[i,j,2] = self.LogCount(int(channel_map[i, j, 2]))
+
+
+        for i in range(self.width):
+            for j in range(self.height):
+                center_x = self.pix2pc(i, self.height, self.range)
+                center_y = self.pix2pc(j, self.width, self.range)
+                channel_map[i,j,3] = np.arctan2(center_y, center_x) / (2. * np.pi)  # direction data
+                channel_map[i,j,6] = np.hypot(center_x, center_y) / 60.0 - 0.5  # distance data
+        return channel_map
+
+    def gen(self, bin):
+        cells = self.get_point_cloud_grids(bin)
+        return self.get_cell_features(cells)
+
+    def func(self):
+        z_axes = 2
+        ref_axes = 3
+
+        zmax_func = lambda x: x[:, z_axes].max()
+        zmean_func = lambda x: x[:, z_axes].mean()
+
+        z_max_refmax_func = lambda x: x[x[:, z_axes].argmax(), ref_axes] / 255.
+        refmean_func = lambda x: x[:, ref_axes].mean()
+
+        dist_func = lambda x: 0.
+        angle_func = lambda x: 0.
+        counts_func = lambda x: self.LogCount(int(x.shape[0]))
+        nonempty_func = lambda x: float(x.shape[0] > 0)
+
+        encoding_funcs = [zmax_func, zmean_func, counts_func, angle_func, z_max_refmax_func, refmean_func,
+                          dist_func, nonempty_func]
+
+        return encoding_funcs
+
+    def gen_data(self, bin, channel_map):
+        # compute for vaild points
+        idx = np.where(bin[:, 2] < self.max_height)
+        bin = bin[idx]
+        idx = np.where(bin[:, 2] > self.min_height)
+        bin = bin[idx]
+
+        for i in range(len(bin)):
+            pos_x = int(self.F2I(bin[i, 1], self.range, self.inv_res_x))  #col
+            pos_y = int(self.F2I(bin[i, 0], self.range, self.inv_res_y))  #row
+
+            if(pos_x >= self.width or pos_x < 0 or pos_y >= self.height or pos_y < 0):continue
+
+            pz = bin[i, 2]   #max height data
+            pi = bin[i, 3] / 255.  #top intensity data
+            if(channel_map[pos_y,pos_x,0]<pz):
+                channel_map[pos_y,pos_x,0] = pz   #max height data
+                channel_map[pos_y,pos_x,4] = pi   #top intensity data
+            channel_map[pos_y,pos_x,1] += pz    #mean height data
+            channel_map[pos_y,pos_x,5] += pi    #mean intensity data
+            channel_map[pos_y,pos_x,2] += 1.     #count data
+            # print(channel_map[pos_y, pos_x, 0])
+
+        for i in range(self.width):
+            for j in range(self.height):
+                if channel_map[i,j,2] <= 1e-6: channel_map[i,j,0] = 0.
+                else:
+                    channel_map[i,j,1] /= channel_map[i,j,2]
+                    channel_map[i,j,5] /= channel_map[i,j,2]
+                    channel_map[i,j,7] = 1.
+                channel_map[i,j,2] = self.LogCount(int(channel_map[i, j, 2]))
+        return channel_map
+
+
+    def generator_input(self, path):
+        start = time.time()
+        bin = np.fromfile(path, np.float32).reshape([-1, 4])
+
+        channel_map = np.zeros([self.width, self.height, self.in_channel], dtype=np.float32)
+        channel_map[:, :, 0].fill(-5.)
+
+        channel_map = self.gen_data(bin, channel_map)
+        for i in range(self.width):
+            for j in range(self.height):
+                center_x = self.pix2pc(i, self.height, self.range)
+                center_y = self.pix2pc(j, self.width, self.range)
+                channel_map[i][j][3] = np.arctan2(center_y, center_x) / (2. * np.pi)  # direction data
+                channel_map[i][j][6] = np.hypot(center_x, center_y) / 60.0 - 0.5  # distance data
+        print(time.time() - start)
+        return channel_map
+
+
+
+
+
+    def generator_label(self, label_path):
+        objs = self.parse_kitti_label(label_path)
+        label = np.zeros([self.width, self.height, self.out_channel], dtype=np.float32)
+        feature = self.get_label_channel(label, objs)
+        return feature
+
+    def parse_kitti_label(self, label_file):
+        lines = open(label_file).readlines()
+        lines = map(lambda x: x.strip().split(), lines)
+        objs = []
+        for l in lines:
+            o = {}
+            o['type'] = l[0]
+            o['truncation'] = float(l[1])
+            o['occlusion'] = int(l[2])
+            o['alpha'] = float(l[3])
+            o['box2d'] = [float(l[4]), float(l[5]), float(l[6]), float(l[7])]
+            o['h'] = float(l[8])
+            o['w'] = float(l[9])
+            o['l'] = float(l[10])
+            o['t'] = [float(l[11]), float(l[12]), float(l[13])]
+            o['yaw'] = float(l[14])
+            objs.append(o)
+        return objs
+
+    def compute_3d_corners(self, l, w, h, t, yaw):
+        R = np.array([[np.cos(yaw), 0, np.sin(yaw)],
+                      [0, 1, 0],
+                      [-np.sin(yaw), 0, np.cos(yaw)]])
+        # 3D bounding box corners
+        x_corners = [l / 2, l / 2, -l / 2, -l / 2, l / 2, l / 2, -l / 2, -l / 2]
+        y_corners = [0, 0, 0, 0, -h, -h, -h, -h]
+        z_corners = [w / 2, -w / 2, -w / 2, w / 2, w / 2, -w / 2, -w / 2, w / 2]
+        corners_3D = np.dot(R, np.array([x_corners, y_corners, z_corners]))
+        corners_3D += np.array(t).reshape((3, 1))
+        return corners_3D
+
+    def get_label_channel(self, channel, obj):
+        car = ['Car', 'Van', 'Truck', 'Tram', 'Misc']
+        person = ['Pedestrian', 'Person_sitting']
+        for o in obj:
+            box3d = self.compute_3d_corners(o['l'], o['w'], o['h'], o['t'], o['yaw'])
+
+            x = self.F2I(box3d[0, :], 60, 0.5 * 640 / 60)
+            y = self.F2I(box3d[2, :], 60, 0.5 * 640 / 60)
+
+            height = box3d[1, 0] - box3d[1, 4]
+            center = o['t']
+            center_x = self.F2I(center[0], 60, 0.5 * 640 / 60)  # col
+            center_y = self.F2I(center[2], 60, 0.5 * 640 / 60)  # row
+            if (center_x >= self.width or center_x < 0 or center_y >= self.height or center_y < 0): continue
+
+            step_x = [i for i in range(int(x.min()), int(x.max()) + 1, 1)]
+            step_z = [i for i in range(int(y.min()), int(y.max()) + 1, 1)]
+
+            # generator center offset
+            center_offset_x = (np.array(step_x) - int(center_x))
+            center_offset_y = (np.array(step_z) - int(center_y))
+
+            for i in range(len(step_x)):
+                for j in range(len(step_z)):
+                    channel[step_x[i], step_z[j], 0] = 1.  # category_pt
+                    channel[step_x[i], step_z[j], 1] = center_offset_x[i]  # instance_x
+                    channel[step_x[i], step_z[j], 2] = center_offset_y[j]  # instance_y
+                    channel[step_x[i], step_z[j], 3] = 1.  # confidence_pt
+                    channel[step_x[i], step_z[j], 11] = height  # height_pt
+                    if o['type'] in car:
+                        channel[step_x[i], step_z[j], 5:7] = 1.  # classify_pt :4-8
+                    elif o['type'] in person:
+                        channel[step_x[i], step_z[j], 8] = 1.
+                    elif o['type'] == 'DontCare':
+                        channel[step_x[i], step_z[j], 4] = 1.
+                    elif o['type'] == 'Cyclist':
+                        channel[step_x[i], step_z[j], 7] = 1.
+
+        return channel
 
 
 def pix2pc(in_pixel, in_size, out_range):
@@ -159,18 +399,15 @@ def get_label_channel(channel, obj):
 
     return channel
 
-def args():
-    def str2bool(v): return v.lower() in ("yes", "true", "t", "1", True)
-    parser = argparse.ArgumentParser(prog="Python", description="Aim at testing cnn_seg results through VTK rendering")
-    parser.add_argument("--bin-path", type=str, required=True, help="path for pcd file")
-    args = parser.parse_args()
-    return args
 
 if __name__ == "__main__":
     bin_path = "./dataset/007480.bin"
     label_path = "./dataset/007480.txt"
     start = time.time()
-    #chan = generator_input(bin_path, 640, 640, 8, 60, 5, -5)
+    # chan = generator_input(bin_path, 640, 640, 8, 60, 5, -5)
     #show_channel_input(chan, (640, 640))
     gt = gt_label(label_path, 640, 640, 12)
-    print(time.time() - start)
+    # data = data_provider(640,640,8,12,60)
+    # channel = data.generator_input(bin_path)
+    show_channel_label(gt, (640,640))
+    # print(time.time() - start)

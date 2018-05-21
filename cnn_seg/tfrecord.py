@@ -1,10 +1,22 @@
 import tensorflow as tf
-import numpy as np
 import os
 import glob
-from data import generator_input, gt_label
+from data import data_provider, generator_input, gt_label
+from multiprocessing import Pool, Process
+import traceback
+import numpy as np
+from tqdm import tqdm
 
-slim = tf.contrib.slim
+data_dir = '/home/bai/kitti/2011_09_26/2011_09_26_drive_0011_sync/velodyne_points/data'
+out_dir = '/home/bai/Project/cnn_seg/dataset'
+# class record(object):
+#
+#     def __init__(self, train_path, test_path, width, height, in_channel, lab_channel, range_, num_thread):
+#         # self.data_provider = data_provider(width,height,in_channel,lab_channel,range_)
+#         self.train = train_path
+#         self.test = test_path
+#         self.pool = Pool(num_thread)
+#         self.num_thread = num_thread
 
 def _int64_feature(value):
     """Wrapper for inserting int64 features into Example proto."""
@@ -23,23 +35,10 @@ def _bytes_feature(value):
     return tf.train.Feature(bytes_list=tf.train.BytesList(value=[value]))
 
 
-
-def _convert_to_example(input, label):
-    # all_cats = cats.tolist()
-    feature = input.flatten().tostring()
-    gt = label.flatten().tostring()
-
-    example = tf.train.Example(features=tf.train.Features(feature={
-        'input': _bytes_feature(feature),
-        'label': _bytes_feature(gt)
-    }))
-
-    return example
-
-def create_kitti(input_path, label_path, width, height, in_channel, lab_channel, range_, maxh, minh):
-    input = generator_input(input_path, width, height, in_channel, range_, maxh, minh)
-    label = gt_label(label_path, width, height, lab_channel)
-    return input, label
+def create_kitti(input_path):
+    input = data_provider.generator_input(input_path)
+    # label = self.data_provider.generator_label(label_path)
+    return input#, label
 
 def get_data_paths(bin_id, data_dir):
     #image_id = '006961'
@@ -48,44 +47,66 @@ def get_data_paths(bin_id, data_dir):
     print(bin_file, label_file)
     return bin_file, label_file
 
-def start(width, height, in_channel, lab_channel, range_, maxh, minh):
-    data_dir = '/home/bai/Project/cnn_seg/dataset'
-    bin_id = glob.glob('%s/*.bin' % (data_dir))
-    out_dir = '/home/bai/Project/cnn_seg/dataset'
-    if os.path.isfile(os.path.join(out_dir, "kitti.tfrecords")):
-        os.remove(os.path.join(out_dir, "kitti.tfrecords"))
+def _convert_to_example(input, label):
+    # all_cats = cats.tolist()
+    feature = input.flatten().tostring()
+    gt = label.flatten().tostring()
+    example = tf.train.Example(features=tf.train.Features(feature={
+        'input': _bytes_feature(feature),
+        'label': _bytes_feature(gt)
+    }))
+    return example
 
-    # bin_indices = map(lambda x: os.path.basename(x).split('.')[0], bin_id)
-    writer = tf.python_io.TFRecordWriter(os.path.join(out_dir, "kitti.tfrecords"))
-    #for i, idx in enumerate(bin_indices):
-    for i in range(10):
-        bin_path, label_path = get_data_paths('007480', data_dir)
-        print("final path: {} {}".format(bin_path, label_path))
-        input, label = create_kitti(bin_path, label_path, width, height, in_channel, lab_channel, range_, maxh, minh)
-        example = _convert_to_example(input, label)
-    # if i % 100 == 0:
-    #     print("%i files are processed" % i)
+def prepare2(bin_id, i):
+    writer = tf.python_io.TFRecordWriter(os.path.join(out_dir, "train-{}.tfrecords".format(i)))
+    for path in tqdm(bin_id):
+        input_path, label_path = get_data_paths(path, data_dir)
+        print("final path: {} {}".format(input_path, label_path))
+        input = generator_input(input_path, 640, 640,8,12,5,-5)
+        # label = gt_label(label_path, 640, 640, 12)
+        feature = input.flatten().tostring()
+        # lab = label.flatten().tostring()
+        example = tf.train.Example(features=tf.train.Features(feature={
+            'input': _bytes_feature(feature),
+            # 'label': _bytes_feature(lab)
+        }))
+
         writer.write(example.SerializeToString())
     writer.close()
+
+
+
+
+    # def __getstate__(self):
+    #     self_dict = self.__dict__.copy()
+    #     del self_dict['pool']
+    #     return self_dict
+    #
+    # def __setstate__(self, state):
+    #     self.__dict__.update(state)
+
+    # def creat_test(self, width, height, in_channel, lab_channel, range_, maxh, minh):pass
+
+
+
+def start(num):
+    bin_id = glob.glob('%s/*.bin' % (data_dir))
+    pool = Pool(num)
+    bin_indices = list(map(lambda x: os.path.basename(x).split('.')[0], bin_id))
+    length = len(bin_indices)
+    batch = int(length / num)
+    # batchs = np.arange(length)
+    slice = np.arange(length)[0:length:batch]
+    for i in range(num):
+        if i ==num : x = bin_indices[slice[i]:]
+        else: x = bin_indices[slice[i]:slice[i+1]]
+        pool.apply_async(prepare2, (x, i))
+    pool.close()
+    pool.join()
     print("create done!!!")
 
-def creat_test(width, height, in_channel, lab_channel, range_, maxh, minh):
-    data_dir = '/home/users/tongyao.bai/data/kitti/testing/velodyne'
-    bin_id = glob.glob('%s/*.bin'%(data_dir))
-    out_dir = '/home/bai/Project/cnn_seg/dataset'
-    if os.path.isfile(os.path.join(out_dir, "test.tfrecords")):
-        os.remove(os.path.join(out_dir, "test.tfrecords"))
-    bin_indices = map(lambda x: os.path.basename(x).split('.')[0], bin_id)
-    writer = tf.python_io.TFRecordWriter(os.path.join(out_dir, "test.tfrecords"))
-    for i, idx in enumerate(bin_indices):
-        bin_path, label_path = get_data_paths(idx, data_dir)
-        input, label = create_kitti(bin_path, label_path, width, height, in_channel, lab_channel, range_, maxh, minh)
-        example = _convert_to_example(input, label)
-        if i % 100 == 0:
-            print("%i files are processed" % i)
-        writer.write(example.SerializeToString())
-    writer.close()
 
 if __name__ == "__main__":
-    start(640, 640, 8, 12, 60, 5, -5)
+    # tfs = record(0,0, 640, 640, 8, 12, 60, 4)
+    start(4)
     #creat_test(640, 640, 8, 12, 60, 5, -5)
