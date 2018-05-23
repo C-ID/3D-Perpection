@@ -133,9 +133,9 @@ void CNNSegmentation::Preparefortracking(const std::vector<apollo::perception::O
     float x_min = FLT_MAX;
     float y_min = FLT_MAX;
     float z_min = FLT_MAX;
-    float x_max = FLT_MIN;
-    float y_max = FLT_MIN;
-    float z_max = FLT_MIN;
+    float x_max = -FLT_MAX;
+    float y_max = -FLT_MAX;
+    float z_max = -FLT_MAX;
 
     for (size_t j = 0; j < obj->cloud->size(); ++j) {
       const auto &point = obj->cloud->points[j];
