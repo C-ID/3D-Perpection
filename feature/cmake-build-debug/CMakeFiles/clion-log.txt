@@ -1,0 +1,4 @@
+/home/bai/Downloads/clion-2018.1.1/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/bai/Project/3D-Perpection/feature
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/bai/Project/3D-Perpection/feature/cmake-build-debug

@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++11  -g   CMakeFiles/feature.dir/main.cpp.o  -o libs/feature  -L/home/bai/Project/3D-Perpection/feature/cmake-build-debug/libs -Wl,-rpath,/home/bai/Project/3D-Perpection/feature/cmake-build-debug/libs -ljsoncpp libs/libdemo.a libs/libdemo.a -ljsoncpp 

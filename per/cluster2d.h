@@ -214,7 +214,7 @@ class Cluster2D {
               temp["height_pt"].append(Json::Value(height_pt_data[grid]));
           }
     }
-     */
+    */
 
   }
 
@@ -241,7 +241,7 @@ class Cluster2D {
     }
 
     //record
-    /*
+
     for (int k = 0; k < num_classes; k++){
       for (int row = 0; row < rows_; ++row) {
         for (int col = 0; col < cols_; ++col) {
@@ -250,18 +250,18 @@ class Cluster2D {
         }
       }
     }
-
+    /*
     feature["output"].append(temp);
 
     std::ofstream out;
-    out.open("/home/bai/Project/cnn_seg/dataset/output.json");
+    out.open("/home/bai/Project/cnn_seg/dataset/out-0000000000.json");
     if(out.is_open())
     {
       std::cout << "start write output pred to json " << std::endl;
       out << writer.write(feature);
     }
     out.close();
-     */
+    */
 
   }
 

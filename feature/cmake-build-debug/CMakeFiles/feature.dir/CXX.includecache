@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/bai/Project/3D-Perpection/feature/feature_generator.h
+cmath
+-
+string
+-
+vector
+-
+
+/home/bai/Project/3D-Perpection/feature/main.cpp
+iostream
+-
+fstream
+-
+string
+-
+feature_generator.h
+/home/bai/Project/3D-Perpection/feature/feature_generator.h
+memory
+-
+

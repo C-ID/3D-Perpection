@@ -305,9 +305,9 @@ void start(const string &pcd_file, const string& json_path, const string& png_pa
 	cnn_segmentor_->Init();
 	//for (int i = 0; i < 10; ++i)
 	cnn_segmentor_->Segment(in_pc, valid_idx, &out_objects);
-    DrawDetection(in_pc, valid_idx, cnn_segmentor_->height(),
-                  cnn_segmentor_->width(), cnn_segmentor_->range(), out_objects,
-                  png_path);
+//    DrawDetection(in_pc, valid_idx, cnn_segmentor_->height(),
+//                  cnn_segmentor_->width(), cnn_segmentor_->range(), out_objects,
+//                  png_path);
 	//cnn_segmentor_->Write2Json(out_objects, json_path);
 	/*
 	uint8_t r(255), g(128), b(128);

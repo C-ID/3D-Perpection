@@ -1,0 +1,5 @@
+/home/bai/Project/3D-Perpection/feature/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/bai/Project/3D-Perpection/feature/cmake-build-debug/CMakeFiles/demo.dir
+/home/bai/Project/3D-Perpection/feature/cmake-build-debug/CMakeFiles/feature.dir
+/home/bai/Project/3D-Perpection/feature/cmake-build-debug/CMakeFiles/out.dir
+/home/bai/Project/3D-Perpection/feature/cmake-build-debug/CMakeFiles/edit_cache.dir
