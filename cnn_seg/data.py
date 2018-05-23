@@ -319,7 +319,6 @@ def count_data(bin, channel_map, max_height, min_height, inv_res_x, inv_res_y, r
                 channel_map[i,j,5] /= channel_map[i,j,2]
                 channel_map[i,j,7] = 1.
             channel_map[i,j,2] = LogCount(int(channel_map[i, j, 2]))
-
     return channel_map
 
 
@@ -363,7 +362,8 @@ def compute_3d_corners(l, w, h, t, yaw):
 
 def get_label_channel(channel, obj):
     num_obj = len(obj)
-    car = ['Car', 'Van', 'Truck', 'Tram', 'Misc']
+    small_car = ['Car', 'Tram']
+    big_car = ['Van', 'Truck']
     person = ['Pedestrian', 'Person_sitting']
     for o in obj:
         box3d = compute_3d_corners(o['l'], o['w'], o['h'], o['t'], o['yaw'])
@@ -392,10 +392,11 @@ def get_label_channel(channel, obj):
                 channel[step_x[i], step_z[j], 2] = center_offset_y[j]  #instance_y
                 channel[step_x[i], step_z[j], 3] = 1.                   #confidence_pt
                 channel[step_x[i], step_z[j], 11] = height             #height_pt
-                if o['type'] in car: channel[step_x[i], step_z[j], 5:7] = 1.   #classify_pt :4-8
+                if o['type'] in small_car: channel[step_x[i], step_z[j], 5] = 1.  # classify_pt :4-8
+                elif o['type'] in big_car: channel[step_x[i], step_z[j], 6] = 1.
                 elif o['type'] in person: channel[step_x[i], step_z[j], 8] = 1.
                 elif o['type'] == 'DontCare': channel[step_x[i], step_z[j], 4] = 1.
-                elif o['type'] == 'Cyclist' : channel[step_x[i], step_z[j], 7] = 1.
+                elif o['type'] == 'Cyclist': channel[step_x[i], step_z[j], 7] = 1.
 
     return channel
 
@@ -403,11 +404,12 @@ def get_label_channel(channel, obj):
 if __name__ == "__main__":
     bin_path = "./dataset/007480.bin"
     label_path = "./dataset/007480.txt"
-    start = time.time()
+    # start = time.time()
     # chan = generator_input(bin_path, 640, 640, 8, 60, 5, -5)
-    #show_channel_input(chan, (640, 640))
+    # show_channel_input(chan, (640, 640))
     gt = gt_label(label_path, 640, 640, 12)
     # data = data_provider(640,640,8,12,60)
     # channel = data.generator_input(bin_path)
-    show_channel_label(gt, (640,640))
+    # show_channel_label(gt, (640,640))
+    classif(gt)
     # print(time.time() - start)

@@ -54,11 +54,11 @@ def show_channel_label(channel, size):
     off_set_x = np.where(x != 0)
     off_set_y = np.where(y != 0)
     # a = x[off_set_x]
-    # x = np.cos(x)
-    # y = np.sin(y)
+    x = np.cos(x)
+    y = np.sin(y)
     X, Y = np.meshgrid(np.arange(0, 640, 1), np.arange(0, 640, 1))
     M = np.hypot(x, y)
-    Q = plt.quiver(X, Y, x, y, M, pivot="tip", units='xy')
+    Q = plt.quiver(Y, X, x, y, M, pivot="tip",scale=0.5, scale_units='xy')
     qk = plt.quiverkey(Q, 0.9, 0.9, 2, r'$2 \frac{m}{s}$', labelpos='E',
                        coordinates='data')
     # X, Y = np.meshgrid(np.arange(0, 640), np.arange(0, 640))
@@ -66,6 +66,28 @@ def show_channel_label(channel, size):
 
     plt.show()
 
+def classif(channel):
+    plt.figure()
+    plt.title("label channel-(5-8): classify")
+    image = np.zeros([640, 640])
+    image[:, :] = channel[:, :, 5]
+    plt.imshow(image)
+    plt.show()
 
 
+def test():
+    plt.figure()
+    plt.title("test")
+    x = 0.5
+    y = 0.5
+    X, Y = np.meshgrid(np.arange(0, 640, 1), np.arange(0, 640, 1))
+    M = np.hypot(x, y)
+    Q = plt.quiver(X, Y, x, y, M, pivot="tip", units='xy')
+    qk = plt.quiverkey(Q, 0.9, 0.9, 2, r'$2 \frac{m}{s}$', labelpos='E',
+                       coordinates='data')
+    plt.show()
+
+
+if __name__ == "__main__":
+    test()
 

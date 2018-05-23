@@ -58,7 +58,8 @@ def _convert_to_example(input, label):
     return example
 
 def prepare2(bin_id, i):
-    writer = tf.python_io.TFRecordWriter(os.path.join(out_dir, "train-{}.tfrecords".format(i)))
+    option = tf.python_io.TFRecordOptions(tf.python_io.TFRecordCompressionType.ZLIB)
+    writer = tf.python_io.TFRecordWriter(os.path.join(out_dir, "train-{}.tfrecords".format(i)), options=option)
     for path in tqdm(bin_id):
         input_path, label_path = get_data_paths(path, data_dir)
         print("final path: {} {}".format(input_path, label_path))
@@ -72,6 +73,7 @@ def prepare2(bin_id, i):
         }))
 
         writer.write(example.SerializeToString())
+        writer.flush()
     writer.close()
 
 

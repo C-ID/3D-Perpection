@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="false">
-    <generated />
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
+    <generated>
+      <config projectName="per" targetName="lib_demo" />
+      <config projectName="per" targetName="out" />
+    </generated>
   </component>
   <component name="CMakeSettings">
     <configurations>
@@ -10,6 +13,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e640a9d-bf09-4078-8ac4-368bf0e48d5c" name="Default" comment="" />
+    <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,12 +23,12 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="run.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/run.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="305" column="26" selection-start-line="305" selection-start-column="26" selection-end-line="305" selection-end-column="26" />
+            <state relative-caret-position="334">
+              <caret line="306" column="4" selection-start-line="306" selection-start-column="4" selection-end-line="306" selection-end-column="4" />
               <folding>
                 <element signature="e#211#229#0" expanded="true" />
               </folding>
@@ -34,8 +39,8 @@
       <file leaf-file-name="feature_generator.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/feature_generator.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-591">
-              <caret line="77" column="3" lean-forward="true" selection-start-line="77" selection-start-column="3" selection-end-line="77" selection-end-column="3" />
+            <state relative-caret-position="1617">
+              <caret line="77" column="3" selection-start-line="77" selection-start-column="3" selection-end-line="77" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -43,31 +48,38 @@
       <file leaf-file-name="cnn_segmentation.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cnn_segmentation.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
+            <state relative-caret-position="3024">
               <caret line="144" column="19" selection-start-line="144" selection-start-column="14" selection-end-line="144" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shared_ptr_base.h" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/include/c++/5/bits/shared_ptr_base.h">
+      <file leaf-file-name="cluster2d.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cluster2d.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="1055" selection-start-line="1055" selection-end-line="1055" />
+            <state relative-caret-position="483">
+              <caret line="33" column="13" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cluster2d.h" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/cluster2d.h">
+      <file leaf-file-name="deploy.prototxt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dataset/deploy.prototxt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="157" column="11" lean-forward="true" selection-start-line="157" selection-start-column="11" selection-end-line="157" selection-end-column="11" />
+            <state relative-caret-position="934">
+              <caret line="449" column="20" selection-start-line="449" selection-start-column="11" selection-end-line="449" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/cluster2d.h" />
+      </list>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -77,6 +89,12 @@
   </component>
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="693" />
+    <option name="y" value="32" />
+    <option name="width" value="1855" />
+    <option name="height" value="1048" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -90,12 +108,21 @@
               <item name="per" type="b2602c69:ProjectViewProjectNode" />
               <item name="per" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="per" type="b2602c69:ProjectViewProjectNode" />
+              <item name="per" type="462c0819:PsiDirectoryNode" />
+              <item name="dataset" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
     </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -112,7 +139,7 @@
   <component name="RunManager" selected="Application.out">
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all" />
     <configuration name="lib_demo" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="per" TARGET_NAME="lib_demo" CONFIG_NAME="Debug" />
-    <configuration name="out" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="$PROJECT_DIR$/../../cnn_seg/dataset/007480.bin $PROJECT_DIR$/../../cnn_seg/dataset/abc.json $PROJECT_DIR$/../../cnn_seg/dataset/abc.png" PASS_PARENT_ENVS_2="true" PROJECT_NAME="per" TARGET_NAME="out" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="per" RUN_TARGET_NAME="out" />
+    <configuration name="out" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="$PROJECT_DIR$/../../feature/test/0000000000.bin $PROJECT_DIR$/../../cnn_seg/dataset/0000000000.json $PROJECT_DIR$/../../cnn_seg/dataset/0000000000.bin" PASS_PARENT_ENVS_2="true" PROJECT_NAME="per" TARGET_NAME="out" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="per" RUN_TARGET_NAME="out" />
     <list>
       <item itemvalue="Application.Build All" />
       <item itemvalue="Application.lib_demo" />
@@ -124,62 +151,53 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3d3f620f-8f42-4c4d-8a12-c01bf8d83760" name="Default" comment="" />
+      <changelist id="9e640a9d-bf09-4078-8ac4-368bf0e48d5c" name="Default" comment="" />
       <created>1527046582376</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1527046582376</updated>
       <workItem from="1527046583719" duration="5003000" />
+      <workItem from="1527059937975" duration="3914000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39000" />
+    <option name="totallyTimeSpent" value="3953000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="693" y="32" width="1855" height="1048" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.102074236" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.102074236" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3297062" />
-      <window_info anchor="bottom" id="Messages" weight="0.49401525" />
-      <window_info anchor="bottom" id="CMake" weight="0.3297062" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3297062" />
-      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.49401525" />
+      <window_info anchor="bottom" id="CMake" order="7" weight="0.3297062" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3297062" />
+      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" weight="0.31664854" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.31664854" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39934713" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/feature_generator.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-591">
-          <caret line="77" column="3" lean-forward="true" selection-start-line="77" selection-start-column="3" selection-end-line="77" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cnn_segmentation.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="144" column="19" selection-start-line="144" selection-start-column="14" selection-end-line="144" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/run.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
+        <state relative-caret-position="6405">
           <caret line="305" column="26" selection-start-line="305" selection-start-column="26" selection-end-line="305" selection-end-column="26" />
           <folding>
             <element signature="e#211#229#0" expanded="true" />
@@ -187,17 +205,76 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/feature_generator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1617">
+          <caret line="77" column="3" lean-forward="true" selection-start-line="77" selection-start-column="3" selection-end-line="77" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cnn_segmentation.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3024">
+          <caret line="144" column="19" selection-start-line="144" selection-start-column="14" selection-end-line="144" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file:///usr/include/c++/5/bits/shared_ptr_base.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
+        <state relative-caret-position="22155">
           <caret line="1055" selection-start-line="1055" selection-end-line="1055" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cluster2d.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
+        <state relative-caret-position="3297">
           <caret line="157" column="11" lean-forward="true" selection-start-line="157" selection-start-column="11" selection-end-line="157" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feature_generator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1617">
+          <caret line="77" column="3" selection-start-line="77" selection-start-column="3" selection-end-line="77" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cnn_segmentation.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3024">
+          <caret line="144" column="19" selection-start-line="144" selection-start-column="14" selection-end-line="144" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/5/bits/shared_ptr_base.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22155">
+          <caret line="1055" selection-start-line="1055" selection-end-line="1055" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="306" column="4" selection-start-line="306" selection-start-column="4" selection-end-line="306" selection-end-column="4" />
+          <folding>
+            <element signature="e#211#229#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster2d.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="33" column="13" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataset/deploy.prototxt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="934">
+          <caret line="449" column="20" selection-start-line="449" selection-start-column="11" selection-end-line="449" selection-end-column="20" />
         </state>
       </provider>
     </entry>

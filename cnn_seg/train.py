@@ -93,7 +93,8 @@ class apollo(object):
 
     def read_tfrecord(self, filename):
         filename_queue = tf.train.string_input_producer([filename], num_epochs=None)
-        reader = tf.TFRecordReader()
+        option = tf.python_io.TFRecordOptions(tf.python_io.TFRecordCompressionType.ZLIB)
+        reader = tf.TFRecordReader(options=option)
         _, serialized_example = reader.read(filename_queue)
 
         features = tf.parse_single_example(

@@ -114,10 +114,9 @@ class Cluster2D {
       for (int col = 0; col < cols_; ++col) {
         int grid = RowCol2Grid(row, col);
 
-        //temp["instance_pt_x"].append(Json::Value(instance_pt_x_data[grid]));
-        //temp["instance_pt_y"].append(Json::Value(instance_pt_y_data[grid]));
-        //temp["category_pt"].append(Json::Value(category_pt_data[grid]));
-
+//        temp["instance_pt_x"].append(Json::Value(instance_pt_x_data[grid]));
+//        temp["instance_pt_y"].append(Json::Value(instance_pt_y_data[grid]));
+//        temp["category_pt"].append(Json::Value(category_pt_data[grid]));
 
         Node* node = &nodes[row][col];
         DisjointSetMakeSet(node);
@@ -241,7 +240,7 @@ class Cluster2D {
     }
 
     //record
-
+    /*
     for (int k = 0; k < num_classes; k++){
       for (int row = 0; row < rows_; ++row) {
         for (int col = 0; col < cols_; ++col) {
@@ -250,7 +249,7 @@ class Cluster2D {
         }
       }
     }
-    /*
+
     feature["output"].append(temp);
 
     std::ofstream out;
@@ -262,7 +261,6 @@ class Cluster2D {
     }
     out.close();
     */
-
   }
 
   void GetObjects(const float confidence_thresh, const float height_thresh,
