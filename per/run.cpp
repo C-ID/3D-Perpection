@@ -10,6 +10,8 @@
 #include <fstream>
 #include <unordered_set>
 #include <opencv2/opencv.hpp>
+#include "min_box.h"
+#include "base_object_builder.h"
 
 
 
@@ -20,6 +22,8 @@ using apollo::perception::pcl_util::PointCloudPtr;
 using apollo::perception::pcl_util::PointIndices;
 using apollo::perception::pcl_util::PointXYZIT;
 using apollo::perception::ObjectType;
+using apollo::perception::ObjectBuilderOptions;
+using apollo::perception::MinBoxObjectBuilder;
 //using apollo::perception::cnnseg::Cluster2D::
 //using apollo::perception::SegmentationOptions;
 using std::shared_ptr;
@@ -31,24 +35,6 @@ int user_data;
 //const string pcd_file = "/home/bai/Project/per/dataset/uscar_12_1470770225_1470770492_1349.pcd";
 //const string pcd_file = "/home/bai/Project/3D-Perpection/3d-sample/bin_files/002_00000099.bin";
 
-/*
-void viewerOneOff (pcl::visualization::PCLVisualizer& viewer)
-{
-    viewer.setBackgroundColor (0, 0, 0);  
-}
-
-void viewerPsycho (pcl::visualization::PCLVisualizer& viewer)
-{
-    static unsigned count = 0;
-    std::stringstream ss;
-    ss << "Once per viewer loop: " << count++;
-    viewer.removeShape ("text", 0);
-    viewer.addText (ss.str(), 200, 300, "text", 0);
-    
-
-    user_data++;
-}
-*/
 
 bool GetPointCloudFromFile(const string &pcd_file, PointCloudPtr cloud) {
 	pcl::PointCloud<PointXYZIT> pre_ori_cloud;
@@ -112,40 +98,6 @@ bool GetPointCloudFromBin(const string &bin_file, PointCloudPtr cloud) {
     return true;
 }
 
-/*
-void show_result(const string &pcd_file)
-{
-	pcl::PointCloud<pcl::PointXYZ>::Ptr ori_cloud(new pcl::PointCloud<pcl::PointXYZ>);
-	if(pcl::io::loadPCDFile(pcd_file, *ori_cloud)<0)
-	{
-		printf("well done!");
-	}
-	else
-	{
-	printf("ok\n");
-	}
-	pcl::visualization::CloudViewer viewer("Cloud Viewer");
-	viewer.showCloud(ori_cloud);
-	viewer.runOnVisualizationThreadOnce (viewerOneOff);
-	while (!viewer.wasStopped ())
-    {
-    	
-    }
-}
-uint8_t GetTypeColor(ObjectType type) {
-
-  switch (type) {
-    case ObjectType::PEDESTRIAN:
-      return uint8_t r(255), g(128), b(128);  // pink
-    case ObjectType::BICYCLE:
-      return uint8_t r(0), g(0), b(255);  // blue
-    case ObjectType::VEHICLE:
-      return uint8_t r(0), g(255), b(0);  // green
-    default:
-      return uint8_t r(0), g(255), b(255);  // yellow
-  }
-}
-*/
 
 cv::Vec3b GetTypeColor(ObjectType type) {
     switch (type) {
@@ -256,8 +208,6 @@ void DrawDetection(const PointCloudPtr &pc_ptr, const PointIndices &valid_idx,
             y_max = std::max(row, y_max);
         }
 
-        // fillConvexPoly(img, list.data(), list.size(), cv::Scalar(positive_prob *
-        // segm_color));
         cv::Vec3b bbox_color = GetTypeColor(obj->type);
         cv::rectangle(img, cv::Point(x_min, y_min), cv::Point(x_max, y_max),
                   cv::Scalar(bbox_color));
@@ -267,19 +217,6 @@ void DrawDetection(const PointCloudPtr &pc_ptr, const PointIndices &valid_idx,
         return;
     }
     std::cout << "save done " << std::endl;
-    /*
-    // write image intensity values into file
-    FILE *f_res;
-    f_res = fopen(result_file.c_str(), "w");
-    fprintf(f_res, "%d %d\n", rows, cols);
-    for (int row = 0; row < rows; ++row) {
-        for (int col = 0; col < cols; ++col) {
-            fprintf(f_res, "%u %u %u\n", img.at<cv::Vec3b>(row, col)[0],
-                    img.at<cv::Vec3b>(row, col)[1], img.at<cv::Vec3b>(row, col)[2]);
-        }
-    }
-    fclose(f_res);
-    */
 }
 
 
@@ -297,50 +234,26 @@ void start(const string &pcd_file, const string& json_path, const string& png_pa
 	indices.resize(in_pc->size());
 	std::iota(indices.begin(), indices.end(), 0);
 	std::vector<ObjectPtr> out_objects;
-
-	
+    MinBoxObjectBuilder* object_builder_;
+    ObjectBuilderOptions object_builder_options_;
+    object_builder_ = new MinBoxObjectBuilder();
+    object_builder_options_.ref_center = Eigen::Vector3d(0, 0, -1.7);
 	pcl::PointCloud<pcl::PointXYZRGB>::Ptr show_cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
 	shared_ptr<CNNSegmentation> cnn_segmentor_;
 	cnn_segmentor_.reset(new CNNSegmentation());
 	cnn_segmentor_->Init();
 	//for (int i = 0; i < 10; ++i)
 	cnn_segmentor_->Segment(in_pc, valid_idx, &out_objects);
+    object_builder_->Build(object_builder_options_, &out_objects);
 //    DrawDetection(in_pc, valid_idx, cnn_segmentor_->height(),
 //                  cnn_segmentor_->width(), cnn_segmentor_->range(), out_objects,
 //                  png_path);
 	//cnn_segmentor_->Write2Json(out_objects, json_path);
-	/*
-	uint8_t r(255), g(128), b(128);
-	for(int i = 0; i<out_objects.size(); ++i)
-	{
-		const ObjectPtr &obj = out_objects[i];
-		for(int j = 0; j<obj->cloud->size(); j++)
-		{
-			const auto &po = obj->cloud->points[j];
-			pcl::PointXYZRGB point;
-			point.x = po.x;
-			point.y = po.y;
-			point.z = po.z;
-			uint32_t rgb = (static_cast<uint32_t>(r) << 16 | static_cast<uint32_t>(g) << 8 | static_cast<uint32_t>(b));
-			point.rgb = *reinterpret_cast<float*>(&rgb);
-			show_cloud->points.push_back(point);
-		}
-	}
-	pcl::visualization::CloudViewer viewer2("Cloud Viewer");
-	viewer2.showCloud(show_cloud);
-	viewer2.runOnVisualizationThreadOnce (viewerOneOff);
-	while (!viewer2.wasStopped ())
-	{
-		
-	}
-	*/
 	printf("well done! all process completed...\n");
 }
 
 int main(int argc, char* argv[])
 {
-	//show_result(pcd_file);
-    std::cout << "jinlai" << std::endl;
 	start(argv[1], argv[2], argv[3]);
 	return 0;
 }

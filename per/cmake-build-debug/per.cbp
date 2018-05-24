@@ -48,6 +48,7 @@
 					<Add option="-DDISABLE_PCAP"/>
 					<Add option="-DDISABLE_PNG"/>
 					<Add option="-DDISABLE_LIBUSB_1_0"/>
+					<Add option="-DPCL_NO_PRECOMPILE"/>
 					<Add option="-DUSE_LMDB"/>
 					<Add option="-DUSE_LEVELDB"/>
 					<Add option="-DCPU_ONLY"/>
@@ -142,6 +143,7 @@
 					<Add option="-DDISABLE_PCAP"/>
 					<Add option="-DDISABLE_PNG"/>
 					<Add option="-DDISABLE_LIBUSB_1_0"/>
+					<Add option="-DPCL_NO_PRECOMPILE"/>
 					<Add option="-DUSE_LMDB"/>
 					<Add option="-DUSE_LEVELDB"/>
 					<Add option="-DCPU_ONLY"/>
@@ -246,6 +248,7 @@
 					<Add option="-DDISABLE_PCAP"/>
 					<Add option="-DDISABLE_PNG"/>
 					<Add option="-DDISABLE_LIBUSB_1_0"/>
+					<Add option="-DPCL_NO_PRECOMPILE"/>
 					<Add directory="/home/bai/Library/caffe/include"/>
 					<Add directory="/home/bai/Library/caffe/build1/lib"/>
 					<Add directory="/usr/include/vtk-6.2"/>
@@ -327,6 +330,7 @@
 					<Add option="-DDISABLE_PCAP"/>
 					<Add option="-DDISABLE_PNG"/>
 					<Add option="-DDISABLE_LIBUSB_1_0"/>
+					<Add option="-DPCL_NO_PRECOMPILE"/>
 					<Add directory="/home/bai/Library/caffe/include"/>
 					<Add directory="/home/bai/Library/caffe/build1/lib"/>
 					<Add directory="/usr/include/vtk-6.2"/>
@@ -398,6 +402,18 @@
 			<Option target="lib_demo"/>
 		</Unit>
 		<Unit filename="/home/bai/Project/3D-Perpection/per/feature_generator.h">
+			<Option target="lib_demo"/>
+		</Unit>
+		<Unit filename="/home/bai/Project/3D-Perpection/per/geometry_util.cpp">
+			<Option target="lib_demo"/>
+		</Unit>
+		<Unit filename="/home/bai/Project/3D-Perpection/per/geometry_util.h">
+			<Option target="lib_demo"/>
+		</Unit>
+		<Unit filename="/home/bai/Project/3D-Perpection/per/min_box.cpp">
+			<Option target="lib_demo"/>
+		</Unit>
+		<Unit filename="/home/bai/Project/3D-Perpection/per/min_box.h">
 			<Option target="lib_demo"/>
 		</Unit>
 		<Unit filename="/home/bai/Project/3D-Perpection/per/run.cpp">

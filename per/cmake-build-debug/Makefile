@@ -190,6 +190,60 @@ feature_generator.cpp.s:
 	$(MAKE) -f CMakeFiles/lib_demo.dir/build.make CMakeFiles/lib_demo.dir/feature_generator.cpp.s
 .PHONY : feature_generator.cpp.s
 
+geometry_util.o: geometry_util.cpp.o
+
+.PHONY : geometry_util.o
+
+# target to build an object file
+geometry_util.cpp.o:
+	$(MAKE) -f CMakeFiles/lib_demo.dir/build.make CMakeFiles/lib_demo.dir/geometry_util.cpp.o
+.PHONY : geometry_util.cpp.o
+
+geometry_util.i: geometry_util.cpp.i
+
+.PHONY : geometry_util.i
+
+# target to preprocess a source file
+geometry_util.cpp.i:
+	$(MAKE) -f CMakeFiles/lib_demo.dir/build.make CMakeFiles/lib_demo.dir/geometry_util.cpp.i
+.PHONY : geometry_util.cpp.i
+
+geometry_util.s: geometry_util.cpp.s
+
+.PHONY : geometry_util.s
+
+# target to generate assembly for a file
+geometry_util.cpp.s:
+	$(MAKE) -f CMakeFiles/lib_demo.dir/build.make CMakeFiles/lib_demo.dir/geometry_util.cpp.s
+.PHONY : geometry_util.cpp.s
+
+min_box.o: min_box.cpp.o
+
+.PHONY : min_box.o
+
+# target to build an object file
+min_box.cpp.o:
+	$(MAKE) -f CMakeFiles/lib_demo.dir/build.make CMakeFiles/lib_demo.dir/min_box.cpp.o
+.PHONY : min_box.cpp.o
+
+min_box.i: min_box.cpp.i
+
+.PHONY : min_box.i
+
+# target to preprocess a source file
+min_box.cpp.i:
+	$(MAKE) -f CMakeFiles/lib_demo.dir/build.make CMakeFiles/lib_demo.dir/min_box.cpp.i
+.PHONY : min_box.cpp.i
+
+min_box.s: min_box.cpp.s
+
+.PHONY : min_box.s
+
+# target to generate assembly for a file
+min_box.cpp.s:
+	$(MAKE) -f CMakeFiles/lib_demo.dir/build.make CMakeFiles/lib_demo.dir/min_box.cpp.s
+.PHONY : min_box.cpp.s
+
 run.o: run.cpp.o
 
 .PHONY : run.o
@@ -233,6 +287,12 @@ help:
 	@echo "... feature_generator.o"
 	@echo "... feature_generator.i"
 	@echo "... feature_generator.s"
+	@echo "... geometry_util.o"
+	@echo "... geometry_util.i"
+	@echo "... geometry_util.s"
+	@echo "... min_box.o"
+	@echo "... min_box.i"
+	@echo "... min_box.s"
 	@echo "... run.o"
 	@echo "... run.i"
 	@echo "... run.s"

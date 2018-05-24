@@ -30,16 +30,13 @@ add_definitions(${Caffe_DEFINITIONS} -D CPU_ONLY=ON)
 #inlcude PCl library
 find_package(PCL 1.7 REQUIRED)
 include_directories(${PCL_INCLUDE_DIRS})
-add_definitions(${PCL_DEFINITIONS})
+add_definitions(${PCL_DEFINITIONS} -DPCL_NO_PRECOMPILE)
 
 #include opencv2
 set(CUDA_USE_STATIC_CUDA_RUNTIME OFF)
 
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS} /usr/local/lib /home/bai/Library/opencv/build1/lib)
-
-
-
 
 
 # add include dir, set under the root of this dir
@@ -60,7 +57,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/libs)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/libs)
 
 #add subdir lib
-add_library(lib_demo feature_generator.cpp cnn_segmentation.cpp )
+add_library(lib_demo feature_generator.cpp cnn_segmentation.cpp min_box.cpp geometry_util.cpp)
 link_libraries(lib_demo)
 add_executable(out run.cpp)
 
