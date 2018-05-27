@@ -12,6 +12,7 @@
 #include <opencv2/opencv.hpp>
 #include "min_box.h"
 #include "base_object_builder.h"
+#include <math.h>
 
 
 
@@ -88,7 +89,7 @@ bool GetPointCloudFromBin(const string &bin_file, PointCloudPtr cloud) {
             point.intensity = po.intensity;
 
             count++;
-            std::cout << "x: "<<  point.x << " y: " << point.y << " z: " << point.z << " intensity: " << point.intensity << std::endl;
+            //std::cout << "x: "<<  point.x << " y: " << point.y << " z: " << point.z << " intensity: " << point.intensity << std::endl;
 
             cloud->push_back(point);
 
@@ -209,8 +210,30 @@ void DrawDetection(const PointCloudPtr &pc_ptr, const PointIndices &valid_idx,
         }
 
         cv::Vec3b bbox_color = GetTypeColor(obj->type);
-        cv::rectangle(img, cv::Point(x_min, y_min), cv::Point(x_max, y_max),
-                  cv::Scalar(bbox_color));
+
+        float angle = atan(obj->direction[1] / obj->direction[0]) / CV_PI * 180;
+        int width, length;
+        if (x_max-x_min < y_max - y_min)
+        {
+            width = x_max - x_min;
+            length = y_max - y_min;
+        }
+        else
+         {
+            width = y_max - y_min;
+            length = x_max - x_min;
+         }
+        int center_x = static_cast<int>((x_max + x_min) / 2);
+        int center_y = static_cast<int>((y_max + y_min) / 2);
+        cv::Size2f size(width, length);
+        cv::Point2f center(center_x, center_y);
+        cv::RotatedRect cvtr = cv::RotatedRect(center, size, angle);
+        cv::Point2f vertics[4];
+        cvtr.points(vertics);
+        for(size_t i=0; i<4;i++)
+        {
+            cv::line(img, vertics[i], vertics[(i+1)%4], cv::Scalar(bbox_color),1);
+        }
 
     }
     if (!cv::imwrite(result_file, img)) {
@@ -245,9 +268,9 @@ void start(const string &pcd_file, const string& json_path, const string& png_pa
 	//for (int i = 0; i < 10; ++i)
 	cnn_segmentor_->Segment(in_pc, valid_idx, &out_objects);
     object_builder_->Build(object_builder_options_, &out_objects);
-//    DrawDetection(in_pc, valid_idx, cnn_segmentor_->height(),
-//                  cnn_segmentor_->width(), cnn_segmentor_->range(), out_objects,
-//                  png_path);
+    DrawDetection(in_pc, valid_idx, cnn_segmentor_->height(),
+                  cnn_segmentor_->width(), cnn_segmentor_->range(), out_objects,
+                  png_path);
 	//cnn_segmentor_->Write2Json(out_objects, json_path);
 	printf("well done! all process completed...\n");
 }
