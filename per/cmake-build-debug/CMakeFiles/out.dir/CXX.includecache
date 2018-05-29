@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -660,6 +660,36 @@ jsoncpp/json/json.h
 pcl_types.h
 /home/bai/Project/3D-Perpection/per/pcl_types.h
 
+/home/bai/Project/3D-Perpection/per/fortracking.h
+iostream
+-
+vector
+-
+string
+-
+glob.h
+-
+min_box.h
+/home/bai/Project/3D-Perpection/per/min_box.h
+base_object_builder.h
+/home/bai/Project/3D-Perpection/per/base_object_builder.h
+cluster2d.h
+/home/bai/Project/3D-Perpection/per/cluster2d.h
+pcl_types.h
+/home/bai/Project/3D-Perpection/per/pcl_types.h
+pcl/io/pcd_io.h
+-
+pcl/io/io.h
+-
+cnn_segmentation.h
+/home/bai/Project/3D-Perpection/per/cnn_segmentation.h
+opencv2/opencv.hpp
+-
+fstream
+-
+unordered_set
+-
+
 /home/bai/Project/3D-Perpection/per/geometry_util.h
 algorithm
 -
@@ -721,28 +751,8 @@ iostream
 -
 string
 -
-cluster2d.h
-/home/bai/Project/3D-Perpection/per/cluster2d.h
-pcl_types.h
-/home/bai/Project/3D-Perpection/per/pcl_types.h
-pcl/io/pcd_io.h
--
-pcl/io/io.h
--
-cnn_segmentation.h
-/home/bai/Project/3D-Perpection/per/cnn_segmentation.h
-fstream
--
-unordered_set
--
-opencv2/opencv.hpp
--
-min_box.h
-/home/bai/Project/3D-Perpection/per/min_box.h
-base_object_builder.h
-/home/bai/Project/3D-Perpection/per/base_object_builder.h
-math.h
--
+fortracking.h
+/home/bai/Project/3D-Perpection/per/fortracking.h
 
 /home/bai/Project/3D-Perpection/per/types.h
 string

@@ -156,7 +156,6 @@ void CNNSegmentation::Write2Json(const std::vector<ObjectPtr> &objects , const s
   std::cout << "binaryfile: " << json_path << std::endl;
   
   //write to Json file
-  
   Json::Value root;
   Json::Value temp;
   Json::Value pos;

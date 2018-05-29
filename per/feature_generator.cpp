@@ -69,8 +69,7 @@ bool FeatureGenerator<Dtype>::Init(caffe::Blob<Dtype>* out_blob) {
   caffe::caffe_copy(siz, distance_data.data(), distance_data_);
 
   //input txt
-
-
+  /*
   for (int i=0; i<siz; i++)
   {
       //pos["data"] = Json::Value(direction_data[i]);
@@ -86,7 +85,7 @@ bool FeatureGenerator<Dtype>::Init(caffe::Blob<Dtype>* out_blob) {
   }
   feature["channel-6"].append(temp);
   temp.clear();
-
+  */
 }
 
 template <typename Dtype>
@@ -152,8 +151,7 @@ void FeatureGenerator<Dtype>::Generate(
     }
     count_data_[i] = LogCount(static_cast<int>(count_data_[i]));
   }
-
-
+    /*
     for(int i=0; i<siz; ++i)
     {
         temp["data"].append(Json::Value(max_height_data_[i]));
@@ -210,7 +208,7 @@ void FeatureGenerator<Dtype>::Generate(
         outputfile << writer.write(root);
     }
     outputfile.close();
-
+   */
 }
 
 template bool FeatureGenerator<float>::Init(caffe::Blob<float>* blob);

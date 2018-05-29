@@ -57,7 +57,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/libs)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/libs)
 
 #add subdir lib
-add_library(lib_demo feature_generator.cpp cnn_segmentation.cpp min_box.cpp geometry_util.cpp)
+add_library(lib_demo feature_generator.cpp cnn_segmentation.cpp min_box.cpp geometry_util.cpp fortracking.cpp)
 link_libraries(lib_demo)
 add_executable(out run.cpp)
 

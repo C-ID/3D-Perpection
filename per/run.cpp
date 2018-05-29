@@ -1,21 +1,23 @@
 
 #include <iostream>
 #include <string>
-#include "cluster2d.h"
-#include "pcl_types.h"
-#include <pcl/io/pcd_io.h>
-#include <pcl/io/io.h>
-#include "cnn_segmentation.h"
+//#include "cluster2d.h"
+//#include "pcl_types.h"
+//#include <pcl/io/pcd_io.h>
+//#include <pcl/io/io.h>
+//#include "cnn_segmentation.h"
 //#include <pcl/visualization/cloud_viewer.h>
-#include <fstream>
-#include <unordered_set>
-#include <opencv2/opencv.hpp>
-#include "min_box.h"
-#include "base_object_builder.h"
-#include <math.h>
+//#include <fstream>
+//#include <unordered_set>
+//#include <opencv2/opencv.hpp>
+//#include "min_box.h"
+//#include "base_object_builder.h"
+//#include <math.h>
+//#include <glob.h>
+//#include <vector>
+#include "fortracking.h"
 
-
-
+/*
 using apollo::perception::CNNSegmentation;
 using apollo::perception::ObjectPtr;
 using apollo::perception::pcl_util::PointCloud;
@@ -29,12 +31,18 @@ using apollo::perception::MinBoxObjectBuilder;
 //using apollo::perception::SegmentationOptions;
 using std::shared_ptr;
 using std::string;
-
 using std::vector;
 
-int user_data;
-//const string pcd_file = "/home/bai/Project/per/dataset/uscar_12_1470770225_1470770492_1349.pcd";
-//const string pcd_file = "/home/bai/Project/3D-Perpection/3d-sample/bin_files/002_00000099.bin";
+vector<string> globVector(const string& pattern){
+    glob_t glob_result;
+    glob(pattern.c_str(),GLOB_TILDE,NULL,&glob_result);
+    vector<string> files;
+    for(unsigned int i=0;i<glob_result.gl_pathc;++i){
+        files.push_back(string(glob_result.gl_pathv[i]));
+    }
+    globfree(&glob_result);
+    return files;
+}
 
 
 bool GetPointCloudFromFile(const string &pcd_file, PointCloudPtr cloud) {
@@ -261,23 +269,32 @@ void start(const string &pcd_file, const string& json_path, const string& png_pa
     ObjectBuilderOptions object_builder_options_;
     object_builder_ = new MinBoxObjectBuilder();
     object_builder_options_.ref_center = Eigen::Vector3d(0, 0, -1.7);
-	pcl::PointCloud<pcl::PointXYZRGB>::Ptr show_cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
 	shared_ptr<CNNSegmentation> cnn_segmentor_;
 	cnn_segmentor_.reset(new CNNSegmentation());
 	cnn_segmentor_->Init();
-	//for (int i = 0; i < 10; ++i)
 	cnn_segmentor_->Segment(in_pc, valid_idx, &out_objects);
     object_builder_->Build(object_builder_options_, &out_objects);
-    DrawDetection(in_pc, valid_idx, cnn_segmentor_->height(),
-                  cnn_segmentor_->width(), cnn_segmentor_->range(), out_objects,
-                  png_path);
+//    DrawDetection(in_pc, valid_idx, cnn_segmentor_->height(),
+//                  cnn_segmentor_->width(), cnn_segmentor_->range(), out_objects,
+//                  png_path);
 	//cnn_segmentor_->Write2Json(out_objects, json_path);
 	printf("well done! all process completed...\n");
 }
+ */
 
 int main(int argc, char* argv[])
 {
-	start(argv[1], argv[2], argv[3]);
+////	start(argv[1], argv[2], argv[3]);
+    string path = "/home/bai/kitti/2011_09_26/2011_09_26_drive_0011_sync/velodyne_points/data/*";
+    string res_png_path = "/home/bai/testforpng/";
+//    vector<std::string> files;
+//    files = globVector(path);
+//    for(size_t i=0; i<files.size(); ++i) start(files[i], files[i], files[i]);
+
+    Tracking* track = new Tracking();
+    track->Init();
+    track->Process(path, res_png_path);
+    delete track;
 	return 0;
 }
 
