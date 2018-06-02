@@ -1,2 +1,0 @@
-/usr/bin/ar qc libs/liblib_demo.a  CMakeFiles/lib_demo.dir/feature_generator.cpp.o CMakeFiles/lib_demo.dir/cnn_segmentation.cpp.o CMakeFiles/lib_demo.dir/min_box.cpp.o CMakeFiles/lib_demo.dir/geometry_util.cpp.o CMakeFiles/lib_demo.dir/fortracking.cpp.o
-/usr/bin/ranlib libs/liblib_demo.a

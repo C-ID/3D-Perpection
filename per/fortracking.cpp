@@ -203,7 +203,6 @@ void Tracking::pre_tracking(string& point_path, string& png_path)
     DrawDetection(in_pc, valid_idx, cnn_segmentor_->height(),
                   cnn_segmentor_->width(), cnn_segmentor_->range(), out_objects,
                   png_path);
-
 }
 
 void Tracking::Process(string& dir, string& png_path)
