@@ -27,7 +27,7 @@
       <file leaf-file-name="run.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/run.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
+            <state relative-caret-position="6048">
               <caret line="288" column="32" selection-start-line="288" selection-start-column="32" selection-end-line="288" selection-end-column="32" />
               <folding>
                 <element signature="e#1#20#0" expanded="true" />
@@ -39,8 +39,8 @@
       <file leaf-file-name="cnn_segmentation.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cnn_segmentation.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="59" selection-start-line="59" selection-end-line="59" />
+            <state relative-caret-position="504">
+              <caret line="135" column="60" selection-start-line="135" selection-start-column="43" selection-end-line="135" selection-end-column="60" />
               <folding>
                 <element signature="e#1#30#0" expanded="true" />
               </folding>
@@ -51,7 +51,7 @@
       <file leaf-file-name="fortracking.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fortracking.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
+            <state relative-caret-position="1596">
               <caret line="76" column="66" selection-start-line="76" selection-start-column="61" selection-end-line="76" selection-end-column="66" />
               <folding>
                 <element signature="e#90#109#0" expanded="true" />
@@ -60,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fortracking.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fortracking.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fortracking.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="465">
-              <caret line="204" column="28" lean-forward="true" selection-start-line="204" selection-start-column="28" selection-end-line="204" selection-end-column="28" />
+              <caret line="204" column="28" selection-start-line="204" selection-start-column="28" selection-end-line="204" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -72,8 +72,8 @@
       <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-196">
-              <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+            <state relative-caret-position="840">
+              <caret line="40" selection-start-line="40" selection-end-line="40" />
             </state>
           </provider>
         </entry>
@@ -81,7 +81,7 @@
       <file leaf-file-name="glob.h" pinned="false" current-in-tab="false">
         <entry file="file:///usr/include/glob.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="676">
+            <state relative-caret-position="3129">
               <caret line="149" column="60" selection-start-line="149" selection-start-column="56" selection-end-line="149" selection-end-column="60" />
             </state>
           </provider>
@@ -90,19 +90,32 @@
       <file leaf-file-name="cnn_segmentation.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cnn_segmentation.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-414">
+            <state relative-caret-position="1533">
               <caret line="73" column="47" selection-start-line="73" selection-start-column="37" selection-end-line="73" selection-end-column="47" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cluster2d.h" pinned="false" current-in-tab="false">
+      <file leaf-file-name="cluster2d.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cluster2d.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2066">
-              <caret line="315" column="22" selection-start-line="315" selection-start-column="18" selection-end-line="315" selection-end-column="22" />
+            <state relative-caret-position="-4854">
+              <caret line="185" lean-forward="true" selection-start-line="185" selection-end-line="185" />
               <folding>
                 <element signature="e#45#65#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="disjoint_set.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/disjoint_set.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="294">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+              <folding>
+                <element signature="e#115#124#0" expanded="true" />
+                <element signature="e#206#215#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -111,7 +124,7 @@
       <file leaf-file-name="base_object_builder.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/base_object_builder.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-932">
+            <state relative-caret-position="462">
               <caret line="22" column="28" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="28" />
             </state>
           </provider>
@@ -128,6 +141,8 @@
       <find>velocity</find>
       <find>show_cloud</find>
       <find>c_str</find>
+      <find>use_all_grids_for_clustering</find>
+      <find>point2grid_</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -166,7 +181,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -183,11 +197,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../tracking/hm-tracker" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -234,20 +249,20 @@
       <workItem from="1527594636068" duration="2075000" />
       <workItem from="1527650283217" duration="24000" />
       <workItem from="1527663981376" duration="9140000" />
+      <workItem from="1527926577639" duration="3082000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70840000" />
+    <option name="totallyTimeSpent" value="73922000" />
   </component>
   <component name="TodoView" selected-index="1" />
   <component name="ToolWindowManager">
     <frame x="1039" y="24" width="1853" height="1056" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1442623" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1442623" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3297062" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.48004314" />
       <window_info anchor="bottom" id="CMake" order="7" weight="0.3193096" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
@@ -263,25 +278,26 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.48004314" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="bottom" id="CMake" order="11" weight="0.32879582" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.102074236" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3297062" />
-      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32041883" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39895287" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.49319372" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.31664854" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="CMake" order="11" weight="0.32879582" />
+      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.49319372" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
@@ -297,13 +313,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dataset/deploy.prototxt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="934">
-          <caret line="449" column="20" selection-start-line="449" selection-start-column="11" selection-end-line="449" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cluster2d.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="483">
@@ -580,26 +589,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cluster2d.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2066">
-          <caret line="315" column="22" selection-start-line="315" selection-start-column="18" selection-end-line="315" selection-end-column="22" />
-          <folding>
-            <element signature="e#45#65#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/base_object_builder.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-932">
+        <state relative-caret-position="462">
           <caret line="22" column="28" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fortracking.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
+        <state relative-caret-position="1596">
           <caret line="76" column="66" selection-start-line="76" selection-start-column="61" selection-end-line="76" selection-end-column="66" />
           <folding>
             <element signature="e#90#109#0" expanded="true" />
@@ -609,7 +608,7 @@
     </entry>
     <entry file="file:///usr/include/glob.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="676">
+        <state relative-caret-position="3129">
           <caret line="149" column="60" selection-start-line="149" selection-start-column="56" selection-end-line="149" selection-end-column="60" />
         </state>
       </provider>
@@ -623,7 +622,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/run.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
+        <state relative-caret-position="6048">
           <caret line="288" column="32" selection-start-line="288" selection-start-column="32" selection-end-line="288" selection-end-column="32" />
           <folding>
             <element signature="e#1#20#0" expanded="true" />
@@ -635,9 +634,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="219">
           <caret line="33" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="e#1120#2783#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -650,32 +646,53 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cnn_segmentation.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-414">
+        <state relative-caret-position="1533">
           <caret line="73" column="47" selection-start-line="73" selection-start-column="37" selection-end-line="73" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cnn_segmentation.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="59" selection-start-line="59" selection-end-line="59" />
-          <folding>
-            <element signature="e#1#30#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-196">
-          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+        <state relative-caret-position="840">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fortracking.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
-          <caret line="204" column="28" lean-forward="true" selection-start-line="204" selection-start-column="28" selection-end-line="204" selection-end-column="28" />
+          <caret line="204" column="28" selection-start-line="204" selection-start-column="28" selection-end-line="204" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cnn_segmentation.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="135" column="60" selection-start-line="135" selection-start-column="43" selection-end-line="135" selection-end-column="60" />
+          <folding>
+            <element signature="e#1#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/disjoint_set.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="e#115#124#0" expanded="true" />
+            <element signature="e#206#215#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster2d.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4854">
+          <caret line="185" lean-forward="true" selection-start-line="185" selection-end-line="185" />
+          <folding>
+            <element signature="e#45#65#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
