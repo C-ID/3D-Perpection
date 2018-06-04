@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 
 
-def load_josn(json_file):
+def load_json(json_file):
     with open(json_file, "rb") as f:
         file = json.load(f)
 
@@ -34,6 +34,19 @@ def load_now(path):
 
     return feature.reshape([8,640,640])
 
+def read_output_channel(path):
+    with open(label, 'rb') as f: file = json.load(f)
+    for channel in file['output']:
+        instance_x = np.asarray(channel['instance_pt_x']).reshape([640, 640, 1])
+        instance_y = np.asarray(channel['instance_pt_y']).reshape([640, 640, 1])
+        category_pt = np.asarray(channel['category_pt']).reshape([640, 640, 1])
+        classify_pt = np.asarray(channel['classify_pt']).reshape([5, 640, 640])
+        confidence_pt = np.asarray(channel['confidence_pt']).reshape([640, 640, 1])
+        height_pt = np.asarray(channel['height_pt']).reshape([640, 640, 1])
+
+    return np.concatenate((category_pt, instance_x, instance_y, confidence_pt, height_pt), axis=2), classify_pt
+
+
 
 
 def show_centeroffset(label):
@@ -48,13 +61,14 @@ def show_centeroffset(label):
     plt.title("real model output: center offset")
     X, Y = np.meshgrid(np.arange(0, 640, 1), np.arange(640, 0, -1))
     M = np.hypot(instance_x, instance_y)
-    Q = plt.quiver(X, Y, instance_x, instance_y, M, pivot='middle', scale = 0.5, scale_units='xy')
-    qk = plt.quiverkey(Q, 0.9, 0.9, 2, r'$1 \frac{m}{s}$', labelpos='N',
+    Q = plt.quiver(X, Y, instance_x, instance_y, M, pivot='middle', scale=0.5, scale_units='xy')
+    qk = plt.quiverkey(Q, 0.9, 0.9, 2, r'$1 \frac{m}{s}$', labelpos='E',
                        coordinates='data')
     # b = plt.subplot(122)
     # png = plt.imread(png)
     # b.imshow(png)
     plt.show()
+
 
 def classify_pt_show(output_path):
     with open(label,'rb') as f: file = json.load(f)
@@ -90,13 +104,14 @@ if __name__ == "__main__":
     path1 = "/home/bai/Project/3D-Perpection/feature/test/0000000010.json"
     path2 = "/home/bai/Project/3D-Perpection/feature/test/now-0000000010.json"
     bin = "./dataset/007480.bin"
-    label = "/home/bai/Project/cnn_seg/dataset/out-0000000005.json"
-    show_centeroffset(label)
+    label = "/home/bai/Project/cnn_seg/dataset/output.json"
     png = "./dataset/007480.png"
     # diff between feature generator
-    # c_f = load_josn(label)
+    # c_f = load_json(label)
     # now_f = load_now(path2)
-
+    # show_centeroffset(label)
+    # out_channel, classif_pt= read_output_channel(label)
+    # classif(classif_pt)
     # show_channel_input(c_f, (640,640))
     # # p_f = generator_input(bin, 640, 640, 8, 60, 5, -5)
     # data = data_provider(640,640,8,12,60)
@@ -106,8 +121,10 @@ if __name__ == "__main__":
 
     #
     #diff between model output
-    # show_centeroffset(label, bin, png)
+    # show_centeroffset(label)
     # category = classify_pt_show(label)
+
+
 
 
 

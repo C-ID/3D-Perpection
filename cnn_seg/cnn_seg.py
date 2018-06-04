@@ -85,6 +85,7 @@ def computeloss(category_pt, instance_pt, confidence_pt, classify_pt, heading_pt
     height_loss = tf.losses.mean_squared_error(labels=heig, predictions=height_pt)
     total_loss = objectness_loss + instance_loss + confidence_loss + classify_loss + heading_loss + height_loss
 
+
     tf.summary.scalar('loss/objectness_loss',objectness_loss)
     tf.summary.scalar('loss/instance_loss', instance_loss)
     tf.summary.scalar('loss/confidence_loss', confidence_loss)

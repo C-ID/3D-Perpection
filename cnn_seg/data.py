@@ -164,10 +164,6 @@ class data_provider(object):
         print(time.time() - start)
         return channel_map
 
-
-
-
-
     def generator_label(self, label_path):
         objs = self.parse_kitti_label(label_path)
         label = np.zeros([self.width, self.height, self.out_channel], dtype=np.float32)
@@ -368,8 +364,8 @@ def get_label_channel(channel, obj):
     for o in obj:
         box3d = compute_3d_corners(o['l'], o['w'], o['h'], o['t'], o['yaw'])
 
-        x = F2I(box3d[0,:], 60, 0.5*640/60)
-        y = F2I(box3d[2,:], 60, 0.5*640/60)
+        y = F2I(box3d[0,:], 60, 0.5*640/60)
+        x = F2I(box3d[2,:], 60, 0.5*640/60)
 
         height = box3d[1,0] - box3d[1,4]
         center = o['t']
@@ -397,7 +393,6 @@ def get_label_channel(channel, obj):
                 elif o['type'] in person: channel[step_x[i], step_z[j], 8] = 1.
                 elif o['type'] == 'DontCare': channel[step_x[i], step_z[j], 4] = 1.
                 elif o['type'] == 'Cyclist': channel[step_x[i], step_z[j], 7] = 1.
-
     return channel
 
 

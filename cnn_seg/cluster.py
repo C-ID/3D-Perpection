@@ -10,6 +10,20 @@ obj_type={
     6 : "MAX_META_TYPE"
 }
 
+def DisjointSetMakeSet():
+    pass
+
+def DisjointSetUnion():
+    pass
+
+def DisjointSetFind():
+    pass
+
+def DisjointSetFindRecursive():
+    pass
+
+
+
 class Object(object):
     def __init__(self):
         self.grid = None
@@ -48,7 +62,7 @@ class Cluster(object):
         self.point2grid = None
         self.onstacle_ = None
         self.id_img_ = None
-        self.bin = None
+
 
     def IsValidRowCol(self, row, col): return self.IsValidRow(row) and self.IsValidCol(col)
     def IsValidRow(self, row): return row >= 0 and row < self.rows_
@@ -60,12 +74,11 @@ class Cluster(object):
         elif obj_type == "BICYCLE": return "bicycle"
         else: return "unknown"
 
-    def Cluster2Grid(self, category_pt, instance_pt, bin, valid_indices):
-        self.bin = np.fromfile(bin, np.float32).reshape([-1, 4])
-        total_point_num = self.bin.shape[0]
+    def Cluster2Grid(self, category_pt, instance_pt, bin_path, valid_indices):
+        bin = np.fromfile(bin_path, np.float32).reshape([-1, 4])
+        total_point_num = bin.shape[0]
         assert len(valid_indices) == total_point_num, \
             "size of 3d cloud points is not equal to valid indices"
-
 
 
 
