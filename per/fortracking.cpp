@@ -203,17 +203,21 @@ void Tracking::pre_tracking(string& point_path, string& png_path)
     DrawDetection(in_pc, valid_idx, cnn_segmentor_->height(),
                   cnn_segmentor_->width(), cnn_segmentor_->range(), out_objects,
                   png_path);
+
 }
 
 void Tracking::Process(string& dir, string& png_path)
 {
-    globfiles(dir);
-    for(int i=0; i<files.size(); ++i)
-    {
-        string finial = png_path + std::to_string(i) + ".png";
-        pre_tracking(files[i], finial);
-        std::cout << "-----------------------" << std::endl;
-        std::cout << "current " << i << " file" << std::endl;
-        std::cout << "-----------------------" << std::endl;
-    }
+//    globfiles(dir);
+//    for(int i=0; i<files.size(); ++i)
+//    {
+//        string finial = png_path + std::to_string(i) + ".png";
+//        pre_tracking(files[i], finial);
+//        std::cout << "-----------------------" << std::endl;
+//        std::cout << "current " << i << " file" << std::endl;
+//        std::cout << "-----------------------" << std::endl;
+//    }
+    std::string path = "/home/bai/Project/cnn_seg/dataset/007480.bin";
+    string finial = path + std::to_string(110) + ".png";
+    pre_tracking(path, finial);
 }

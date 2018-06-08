@@ -23,7 +23,7 @@ set(GLOG_LIBRARIES glog::glog)
 set(Caffe_DIR /home/bai/Library/caffe/build1)
 find_package(Caffe)
 include_directories(${Caffe_INCLUDE_DIRS} /home/bai/Library/caffe/include /home/bai/Library/caffe/build1/lib)
-add_definitions(${Caffe_DEFINITIONS} -D CPU_ONLY=ON)
+add_definitions(${Caffe_DEFINITIONS} -D CPU_ONLY=ON) 
 
 
 

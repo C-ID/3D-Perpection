@@ -54,14 +54,11 @@ bool CNNSegmentation::Init() {
   width_ = 640;
   height_ = 640;
   /// Instantiate Caffe net
-  caffe::Caffe::SetDevice(0);
-  caffe::Caffe::set_mode(caffe::Caffe::GPU);
-  caffe::Caffe::DeviceQuery();
-
+  caffe::Caffe::set_mode(caffe::Caffe::CPU);
   caffe_net_.reset(new caffe::Net<float>(proto_file, caffe::TEST));
   caffe_net_->CopyTrainedLayersFrom(weight_file);
   
-  std::cout << "using Caffe GPU mode";
+  std::cout << "using Caffe CPU mode";
 
   /// set related Caffe blobs
   // center offset prediction
@@ -125,7 +122,7 @@ bool CNNSegmentation::Segment(const pcl_util::PointCloudPtr& pc_ptr,
   feature_generator_->Generate(pc_ptr);
   // network forward process
   std::cout << "start forward" << std::endl;
-  caffe::Caffe::set_mode(caffe::Caffe::GPU);
+  caffe::Caffe::set_mode(caffe::Caffe::CPU);
   caffe_net_->Forward();
   std::cout << "forward done"<<std::endl;
   //PERF_BLOCK_END("[CNNSeg] CNN forward");
