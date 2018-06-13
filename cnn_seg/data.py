@@ -3,6 +3,8 @@ import os
 import argparse
 import time
 from render import *
+import cv2
+
 
 class data_provider(object):
     def __init__(self, width, height, in_channel, out_channel, range_):
@@ -120,6 +122,7 @@ class data_provider(object):
         idx = np.where(bin[:, 2] > self.min_height)
         bin = bin[idx]
 
+
         for i in range(len(bin)):
             pos_x = int(self.F2I(bin[i, 1], self.range, self.inv_res_x))  #col
             pos_y = int(self.F2I(bin[i, 0], self.range, self.inv_res_y))  #row
@@ -128,6 +131,8 @@ class data_provider(object):
 
             pz = bin[i, 2]   #max height data
             pi = bin[i, 3] / 255.  #top intensity data
+            render_pi = bin[i, 3]
+
             if(channel_map[pos_y,pos_x,0]<pz):
                 channel_map[pos_y,pos_x,0] = pz   #max height data
                 channel_map[pos_y,pos_x,4] = pi   #top intensity data
@@ -272,7 +277,7 @@ def generator_input(args, width, height, channel, range_, maxh, minh):
     inv_res_y = 0.5 * height / range_  #length of each grid(y: meters)
 
 
-    channel_map = count_data(bin, channel_map, maxh, minh, inv_res_x, inv_res_y, range_, width, height)
+    channel_map, render = count_data(bin, channel_map, maxh, minh, inv_res_x, inv_res_y, range_, width, height)
     for i in range(width):
         for j in range(height):
             center_x = pix2pc(i, height, range_)
@@ -280,11 +285,11 @@ def generator_input(args, width, height, channel, range_, maxh, minh):
             channel_map[i][j][3] = np.arctan2(center_y, center_x) / (2. * np.pi) # direction data
             channel_map[i][j][6] = np.hypot(center_x, center_y) / 60.0 - 0.5     # distance data
 
-    return channel_map
+    return channel_map, render
 
 
 def count_data(bin, channel_map, max_height, min_height, inv_res_x, inv_res_y, range_, width, height):
-
+    render_pi = np.zeros([640, 640], np.float64)
     #compute for vaild points
     idx = np.where(bin[:, 2] < max_height)
     bin = bin[idx]
@@ -299,9 +304,11 @@ def count_data(bin, channel_map, max_height, min_height, inv_res_x, inv_res_y, r
 
         pz = bin[i, 2]   #max height data
         pi = bin[i, 3] / 255.  #top intensity data
+        pi_ = bin[i, 3]
         if(channel_map[pos_y,pos_x,0]<pz):
             channel_map[pos_y,pos_x,0] = pz   #max height data
             channel_map[pos_y,pos_x,4] = pi   #top intensity data
+            render_pi[pos_y, pos_x] = pi_
         channel_map[pos_y,pos_x,1] += pz    #mean height data
         channel_map[pos_y,pos_x,5] += pi    #mean intensity data
         channel_map[pos_y,pos_x,2] += 1.     #count data
@@ -315,7 +322,7 @@ def count_data(bin, channel_map, max_height, min_height, inv_res_x, inv_res_y, r
                 channel_map[i,j,5] /= channel_map[i,j,2]
                 channel_map[i,j,7] = 1.
             channel_map[i,j,2] = LogCount(int(channel_map[i, j, 2]))
-    return channel_map
+    return channel_map, render_pi
 
 
 def gt_label(label_path, width, height, channel):
@@ -362,49 +369,107 @@ def get_label_channel(channel, obj):
     big_car = ['Van', 'Truck']
     person = ['Pedestrian', 'Person_sitting']
     for o in obj:
-        box3d = compute_3d_corners(o['l'], o['w'], o['h'], o['t'], o['yaw'])
 
+        box3d = compute_3d_corners(o['l'], o['w'], o['h'], o['t'], o['yaw'])
         y = F2I(box3d[0,:], 60, 0.5*640/60)
         x = F2I(box3d[2,:], 60, 0.5*640/60)
+        vertices = [list(i) for i in zip(x[:4], y[:4])]
+        vertices.sort(key=lambda item: item[1], reverse=True)
+        # sorted(vertices, key=lambda item: item[1])
+        polygens = ComputePolygen(vertices)
 
-        height = box3d[1,0] - box3d[1,4]
+        height = box3d[1,0]
         center = o['t']
-        center_x = F2I(center[0], 60, 0.5*640/60)    #col
-        center_y = F2I(center[2], 60, 0.5*640/60)    #row
+        center_y = F2I(center[0], 60, 0.5*640/60)    #col
+        center_x = F2I(center[2], 60, 0.5*640/60)    #row
         if (center_x >= 640 or center_x < 0 or center_y >= 640 or center_y < 0): continue
 
         step_x =[i for i in range(int(x.min()), int(x.max())+1, 1)]
         step_z =[i for i in range(int(y.min()), int(y.max())+1, 1)]
 
-        #generator center offset
-        center_offset_x = (np.array(step_x) - int(center_x))
-        center_offset_y = (np.array(step_z) - int(center_y))
-
 
         for i in range(len(step_x)):
             for j in range(len(step_z)):
-                channel[step_x[i], step_z[j], 0] = 1.  #category_pt
-                channel[step_x[i], step_z[j], 1] = center_offset_x[i]  #instance_x
-                channel[step_x[i], step_z[j], 2] = center_offset_y[j]  #instance_y
-                channel[step_x[i], step_z[j], 3] = 1.                   #confidence_pt
-                channel[step_x[i], step_z[j], 11] = height             #height_pt
-                if o['type'] in small_car: channel[step_x[i], step_z[j], 5] = 1.  # classify_pt :4-8
-                elif o['type'] in big_car: channel[step_x[i], step_z[j], 6] = 1.
-                elif o['type'] in person: channel[step_x[i], step_z[j], 8] = 1.
-                elif o['type'] == 'DontCare': channel[step_x[i], step_z[j], 4] = 1.
-                elif o['type'] == 'Cyclist': channel[step_x[i], step_z[j], 7] = 1.
+                if PointsInPolygen([step_x[i], step_z[j]], polygens, [center_x, center_y]):
+                    offset = centeroffset([center_x, center_y], [step_x[i], step_z[j]])
+                    channel[step_x[i], step_z[j], 0] = 1.  #category_pt
+                    channel[step_x[i], step_z[j], 1] = offset[0]  #instance_x
+                    channel[step_x[i], step_z[j], 2] = offset[1]  #instance_y
+                    channel[step_x[i], step_z[j], 3] = 1.                   #confidence_pt
+                    channel[step_x[i], step_z[j], 11] = height             #height_pt
+                    if o['type'] in small_car: channel[step_x[i], step_z[j], 5] = 1.  # classify_pt :4-8
+                    elif o['type'] in big_car: channel[step_x[i], step_z[j], 6] = 1.
+                    elif o['type'] in person: channel[step_x[i], step_z[j], 8] = 1.
+                    elif o['type'] == 'DontCare': channel[step_x[i], step_z[j], 4] = 1.
+                    elif o['type'] == 'Cyclist': channel[step_x[i], step_z[j], 7] = 1.
     return channel
+
+def getABC(po1, po2):
+    A = po2[1] - po1[1]
+    B = po1[0] - po2[0]
+    C = A*po1[0] + B*po1[1]
+    return A, B, C
+
+def ComputePolygen(vertices):
+    assert len(vertices) == 4, "ConvexHull need four vertices, clockwise"
+    points_1 = vertices[0]
+    points_2 = vertices[1]
+    points_3 = vertices[2]
+    points_4 = vertices[3]
+    A1, B1, C1 = getABC(points_1, points_2)
+    A2, B2, C2 = getABC(points_2, points_3)
+    A3, B3, C3 = getABC(points_3, points_4)
+    A4, B4, C4 = getABC(points_4, points_1)
+    line_1 = lambda x, y: x * A1 + y * B1 + C1
+    line_2 = lambda x, y: x * A2 + y * B2 + C2
+    line_3 = lambda x, y: x * A3 + y * B3 + C3
+    line_4 = lambda x, y: x * A4 + y * B4 + C4
+    polygen = [line_1, line_2, line_3, line_4]
+    return polygen
+
+
+def PointsInPolygen(points, polygen, center):
+    b = 0
+    for i, func in enumerate(polygen):
+        if func(center[0], center[1]) < 0:
+            a = func(points[0], points[1]) <= 0
+            b += a
+        else:
+            a = func(points[0], points[1]) >= 0
+            b += a
+    if b==4:return True
+    else: return False
+
+def centeroffset(center, points):
+    len_x = center[0]-points[0]
+    len_y = center[1]-points[1]
+    length = np.hypot(len_x, len_y)
+    if length != 0:
+        offset_x = len_x/length
+        offset_y = len_y/length
+    else:
+        offset_x = offset_y = 0
+    return [offset_x, offset_y]
+
+
+
+
+
+
+
+
+
 
 
 if __name__ == "__main__":
     bin_path = "./dataset/007480.bin"
     label_path = "./dataset/007480.txt"
     # start = time.time()
-    # chan = generator_input(bin_path, 640, 640, 8, 60, 5, -5)
+    # chan, render_pi = generator_input(bin_path, 640, 640, 8, 60, 5, -5)
     # show_channel_input(chan, (640, 640))
     gt = gt_label(label_path, 640, 640, 12)
     # data = data_provider(640,640,8,12,60)
     # channel = data.generator_input(bin_path)
-    # show_channel_label(gt, (640,640))
-    classif(gt)
+    show_channel_label(gt, (640,640))
+    # classif(gt)
     # print(time.time() - start)
