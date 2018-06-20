@@ -285,8 +285,8 @@ void start(const string &pcd_file, const string& json_path, const string& png_pa
 int main(int argc, char* argv[])
 {
 ////	start(argv[1], argv[2], argv[3]);
-    string path = "/home/bai/kitti/2011_09_26/2011_09_26_drive_0011_sync/velodyne_points/data/*";
-    string res_png_path = "/home/bai/testforpng/";
+    string path = "/home/bai/new-pcd/*";
+    string res_png_path = "/home/bai/new-pcd/res/";
 //    vector<std::string> files;
 //    files = globVector(path);
 //    for(size_t i=0; i<files.size(); ++i) start(files[i], files[i], files[i]);

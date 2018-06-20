@@ -4,7 +4,7 @@ import vtk
 import numpy as np
 import pcl
 import visualizercontrol
-
+import struct
 
 color={
     "car":(0, 255, 0),          #green

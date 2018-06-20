@@ -10,7 +10,6 @@ import matplotlib.pyplot as plt
 def load_json(json_file):
     with open(json_file, "rb") as f:
         file = json.load(f)
-
     for channel in file["feature"]:
         max_height = np.asarray(channel['channel-0'][0]['data']).reshape([640, 640, 1])
         mean_height  = np.asarray(channel['channel-1'][0]['data']).reshape([640, 640, 1])
@@ -35,7 +34,7 @@ def load_now(path):
     return feature.reshape([8,640,640])
 
 def read_output_channel(path):
-    with open(label, 'rb') as f: file = json.load(f)
+    with open(path, 'rb') as f: file = json.load(f)
     for channel in file['output']:
         instance_x = np.asarray(channel['instance_pt_x']).reshape([640, 640, 1])
         instance_y = np.asarray(channel['instance_pt_y']).reshape([640, 640, 1])
@@ -59,9 +58,9 @@ def show_centeroffset(label):
     plt.figure()
     # a = plt.subplot(121)
     plt.title("real model output: center offset")
-    X, Y = np.meshgrid(np.arange(0, 640, 1), np.arange(640, 0, -1))
+    X, Y = np.meshgrid(np.arange(0, 640, 1), np.arange(0, 640, 1))
     M = np.hypot(instance_x, instance_y)
-    Q = plt.quiver(X, Y, instance_x, instance_y, M, pivot='middle', scale=0.5, scale_units='xy')
+    Q = plt.quiver(X, Y, instance_y, instance_x, M, pivot='middle', scale=0.5, scale_units='xy')
     qk = plt.quiverkey(Q, 0.9, 0.9, 2, r'$1 \frac{m}{s}$', labelpos='E',
                        coordinates='data')
     # b = plt.subplot(122)
@@ -71,11 +70,18 @@ def show_centeroffset(label):
 
 
 def classify_pt_show(output_path):
-    with open(label,'rb') as f: file = json.load(f)
+    with open(output_path,'rb') as f: file = json.load(f)
     for channel in file['output']:
-        category = np.asarray(channel['classify_pt']).reshape([640, 640, 5])
-    car = category[:,:,1]
-    bicycle = category[:,:,4]
+        confidence = np.asarray(channel['confidence_pt']).reshape([640, 640])
+        category = np.asarray(channel['confidence_pt']).reshape([640, 640])
+    x, y = np.where(confidence[:,:] > 0.)
+    # a = category[x, y].sum()
+    # b = confidence[x, y].sum()
+    # print(a==b)
+    plt.figure()
+    plt.title("category")
+    plt.imshow(confidence)
+    plt.show()
     return category
 
 def contrast(c_f, now_f):
@@ -96,6 +102,16 @@ def contrast(c_f, now_f):
     print(g.max(), g.min(), c_f[:, :, 6].max(), now_f[6, :, :].max())
     print(h.max(), h.min(), c_f[:, :, 7].max(), now_f[7, :, :].max())
 
+def ref_render(bin_path):
+    invaild = 0
+    for i in range(bin_path):
+        bin = np.fromfile(i, np.float32).reshape([-1, 4])
+        ref_max = bin[:,3].max()
+        ref_min = bin[:,3].min()
+        if ref_max > 1: invaild += 1
+    print("invaild_num:{}, ".format(invaild))
+
+
 
 
 
@@ -105,9 +121,10 @@ if __name__ == "__main__":
     path2 = "/home/bai/Project/3D-Perpection/feature/test/now-0000000010.json"
     bin = "./dataset/007480.bin"
     label = "/home/bai/Project/cnn_seg/dataset/output.json"
+    feature = "/home/bai/Project/cnn_seg/dataset/feature.json"
     png = "./dataset/007480.png"
     # diff between feature generator
-    # c_f = load_json(label)
+    # c_f = load_json(feature)
     # now_f = load_now(path2)
     # show_centeroffset(label)
     # out_channel, classif_pt= read_output_channel(label)
@@ -121,8 +138,11 @@ if __name__ == "__main__":
 
     #
     #diff between model output
-    # show_centeroffset(label)
+    show_centeroffset(label)
     # category = classify_pt_show(label)
+
+
+
 
 
 

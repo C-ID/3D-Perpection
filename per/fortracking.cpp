@@ -193,7 +193,7 @@ void Tracking::pre_tracking(string& point_path, string& png_path)
     PointCloudPtr in_pc(new PointCloud);
     PointIndices valid_idx;
     auto &indices = valid_idx.indices;
-    GetPointCloudFromBin(point_path, in_pc);
+    GetPointCloudFromFile(point_path, in_pc);
     indices.resize(in_pc->size());
     std::iota(indices.begin(), indices.end(), 0);
     std::vector<ObjectPtr> out_objects;
@@ -208,16 +208,16 @@ void Tracking::pre_tracking(string& point_path, string& png_path)
 
 void Tracking::Process(string& dir, string& png_path)
 {
-//    globfiles(dir);
-//    for(int i=0; i<files.size(); ++i)
-//    {
-//        string finial = png_path + std::to_string(i) + ".png";
-//        pre_tracking(files[i], finial);
-//        std::cout << "-----------------------" << std::endl;
-//        std::cout << "current " << i << " file" << std::endl;
-//        std::cout << "-----------------------" << std::endl;
-//    }
-    std::string path = "/home/bai/Project/cnn_seg/dataset/007480.bin";
-    string finial = path + std::to_string(110) + ".png";
-    pre_tracking(path, finial);
+    globfiles(dir);
+    for(int i=0; i<files.size(); ++i)
+    {
+        string finial = png_path + std::to_string(i) + ".png";
+        pre_tracking(files[i], finial);
+        std::cout << "-----------------------" << std::endl;
+        std::cout << "current " << i << " file" << std::endl;
+        std::cout << "-----------------------" << std::endl;
+    }
+//    std::string path = "/home/bai/Project/cnn_seg/dataset/007480.bin";
+//    string finial = path + std::to_string(110) + ".png";
+//    pre_tracking(path, finial);
 }

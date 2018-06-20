@@ -276,16 +276,14 @@ def generator_input(args, width, height, channel, range_, maxh, minh):
     inv_res_x = 0.5 * width / range_  #length of each grid(x: meters)
     inv_res_y = 0.5 * height / range_  #length of each grid(y: meters)
 
-
-    channel_map, render = count_data(bin, channel_map, maxh, minh, inv_res_x, inv_res_y, range_, width, height)
+    channel_map = count_data(bin, channel_map, maxh, minh, inv_res_x, inv_res_y, range_, width, height)
     for i in range(width):
         for j in range(height):
             center_x = pix2pc(i, height, range_)
             center_y = pix2pc(j, width, range_)
             channel_map[i][j][3] = np.arctan2(center_y, center_x) / (2. * np.pi) # direction data
             channel_map[i][j][6] = np.hypot(center_x, center_y) / 60.0 - 0.5     # distance data
-
-    return channel_map, render
+    return channel_map
 
 
 def count_data(bin, channel_map, max_height, min_height, inv_res_x, inv_res_y, range_, width, height):
@@ -308,7 +306,6 @@ def count_data(bin, channel_map, max_height, min_height, inv_res_x, inv_res_y, r
         if(channel_map[pos_y,pos_x,0]<pz):
             channel_map[pos_y,pos_x,0] = pz   #max height data
             channel_map[pos_y,pos_x,4] = pi   #top intensity data
-            render_pi[pos_y, pos_x] = pi_
         channel_map[pos_y,pos_x,1] += pz    #mean height data
         channel_map[pos_y,pos_x,5] += pi    #mean intensity data
         channel_map[pos_y,pos_x,2] += 1.     #count data
@@ -322,7 +319,7 @@ def count_data(bin, channel_map, max_height, min_height, inv_res_x, inv_res_y, r
                 channel_map[i,j,5] /= channel_map[i,j,2]
                 channel_map[i,j,7] = 1.
             channel_map[i,j,2] = LogCount(int(channel_map[i, j, 2]))
-    return channel_map, render_pi
+    return channel_map
 
 
 def gt_label(label_path, width, height, channel):
@@ -372,20 +369,21 @@ def get_label_channel(channel, obj):
 
         box3d = compute_3d_corners(o['l'], o['w'], o['h'], o['t'], o['yaw'])
         y = F2I(box3d[0,:], 60, 0.5*640/60)
+        y = 320-(y-320)
         x = F2I(box3d[2,:], 60, 0.5*640/60)
         vertices = [list(i) for i in zip(x[:4], y[:4])]
-        vertices.sort(key=lambda item: item[1], reverse=True)
-        # sorted(vertices, key=lambda item: item[1])
         polygens = ComputePolygen(vertices)
-
+        print("123: ", vertices)
         height = box3d[1,0]
         center = o['t']
         center_y = F2I(center[0], 60, 0.5*640/60)    #col
+        center_y = 320 - (center_y - 320)
         center_x = F2I(center[2], 60, 0.5*640/60)    #row
         if (center_x >= 640 or center_x < 0 or center_y >= 640 or center_y < 0): continue
 
         step_x =[i for i in range(int(x.min()), int(x.max())+1, 1)]
         step_z =[i for i in range(int(y.min()), int(y.max())+1, 1)]
+        print(step_x, step_z)
 
 
         for i in range(len(step_x)):
@@ -408,7 +406,7 @@ def getABC(po1, po2):
     A = po2[1] - po1[1]
     B = po1[0] - po2[0]
     C = A*po1[0] + B*po1[1]
-    return A, B, C
+    return A, B, -C
 
 def ComputePolygen(vertices):
     assert len(vertices) == 4, "ConvexHull need four vertices, clockwise"
@@ -445,14 +443,24 @@ def centeroffset(center, points):
     len_y = center[1]-points[1]
     length = np.hypot(len_x, len_y)
     if length != 0:
-        offset_x = len_x/length
-        offset_y = len_y/length
+        offset_x = len_x/length * 0.5
+        offset_y = len_y/length * 0.5
     else:
         offset_x = offset_y = 0
     return [offset_x, offset_y]
 
 
-
+def draw(path, path1):
+    image = cv2.imread(path)
+    objs = parse_kitti_label(path1)
+    for o in objs:
+        box3d = compute_3d_corners(o['l'], o['w'], o['h'], o['t'], o['yaw'])
+        y = F2I(box3d[0,:], 60, 0.5*640/60)
+        x = F2I(box3d[2,:], 60, 0.5*640/60)
+        vertices = [i for i in zip(np.int64(x[:4]), np.int64(y[:4]))]
+        for i in range(4):
+            cv2.line(image, vertices[i%4], vertices[(i+1)%4], (255,0,0), 1)
+    cv2.imwrite("./test.png", image)
 
 
 
@@ -462,14 +470,20 @@ def centeroffset(center, points):
 
 
 if __name__ == "__main__":
-    bin_path = "./dataset/007480.bin"
-    label_path = "./dataset/007480.txt"
+    bin_path ="/home/bai/wrongbin/004466.bin" #"./dataset/007480.bin"
+    label_path ="/home/bai/wrongbin/label_2/004466.txt" #"./dataset/007480.txt"
     # start = time.time()
-    # chan, render_pi = generator_input(bin_path, 640, 640, 8, 60, 5, -5)
+    p = "/home/bai/Project/cnn_seg/testpng/003256.txt--in-1.png"
+    name = os.path.basename(label_path)
+    chan = generator_input(bin_path, 640, 640, 8, 60, 5, -5)
+    chan = chan[np.newaxis, :]
     # show_channel_input(chan, (640, 640))
     gt = gt_label(label_path, 640, 640, 12)
+    gt = gt[np.newaxis, :]
+    record_confirm(chan, gt, name)
     # data = data_provider(640,640,8,12,60)
     # channel = data.generator_input(bin_path)
-    show_channel_label(gt, (640,640))
+    # show_channel_label(gt, (640,640))
     # classif(gt)
     # print(time.time() - start)
+    # draw(p, label_path)

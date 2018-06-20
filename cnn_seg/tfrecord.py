@@ -2,7 +2,7 @@ import tensorflow as tf
 import os
 import glob
 from data import data_provider, generator_input, gt_label
-from multiprocessing import Pool, Process
+from multiprocessing import Pool, Process, connection
 import traceback
 import numpy as np
 from tqdm import tqdm
@@ -43,17 +43,17 @@ def create_kitti(input_path):
 def get_data_paths(bin_id, data_dir):
     #image_id = '006961'
     bin_file = '{}/{}.bin'.format(data_dir, bin_id)
-    label_file = os.path.join(data_dir, "{}.txt".format(bin_id))
-    print(bin_file, label_file)
-    return bin_file, label_file
+    # label_file = os.path.join(data_dir, "{}.txt".format(bin_id))
+    print(bin_file)
+    return bin_file
 
 def _convert_to_example(input, label):
     # all_cats = cats.tolist()
     feature = input.flatten().tostring()
-    gt = label.flatten().tostring()
+    # gt = label.flatten().tostring()
     example = tf.train.Example(features=tf.train.Features(feature={
-        'input': _bytes_feature(feature),
-        'label': _bytes_feature(gt)
+        'input': _bytes_feature(feature)
+        # 'label': _bytes_feature(gt)
     }))
     return example
 
@@ -61,15 +61,17 @@ def prepare2(bin_id, i):
     option = tf.python_io.TFRecordOptions(tf.python_io.TFRecordCompressionType.ZLIB)
     writer = tf.python_io.TFRecordWriter(os.path.join(out_dir, "train-{}.tfrecords".format(i)), options=option)
     for path in tqdm(bin_id):
-        input_path, label_path = get_data_paths(path, data_dir)
-        print("final path: {} {}".format(input_path, label_path))
+        input_path = get_data_paths(path, data_dir)
+        print("final path: {}".format(input_path))
         input = generator_input(input_path, 640, 640,8,12,5,-5)
         # label = gt_label(label_path, 640, 640, 12)
         feature = input.flatten().tostring()
+        print(type(feature))
         # lab = label.flatten().tostring()
+        input_path = input_path.encode()
         example = tf.train.Example(features=tf.train.Features(feature={
             'input': _bytes_feature(feature),
-            # 'label': _bytes_feature(lab)
+            'name': _bytes_feature(input_path)
         }))
 
         writer.write(example.SerializeToString())
@@ -102,7 +104,8 @@ def start(num):
     for i in range(num):
         if i ==num : x = bin_indices[slice[i]:]
         else: x = bin_indices[slice[i]:slice[i+1]]
-        pool.apply_async(prepare2, (x, i))
+        a = pool.apply_async(prepare2, (x, i))
+        print(a.get())
     pool.close()
     pool.join()
     print("create done!!!")
@@ -110,5 +113,5 @@ def start(num):
 
 if __name__ == "__main__":
     # tfs = record(0,0, 640, 640, 8, 12, 60, 4)
-    start(4)
+    start(1)
     #creat_test(640, 640, 8, 12, 60, 5, -5)

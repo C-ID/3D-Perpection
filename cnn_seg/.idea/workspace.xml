@@ -11,37 +11,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="cnn_seg.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/cnn_seg.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="856">
-              <caret line="98" selection-start-line="98" selection-end-line="98" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="train.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/train.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1936">
-              <caret line="88" selection-start-line="88" selection-end-line="88" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="data.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="data.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1124">
-              <caret line="323" column="31" selection-start-line="323" selection-start-column="14" selection-end-line="323" selection-end-column="31" />
+            <state relative-caret-position="374">
+              <caret line="473" column="27" selection-start-line="473" selection-start-column="27" selection-end-line="473" selection-end-column="27" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="a.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/bag/a.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
+              <folding>
+                <element signature="e#16#29#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -50,8 +38,11 @@
       <file leaf-file-name="tfrecord.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tfrecord.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="23" selection-start-column="23" selection-end-column="23" />
+            <state relative-caret-position="328">
+              <caret line="96" column="47" selection-start-line="96" selection-start-column="4" selection-end-line="96" selection-end-column="47" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -59,8 +50,8 @@
       <file leaf-file-name="diff_record.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/diff_record.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="482">
-              <caret line="42" column="19" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="19" />
+            <state relative-caret-position="332">
+              <caret line="62" column="65" selection-start-line="62" selection-start-column="59" selection-end-line="62" selection-end-column="65" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -68,13 +59,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gen_data.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gen_data.py">
+      <file leaf-file-name="VTKrender.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../3D-Perpection/vtk-test/VTKrender.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3234">
-              <caret line="147" column="24" selection-start-line="147" selection-start-column="24" selection-end-line="147" selection-end-column="24" />
+            <state relative-caret-position="599">
+              <caret line="199" column="26" selection-start-line="199" selection-start-column="26" selection-end-line="199" selection-end-column="26" />
               <folding>
-                <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="render.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/render.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="155" column="43" lean-forward="true" selection-start-line="155" selection-start-column="43" selection-end-line="155" selection-end-column="43" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -93,6 +96,12 @@
     <findStrings>
       <find>self.log_table_</find>
       <find>meta_type_id</find>
+      <find>F2I</find>
+      <find>c_rect</find>
+      <find>F2</find>
+      <find>get_cell_features</find>
+      <find>encoding_funcs</find>
+      <find>prepare_data</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -107,18 +116,26 @@
         <option value="$PROJECT_DIR$/lib/check.py" />
         <option value="$PROJECT_DIR$/lib/tfrecord.py" />
         <option value="$PROJECT_DIR$/gen_data.py" />
-        <option value="$PROJECT_DIR$/tfrecord.py" />
-        <option value="$PROJECT_DIR$/train.py" />
-        <option value="$PROJECT_DIR$/data.py" />
         <option value="$PROJECT_DIR$/cluster.py" />
-        <option value="$PROJECT_DIR$/render.py" />
-        <option value="$PROJECT_DIR$/diff_record.py" />
         <option value="$PROJECT_DIR$/cnn_seg.py" />
+        <option value="$PROJECT_DIR$/cluster.pyx" />
+        <option value="$PROJECT_DIR$/extert_cpp/cluster.pyx" />
+        <option value="$PROJECT_DIR$/extert_cpp/setup.py" />
+        <option value="$PROJECT_DIR$/extert_cpp/cluster2d.cpp" />
+        <option value="$PROJECT_DIR$/extert_cpp/cluster_for_py.pyx" />
+        <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/train.py" />
+        <option value="$PROJECT_DIR$/tfrecord.py" />
+        <option value="$USER_HOME$/.PyCharmCE2018.1/system/python_stubs/1106492461/builtins.py" />
+        <option value="$PROJECT_DIR$/../3D-Perpection/vtk-test/VTKrender.py" />
+        <option value="$PROJECT_DIR$/bag2pcd.py" />
+        <option value="$PROJECT_DIR$/diff_record.py" />
+        <option value="$PROJECT_DIR$/render.py" />
+        <option value="$PROJECT_DIR$/data.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="1037" />
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="-4" />
     <option name="width" value="1855" />
     <option name="height" value="1084" />
@@ -128,7 +145,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -138,22 +154,23 @@
             </path>
             <path>
               <item name="cnn_seg" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cnn_seg" type="462c0819:PsiDirectoryNode" />
-              <item name="dataset" type="462c0819:PsiDirectoryNode" />
+              <item name="vtk-test" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/bai/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/numpy/core/function_base.py" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../3D-Perpection/per" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/bai/Project/cnn_seg/data.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../3D-Perpection/vtk-test" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/extert_cpp" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/lib" />
     </key>
@@ -170,26 +187,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.diff_record">
-    <configuration name="cluster" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="cnn_seg" />
+  <component name="RunManager" selected="Python.data">
+    <configuration name="VTKrender" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="vtk-test" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../3D-Perpection/vtk-test" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/cluster.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../3D-Perpection/vtk-test/VTKrender.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="cnn_seg" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="bag2pcd" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="cnn_seg" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -201,7 +218,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/cnn_seg.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bag2pcd.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -243,7 +260,7 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="render" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="tfrecord" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="cnn_seg" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -255,7 +272,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/render.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tfrecord.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -264,17 +281,17 @@
     <list>
       <item itemvalue="Python.data" />
       <item itemvalue="Python.diff_record" />
-      <item itemvalue="Python.render" />
-      <item itemvalue="Python.cnn_seg" />
-      <item itemvalue="Python.cluster" />
+      <item itemvalue="Python.tfrecord" />
+      <item itemvalue="Python.bag2pcd" />
+      <item itemvalue="Python.VTKrender" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.diff_record" />
-        <item itemvalue="Python.cluster" />
         <item itemvalue="Python.data" />
-        <item itemvalue="Python.cnn_seg" />
-        <item itemvalue="Python.render" />
+        <item itemvalue="Python.diff_record" />
+        <item itemvalue="Python.bag2pcd" />
+        <item itemvalue="Python.VTKrender" />
+        <item itemvalue="Python.tfrecord" />
       </list>
     </recent_temporary>
   </component>
@@ -292,18 +309,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1037" y="-4" width="1855" height="1084" extended-state="7" />
+    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12718341" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14465065" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.086338796" side_tool="true" weight="0.31391585" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.9136612" weight="0.3068063" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.14792576" side_tool="true" weight="0.39685863" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.9136612" weight="0.31413612" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32984293" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3969795" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.35287958" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.85207427" weight="0.39685863" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -311,26 +328,26 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32984293" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info content_ui="combo" id="Project" order="0" weight="0.11912569" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14465065" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.9136612" visible="true" weight="0.39590076" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3969795" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.086338796" side_tool="true" weight="0.31391585" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.9136612" weight="0.29417774" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32984293" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.85207427" weight="0.39685863" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.6816754" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.14792576" side_tool="true" weight="0.39685863" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Python Console" order="7" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Python Console" order="7" weight="0.32984293" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -341,8 +358,33 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/diff_record.py</url>
-          <line>41</line>
-          <option name="timeStamp" value="135" />
+          <line>57</line>
+          <option name="timeStamp" value="173" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/diff_record.py</url>
+          <line>76</line>
+          <option name="timeStamp" value="203" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/data.py</url>
+          <line>390</line>
+          <option name="timeStamp" value="216" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/data.py</url>
+          <line>374</line>
+          <option name="timeStamp" value="217" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/data.py</url>
+          <line>370</line>
+          <option name="timeStamp" value="218" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/data.py</url>
+          <line>488</line>
+          <option name="timeStamp" value="219" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -355,179 +397,17 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="138" />
+      <option name="time" value="220" />
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="tmp.shape" />
+        <watch expression="tmp.min" />
+        <watch expression="f" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/numpy/lib/function_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101002">
-          <caret line="4623" column="15" selection-start-line="4623" selection-start-column="15" selection-end-line="4623" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/matplotlib/axis.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="1589" column="43" lean-forward="true" selection-start-line="1589" selection-start-column="8" selection-end-line="1589" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/matplotlib/ticker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-339">
-          <caret line="1725" column="21" selection-start-line="1725" selection-start-column="6" selection-end-line="1725" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../3D-Perpection/per/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/tensorflow/python/ops/gen_array_ops.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-207">
-          <caret line="2380" column="25" selection-start-line="2380" selection-start-column="20" selection-end-line="2380" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/check.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/007480.json" />
-    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/matplotlib/axes/_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="3045" selection-start-line="3045" selection-end-line="3045" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/json/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="295" selection-start-line="295" selection-end-line="295" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/mpl_toolkits/mplot3d/axes3d.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7331">
-          <caret line="2550" column="8" selection-start-line="2550" selection-start-column="8" selection-end-line="2550" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/matplotlib/axes/_axes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="4866" column="25" selection-start-line="4866" selection-start-column="20" selection-end-line="4866" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/matplotlib/pyplot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="3184" column="12" selection-start-line="3184" selection-start-column="11" selection-end-line="3184" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../3D-Perpection/vtk-test/VTKrender.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="168" column="44" lean-forward="true" selection-start-line="168" selection-start-column="44" selection-end-line="168" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/tensorflow/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="27" column="20" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/ntpath.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="74" column="4" selection-start-line="74" selection-start-column="4" selection-end-line="74" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/tensorflow/python/ops/gen_image_ops.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5078">
-          <caret line="550" column="47" selection-start-line="550" selection-start-column="33" selection-end-line="550" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/os.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/genericpath.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="27" column="44" lean-forward="true" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.1/system/python_stubs/1106492461/posix.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="884" column="13" selection-start-line="884" selection-start-column="7" selection-end-line="884" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/tensorflow/core/example/example_pb2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="104" selection-start-line="104" selection-end-line="104" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/tensorflow/python/ops/gen_nn_ops.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="1475" column="21" selection-start-line="1475" selection-start-column="21" selection-end-line="1475" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/tensorflow/python/ops/math_ops.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="503" column="5" lean-forward="true" selection-start-line="503" selection-start-column="5" selection-end-line="503" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/logging/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="1842" column="21" selection-start-line="1842" selection-start-column="15" selection-end-line="1842" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/pandas/core/computation/pytables.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="579" column="31" selection-start-line="579" selection-start-column="23" selection-end-line="579" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/tensorflow/python/ops/gen_parsing_ops.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="74" column="4" selection-start-line="74" selection-start-column="4" selection-end-line="74" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/tensorflow/python/layers/convolutional.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4419">
@@ -560,13 +440,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
           <caret line="3730" column="4" selection-start-line="3730" selection-start-column="4" selection-end-line="3730" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/layer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="32" column="19" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -605,24 +478,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/tensorflow/python/training/input.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-203">
-          <caret line="178" column="34" selection-start-line="178" selection-start-column="26" selection-end-line="178" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/tensorflow/python/ops/io_ops.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
           <caret line="427" column="39" selection-start-line="427" selection-start-column="32" selection-end-line="427" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4378">
-          <caret line="308" selection-start-line="308" selection-end-line="308" />
         </state>
       </provider>
     </entry>
@@ -640,49 +499,195 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/numpy/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.1/system/python_stubs/1106492461/numpy/core/multiarray.py">
+    <entry file="file://$USER_HOME$/Library/anaconda2/lib/python2.7/site-packages/Cython/Build/Dependencies.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-726">
-          <caret line="2360" column="23" selection-start-line="2360" selection-start-column="16" selection-end-line="2360" selection-end-column="23" />
+        <state relative-caret-position="283">
+          <caret line="1118" column="10" selection-start-line="1118" selection-start-column="10" selection-end-line="1118" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data.py">
+    <entry file="file://$PROJECT_DIR$/extert_cpp/cluster2py.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1124">
-          <caret line="323" column="31" selection-start-line="323" selection-start-column="14" selection-end-line="323" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="22">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gen_data.py">
+    <entry file="file://$PROJECT_DIR$/extert_cpp/setup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3234">
-          <caret line="147" column="24" selection-start-line="147" selection-start-column="24" selection-end-line="147" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="374">
+          <caret line="18" column="36" selection-end-line="18" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extert_cpp/cluster_for_py.pyx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-336">
+          <caret line="86" column="21" selection-start-line="86" selection-start-column="13" selection-end-line="86" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extert_cpp/cluster2d.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2055">
+          <caret line="408" selection-start-line="408" selection-end-line="408" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/matplotlib/patches.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="664" column="8" selection-start-line="664" selection-start-column="8" selection-end-line="664" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.1/system/python_stubs/1106492461/numpy/random/mtrand.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="5147" column="36" selection-start-line="5147" selection-start-column="32" selection-end-line="5147" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataset/now-feature.json">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state relative-caret-position="-9504" />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.1/system/python_stubs/1106492461/cv2/cv2/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="8515" column="15" selection-start-line="8515" selection-start-column="15" selection-end-line="8515" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cnn_seg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1474">
+          <caret line="67" column="4" selection-start-line="67" selection-start-column="4" selection-end-line="67" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/tensorflow/python/training/coordinator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="258" column="35" lean-forward="true" selection-start-line="258" selection-end-line="259" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/tqdm/_tqdm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="637" column="8" selection-start-line="637" selection-start-column="8" selection-end-line="637" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/python-skeletons/numpy/core/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="687" column="8" selection-start-line="687" selection-start-column="8" selection-end-line="687" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/tensorflow/python/training/input.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1518">
+          <caret line="1184" column="23" selection-start-line="1184" selection-start-column="23" selection-end-line="1184" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/multiprocessing/connection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="26" column="33" lean-forward="true" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.1/system/python_stubs/1106492461/_io.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="773" column="8" selection-start-line="773" selection-start-column="8" selection-end-line="773" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/multiprocessing/reduction.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="32" column="31" lean-forward="true" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/pickle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="992" column="12" selection-start-line="992" selection-start-column="12" selection-end-line="992" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1936">
-          <caret line="88" selection-start-line="88" selection-end-line="88" />
+        <state relative-caret-position="2640">
+          <caret line="126" column="28" selection-start-line="126" selection-start-column="27" selection-end-line="126" selection-end-column="28" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cluster.py">
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="79" column="49" selection-start-line="79" selection-start-column="49" selection-end-line="79" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.1/system/python_stubs/1106492461/numpy/core/multiarray.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
+          <caret line="2867" column="8" selection-start-line="2867" selection-start-column="8" selection-end-line="2867" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/typing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="2290" column="8" selection-start-line="2290" selection-start-column="8" selection-end-line="2290" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/pcl/pointcloud.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="49" column="77" selection-start-line="49" selection-start-column="72" selection-end-line="49" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/site-packages/pcl/io/file_io.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="250" column="45" selection-start-line="250" selection-start-column="40" selection-end-line="250" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/anaconda2/envs/vtk/lib/python3.6/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="310" selection-start-line="310" selection-end-line="310" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.1/system/python_stubs/1106492461/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="341" column="62" selection-start-line="341" selection-start-column="56" selection-end-line="341" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-912">
           <caret line="19" column="8" lean-forward="true" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
@@ -690,39 +695,95 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/render.py">
+    <entry file="file://$USER_HOME$/bag/a.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="62" column="37" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
+        <state relative-caret-position="242">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
           <folding>
-            <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#16#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tfrecord.py">
+    <entry file="file://$PROJECT_DIR$/gen_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="23" selection-start-column="23" selection-end-column="23" />
+        <state relative-caret-position="1684">
+          <caret line="140" column="25" selection-start-line="140" selection-start-column="25" selection-end-line="140" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/diff_record.py">
+    <entry file="file://$PROJECT_DIR$/layer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="42" column="19" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="19" />
+        <state relative-caret-position="704">
+          <caret line="32" column="19" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../3D-Perpection/vtk-test/VTKrender.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="599">
+          <caret line="199" column="26" selection-start-line="199" selection-start-column="26" selection-end-line="199" selection-end-column="26" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cnn_seg.py">
+    <entry file="file://$PROJECT_DIR$/bag2pcd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="856">
-          <caret line="98" selection-start-line="98" selection-end-line="98" />
+        <state relative-caret-position="-120">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tfrecord.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="96" column="47" selection-start-line="96" selection-start-column="4" selection-end-line="96" selection-end-column="47" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/diff_record.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="62" column="65" selection-start-line="62" selection-start-column="59" selection-end-line="62" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/render.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="155" column="43" lean-forward="true" selection-start-line="155" selection-start-column="43" selection-end-line="155" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="473" column="27" selection-start-line="473" selection-start-column="27" selection-end-line="473" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
