@@ -1,4 +1,4 @@
-//
+zhuanzheng//
 // Created by bai on 18-5-29.
 //
 
@@ -71,7 +71,7 @@ bool Tracking::GetPointCloudFromBin(const string &bin_file, PointCloudPtr& cloud
             point.z = po.z;
             point.intensity = po.intensity;
             count++;
-            //std::cout << "x: "<<  point.x << " y: " << point.y << " z: " << point.z << " intensity: " << point.intensity << std::endl;
+            std::cout << "x: "<<  point.x << " y: " << point.y << " z: " << point.z << " intensity: " << point.intensity << std::endl;
             cloud->push_back(point);
         }
         std::cout << "num of points: " << count << std::endl;
@@ -193,12 +193,12 @@ void Tracking::pre_tracking(string& point_path, string& png_path)
     PointCloudPtr in_pc(new PointCloud);
     PointIndices valid_idx;
     auto &indices = valid_idx.indices;
-    GetPointCloudFromFile(point_path, in_pc);
+    GetPointCloudFromBin(point_path, in_pc);
     indices.resize(in_pc->size());
     std::iota(indices.begin(), indices.end(), 0);
     std::vector<ObjectPtr> out_objects;
     cnn_segmentor_->Segment(in_pc, valid_idx, &out_objects);
-    std::cout << "begin out_objects: " << in_pc->size() << std::endl;
+//    std::cout << "begin out_objects: " << in_pc->size() << std::endl;
     object_builder_->Build(object_builder_options_, &out_objects);
     DrawDetection(in_pc, valid_idx, cnn_segmentor_->height(),
                   cnn_segmentor_->width(), cnn_segmentor_->range(), out_objects,
@@ -211,13 +211,14 @@ void Tracking::Process(string& dir, string& png_path)
     globfiles(dir);
     for(int i=0; i<files.size(); ++i)
     {
+        std::cout << files[i] << std::endl;
         string finial = png_path + std::to_string(i) + ".png";
         pre_tracking(files[i], finial);
         std::cout << "-----------------------" << std::endl;
         std::cout << "current " << i << " file" << std::endl;
         std::cout << "-----------------------" << std::endl;
     }
-//    std::string path = "/home/bai/Project/cnn_seg/dataset/007480.bin";
-//    string finial = path + std::to_string(110) + ".png";
+//    std::string path = "/home/bai/kitti/bin/003485.bin";
+//    string finial = "/home/bai/kitti/res/" + std::to_string(3485) + ".png";
 //    pre_tracking(path, finial);
 }
