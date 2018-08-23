@@ -4,8 +4,10 @@ import argparse
 import time
 from render import *
 import cv2
+import copy
 
 
+'''
 class data_provider(object):
     def __init__(self, width, height, in_channel, out_channel, range_):
 
@@ -245,7 +247,79 @@ class data_provider(object):
                         channel[step_x[i], step_z[j], 7] = 1.
 
         return channel
+'''
+# For Data Augmentation
+def Transfrom(points, objs, trans_rot):
+    """
+    :param points: pointcloud in 3D numpy.ndarray
+    :param t: object center [x, y, z] , now just support tranfromed along x axis, 10 meters
+    :return: transfromed point cloud and obj center
+    """
+    # trans_rot = 10 * np.random.random() + 0.1
+    ori_points = np.copy(points)
+    ori_obj = copy.deepcopy(objs)
+    point_trans = ori_points[:, 0] - trans_rot
+    trans_point = np.hstack((point_trans.reshape([-1,1]), ori_points[:, 1:]))
+    for o in ori_obj:
+        o['t'][2] -= trans_rot
+        box3d = compute_3d_corners(o['l'], o['w'], o['h'], o['t'], o['yaw'])
+        o['box3d'] = box3d
+    return trans_point, ori_obj
 
+def Zoom(points, objs, zoom_ratio):
+    # zoom_ratio = 0.1 * np.random.random() + 0.95
+    ori_points = np.copy(points)
+    ori_objs = copy.deepcopy(objs)
+    point_zoom = ori_points[:,:2] * zoom_ratio
+    zoom_point = np.hstack((point_zoom, ori_points[:,2:]))
+    for o in ori_objs:
+        tmp = np.array(o['t']) * zoom_ratio
+        o['t'][0] = tmp[0]
+        o['t'][2] = tmp[2]
+        o['l'] *= zoom_ratio
+        o['w'] *= zoom_ratio
+        box3d = compute_3d_corners(o['l'], o['w'], o['h'], o['t'], o['yaw'])
+        o['box3d'] = box3d
+    return zoom_point, ori_objs
+
+def Rotating(points, objs, rot_rad):
+    """
+    Perform anti-clockwise rotation on `points` with radian `rot_rad` by using rotation matrix,
+    around the z-axis.
+    Args:
+    `points`:pointcloud in 3D numpy.ndarray
+    `rot_rad`:rotation radian
+    Ret:
+    `rot_points`:rotated points in 3D numpy.ndarray
+    """
+    # rot_rad = 1/2 * np.pi * (2*np.random.random() - 1)
+    # sub points from [x,y,z] to [x,y]
+    ori_points = np.copy(points)
+    ori_objs = copy.deepcopy(objs)
+    sub_points = ori_points[:,:2]
+    # rotation matrix with center in (0,0)
+    rot_mat=np.array([[np.cos(rot_rad),np.sin(rot_rad)], \
+	                  [-np.sin(rot_rad),np.cos(rot_rad)]])
+    rot_points = sub_points.dot(rot_mat)
+    # repack points from [x0,y0,1] to [x0,y0,z]
+    rot_points = np.hstack((rot_points[:,:2],ori_points[:,-2:]))
+    for o in ori_objs:
+        tmp = [o['t'][2], o['t'][0]]
+        tmp = np.array(tmp).dot(rot_mat)
+        o['t'][2] = tmp[0]
+        o['t'][0] = tmp[1]
+        o['yaw'] -= rot_rad
+        box3d = compute_3d_corners(o['l'], o['w'], o['h'], o['t'], o['yaw'])
+        o['box3d'] = box3d
+    return rot_points, ori_objs
+
+def normal(points, objs):
+    ori_points = points.copy()
+    ori_objs = copy.deepcopy(objs)
+    for o in ori_objs:
+        box3d = compute_3d_corners(o['l'], o['w'], o['h'], o['t'], o['yaw'])
+        o['box3d'] = box3d
+    return ori_points, ori_objs
 
 def pix2pc(in_pixel, in_size, out_range):
     res = 2.0 * out_range / in_size
@@ -261,7 +335,7 @@ def LogCount(count):
         return log_table_[count]
     return np.log(1+count)
 
-def generator_input(args, width, height, channel, range_, maxh, minh):
+def generator_input(bins, width=640, height=640, channel=8, range_=60, maxh=5, minh=-5):
     """
     :param bin: which cloud points
     :param width: width of input feature
@@ -269,14 +343,13 @@ def generator_input(args, width, height, channel, range_, maxh, minh):
     :param channel: input size of channels, 0-7 i.e, max height, top intn
     :return: input feature
     """
-    bin = np.fromfile(args, np.float32).reshape([-1, 4])
-    assert isinstance(width, int) and isinstance(height, int), "Wrong type for input channel map"
+    assert isinstance(width, int) and isinstance(height, int), "input channel map need int type"
     channel_map = np.zeros([width, height, channel], dtype=np.float64)
     channel_map[:,:,0].fill(-5.)
     inv_res_x = 0.5 * width / range_  #length of each grid(x: meters)
     inv_res_y = 0.5 * height / range_  #length of each grid(y: meters)
 
-    channel_map = count_data(bin, channel_map, maxh, minh, inv_res_x, inv_res_y, range_, width, height)
+    channel_map = count_data(bins, channel_map, maxh, minh, inv_res_x, inv_res_y, range_, width, height)
     for i in range(width):
         for j in range(height):
             center_x = pix2pc(i, height, range_)
@@ -286,23 +359,23 @@ def generator_input(args, width, height, channel, range_, maxh, minh):
     return channel_map
 
 
-def count_data(bin, channel_map, max_height, min_height, inv_res_x, inv_res_y, range_, width, height):
-    render_pi = np.zeros([640, 640], np.float64)
-    #compute for vaild points
-    idx = np.where(bin[:, 2] < max_height)
-    bin = bin[idx]
-    idx = np.where(bin[:, 2] > min_height)
-    bin = bin[idx]
+def count_data(bins, channel_map, max_height, min_height, inv_res_x, inv_res_y, range_, width, height):
 
-    for i in range(len(bin)):
-        pos_x = int(F2I(bin[i, 1], range_, inv_res_x))  #col
-        pos_y = int(F2I(bin[i, 0], range_, inv_res_y))  #row
+    #compute for vaild points
+    idx = np.where(bins[:, 2] < max_height)
+    bins = bins[idx]
+    idx = np.where(bins[:, 2] > min_height)
+    bins = bins[idx]
+
+    for i in range(len(bins)):
+        pos_x = int(F2I(bins[i, 1], range_, inv_res_x))  #col
+        pos_y = int(F2I(bins[i, 0], range_, inv_res_y))  #row
 
         if(pos_x >= width or pos_x < 0 or pos_y >= height or pos_y < 0):continue
 
-        pz = bin[i, 2]   #max height data
-        pi = bin[i, 3] / 255.  #top intensity data
-        pi_ = bin[i, 3]
+        pz = bins[i, 2]   #max height data
+        pi = bins[i, 3] / 255.  #top intensity data
+
         if(channel_map[pos_y,pos_x,0]<pz):
             channel_map[pos_y,pos_x,0] = pz   #max height data
             channel_map[pos_y,pos_x,4] = pi   #top intensity data
@@ -322,8 +395,8 @@ def count_data(bin, channel_map, max_height, min_height, inv_res_x, inv_res_y, r
     return channel_map
 
 
-def gt_label(label_path, width, height, channel):
-    objs = parse_kitti_label(label_path)
+def gt_label(objs, width=640, height=640, channel=12):
+    # objs = parse_kitti_label(label_path)
     label = np.zeros([width, height, channel], dtype=np.float64)
     feature = get_label_channel(label, objs)
     #show_channel_label(channel, (width, height))
@@ -343,15 +416,15 @@ def parse_kitti_label(label_file):
         o['h'] = float(l[8])
         o['w'] = float(l[9])
         o['l'] = float(l[10])
-        o['t'] = [float(l[11]), float(l[12]), float(l[13])]
+        o['t'] = [-float(l[11]), float(l[12]), float(l[13])]
         o['yaw'] = float(l[14])
         objs.append(o)
     return objs
 
 def compute_3d_corners(l, w, h, t, yaw):
-    R = np.array([[np.cos(yaw), 0, np.sin(yaw)],
+    R = np.array([[np.cos(-yaw), 0, np.sin(-yaw)],
                   [0, 1, 0],
-                  [-np.sin(yaw), 0, np.cos(yaw)]])
+                  [-np.sin(-yaw), 0, np.cos(-yaw)]])
     # 3D bounding box corners
     x_corners = [l/2, l/2, -l/2, -l/2, l/2, l/2, -l/2, -l/2];
     y_corners = [0,0,0,0,-h,-h,-h,-h];
@@ -361,29 +434,26 @@ def compute_3d_corners(l, w, h, t, yaw):
     return corners_3D
 
 def get_label_channel(channel, obj):
-    num_obj = len(obj)
     small_car = ['Car', 'Tram']
-    big_car = ['Van', 'Truck']
+    big_car = ['Van', 'Truck', 'Bus']
     person = ['Pedestrian', 'Person_sitting']
     for o in obj:
+        # box3d = compute_3d_corners(o['l'], o['w'], o['h'], o['t'], o['yaw'])
+        y = F2I(o['box3d'][0,:], 60, 0.5*640/60)
 
-        box3d = compute_3d_corners(o['l'], o['w'], o['h'], o['t'], o['yaw'])
-        y = F2I(box3d[0,:], 60, 0.5*640/60)
-        y = 320-(y-320)
-        x = F2I(box3d[2,:], 60, 0.5*640/60)
+        x = F2I(o['box3d'][2,:], 60, 0.5*640/60)
         vertices = [list(i) for i in zip(x[:4], y[:4])]
         polygens = ComputePolygen(vertices)
-        print("123: ", vertices)
-        height = box3d[1,0]
+
+        height = o['box3d'][1,0]
         center = o['t']
         center_y = F2I(center[0], 60, 0.5*640/60)    #col
-        center_y = 320 - (center_y - 320)
+
         center_x = F2I(center[2], 60, 0.5*640/60)    #row
         if (center_x >= 640 or center_x < 0 or center_y >= 640 or center_y < 0): continue
 
         step_x =[i for i in range(int(x.min()), int(x.max())+1, 1)]
         step_z =[i for i in range(int(y.min()), int(y.max())+1, 1)]
-        print(step_x, step_z)
 
 
         for i in range(len(step_x)):
@@ -443,11 +513,54 @@ def centeroffset(center, points):
     len_y = center[1]-points[1]
     length = np.hypot(len_x, len_y)
     if length != 0:
-        offset_x = len_x/length * 0.5
-        offset_y = len_y/length * 0.5
+        offset_x = len_x/length
+        offset_y = len_y/length
     else:
         offset_x = offset_y = 0
     return [offset_x, offset_y]
+
+
+def subprocess(bin, objs, trans, rotating, zoom):
+    #normal
+    bin_0, objs_0 = normal(bin, objs)
+    normal_channel = generator_input(bin_0)
+    normal_label = gt_label(objs_0)
+
+    # transfrom
+    bin_1, objs_1 = Transfrom(bin, objs, trans)
+    trans_channel = generator_input(bin_1)
+    trans_label = gt_label(objs_1)
+
+    #zoom
+    bin_2, objs_2 = Zoom(bin, objs, zoom)
+    zoom_channel = generator_input(bin_2)
+    zoom_label = gt_label(objs_2)
+
+    #rotate
+    bin_3, objs_3 = Rotating(bin, objs, rotating)
+    rotate_channel = generator_input(bin_3)
+    rotate_label = gt_label(objs_3)
+
+    return [normal_channel, normal_label], [trans_channel, trans_label], [zoom_channel, zoom_label], [rotate_channel, rotate_label]
+
+
+def process(cloud_path, label_path, kitti=True):
+#     bin = np.fromfile(cloud_path, np.float32).reshape([-1, 4])
+    
+    bins = np.load(cloud_path, encoding='bytes')[b'points']
+    
+    objs = parse_kitti_label(label_path)
+
+    if kitti:
+        idx = np.where(bins[:, 0] > 0)   #process front 60 meters, along x axis
+        bins = bins[idx]
+
+    trans_ratio = 10 * np.random.random() + 0.1
+    rot_ratio = 1 / 9 * np.pi * (2 * np.random.random() - 1)
+    zoom_ratio = 0.1 * np.random.random() + 0.95
+    N, T, Z, R = subprocess(bins, objs, trans_ratio, rot_ratio, zoom_ratio)
+    return N, T, Z, R
+
 
 
 def draw(path, path1):
@@ -469,21 +582,27 @@ def draw(path, path1):
 
 
 
+
 if __name__ == "__main__":
-    bin_path ="/home/bai/wrongbin/004466.bin" #"./dataset/007480.bin"
-    label_path ="/home/bai/wrongbin/label_2/004466.txt" #"./dataset/007480.txt"
+    bin_path ="/home/bai/training/004466.bin" #"./dataset/007480.bin"
+    label_path ="/home/bai/training/label/004466.txt" #"./dataset/007480.txt"
     # start = time.time()
     p = "/home/bai/Project/cnn_seg/testpng/003256.txt--in-1.png"
-    name = os.path.basename(label_path)
-    chan = generator_input(bin_path, 640, 640, 8, 60, 5, -5)
-    chan = chan[np.newaxis, :]
+    name = os.path.basename(label_path).split('.')[0]
+    # chan = generator_input(bin_path, 640, 640, 8, 60, 5, -5, True)
+    # chan = chan[np.newaxis, :]
     # show_channel_input(chan, (640, 640))
-    gt = gt_label(label_path, 640, 640, 12)
-    gt = gt[np.newaxis, :]
-    record_confirm(chan, gt, name)
+    # gt = gt_label(label_path, 640, 640, 12)
+    # gt = gt[np.newaxis, :]
+    normal, trans, zoom, rotate = process(bin_path, label_path)
+    tmp_in = trans[0]
+    tmp_in = tmp_in[np.newaxis, :]
+    tmp_out = trans[1]
+    tmp_out = tmp_out[np.newaxis, :]
+    record_confirm(tmp_in, tmp_out, name + '-trans')
     # data = data_provider(640,640,8,12,60)
     # channel = data.generator_input(bin_path)
-    # show_channel_label(gt, (640,640))
+    show_channel_label(tmp_out, (640,640))
     # classif(gt)
     # print(time.time() - start)
     # draw(p, label_path)

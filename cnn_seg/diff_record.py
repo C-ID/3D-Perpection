@@ -1,15 +1,17 @@
 import json
 import numpy as np
-from data import data_provider
-from render import *
+from data import generator_input
+from render import show_channel_label
 import matplotlib.pyplot as plt
+import glob
 
 
 
 
-def load_json(json_file):
+def load_josn(json_file):
     with open(json_file, "rb") as f:
         file = json.load(f)
+
     for channel in file["feature"]:
         max_height = np.asarray(channel['channel-0'][0]['data']).reshape([640, 640, 1])
         mean_height  = np.asarray(channel['channel-1'][0]['data']).reshape([640, 640, 1])
@@ -25,49 +27,27 @@ def load_json(json_file):
 
     return feature
 
-def load_now(path):
-    with open(path, "rb") as f:
-        file = json.load(f)
-    for tmp in file["feature"]:
-        feature = np.asarray(tmp["data"])
 
-    return feature.reshape([8,640,640])
-
-def read_output_channel(path):
-    with open(path, 'rb') as f: file = json.load(f)
-    for channel in file['output']:
-        instance_x = np.asarray(channel['instance_pt_x']).reshape([640, 640, 1])
-        instance_y = np.asarray(channel['instance_pt_y']).reshape([640, 640, 1])
-        category_pt = np.asarray(channel['category_pt']).reshape([640, 640, 1])
-        classify_pt = np.asarray(channel['classify_pt']).reshape([5, 640, 640])
-        confidence_pt = np.asarray(channel['confidence_pt']).reshape([640, 640, 1])
-        height_pt = np.asarray(channel['height_pt']).reshape([640, 640, 1])
-
-    return np.concatenate((category_pt, instance_x, instance_y, confidence_pt, height_pt), axis=2), classify_pt
-
-
-
-
-def show_centeroffset(label):
+def show_centeroffset(label, bin_path, png):
     with open(label,'rb') as f: file = json.load(f)
+    chan = generator_input(bin_path, 640, 640, 8, 60, 5, -5)
     instance_x, instance_y = None, None
     for channel in file['output']:
         instance_x = np.asarray(channel['instance_pt_x']).reshape([640, 640])
         instance_y = np.asarray(channel['instance_pt_y']).reshape([640, 640])
 
-    plt.figure()
-    # a = plt.subplot(121)
+    # a = plt.figure()
+    a = plt.subplot(121)
     plt.title("real model output: center offset")
-    X, Y = np.meshgrid(np.arange(0, 640, 1), np.arange(0, 640, 1))
+    X, Y = np.meshgrid(np.arange(0, 640, 1), np.arange(640, 0, -1))
     M = np.hypot(instance_x, instance_y)
-    Q = plt.quiver(X, Y, instance_y, instance_x, M, pivot='middle', scale=0.5, scale_units='xy')
-    qk = plt.quiverkey(Q, 0.9, 0.9, 2, r'$1 \frac{m}{s}$', labelpos='E',
+    Q = a.quiver(X, Y, instance_x, instance_y, M, pivot='tip', units='xy')
+    qk = a.quiverkey(Q, 0.9, 0.9, 2, r'$1 \frac{m}{s}$', labelpos='N',
                        coordinates='data')
-    # b = plt.subplot(122)
-    # png = plt.imread(png)
-    # b.imshow(png)
+    b = plt.subplot(122)
+    png = plt.imread(png)
+    b.imshow(png)
     plt.show()
-
 
 def classify_pt_show(output_path):
     with open(output_path,'rb') as f: file = json.load(f)
@@ -75,76 +55,48 @@ def classify_pt_show(output_path):
         confidence = np.asarray(channel['confidence_pt']).reshape([640, 640])
         category = np.asarray(channel['confidence_pt']).reshape([640, 640])
     x, y = np.where(confidence[:,:] > 0.)
-    # a = category[x, y].sum()
-    # b = confidence[x, y].sum()
-    # print(a==b)
-    plt.figure()
-    plt.title("category")
-    plt.imshow(confidence)
-    plt.show()
-    return category
+    a = category[x, y].sum()
+    b = confidence[x, y].sum()
+    print(a==b)
+    # plt.figure()
+    # plt.title("category")
+    # plt.imshow(category)
+    # plt.show()
+    
 
-def contrast(c_f, now_f):
-    a = now_f[0, :, :] - c_f[:, :, 0]
-    b = now_f[1, :, :] - c_f[:, :, 1]
-    c = now_f[2, :, :] - c_f[:, :, 2]
-    d = now_f[3, :, :] - c_f[:, :, 3]
-    e = now_f[4, :, :] - c_f[:, :, 4]
-    f = now_f[5, :, :] - c_f[:, :, 5]
-    g = now_f[6, :, :] - c_f[:, :, 6]
-    h = now_f[7, :, :] - c_f[:, :, 7]
-    print(a.max(), a.min(), c_f[:, :, 0].max(), now_f[0, :, :].max())
-    print(b.max(), b.min(), c_f[:, :, 1].max(), now_f[1, :, :].max())
-    print(c.max(), c.min(), c_f[:, :, 2].max(), now_f[2, :, :].max())
-    print(d.max(), d.min(), c_f[:, :, 3].max(), now_f[3, :, :].max())
-    print(e.max(), e.min(), c_f[:, :, 4].max(), now_f[4, :, :].max())
-    print(f.max(), f.min(), c_f[:, :, 5].max(), now_f[5, :, :].max())
-    print(g.max(), g.min(), c_f[:, :, 6].max(), now_f[6, :, :].max())
-    print(h.max(), h.min(), c_f[:, :, 7].max(), now_f[7, :, :].max())
 
 def ref_render(bin_path):
     invaild = 0
-    for i in range(bin_path):
+    for i in bin_path:
         bin = np.fromfile(i, np.float32).reshape([-1, 4])
         ref_max = bin[:,3].max()
         ref_min = bin[:,3].min()
         if ref_max > 1: invaild += 1
-    print("invaild_num:{}, ".format(invaild))
-
+        print(ref_max, ref_min)
+    print("invaild_num:{}".format(invaild))
+    
 
 
 
 
 
 if __name__ == "__main__":
-    path1 = "/home/bai/Project/3D-Perpection/feature/test/0000000010.json"
-    path2 = "/home/bai/Project/3D-Perpection/feature/test/now-0000000010.json"
-    bin = "./dataset/007480.bin"
-    label = "/home/bai/Project/cnn_seg/dataset/output.json"
-    feature = "/home/bai/Project/cnn_seg/dataset/feature.json"
-    png = "./dataset/007480.png"
-    # diff between feature generator
-    # c_f = load_json(feature)
-    # now_f = load_now(path2)
-    # show_centeroffset(label)
-    # out_channel, classif_pt= read_output_channel(label)
-    # classif(classif_pt)
-    # show_channel_input(c_f, (640,640))
-    # # p_f = generator_input(bin, 640, 640, 8, 60, 5, -5)
-    # data = data_provider(640,640,8,12,60)
-    # p_f = data.gen(bin)
-    # a = p_f[:,:,0] - c_f[:,:,0]
-    # print(a.max(), a.min(), c_f[:,:,1].max(), p_f[:,:,1].max())
+#     path = "/home/bai/Project/cnn_seg/dataset/feature.json"
+#     bin = "./dataset/007480.bin"
+#     label = "/home/bai/Project/cnn_seg/dataset/output.json"
+#     png = "./dataset/007480.png"
+    #diff between feature generator
+    # c_f = load_josn(path)
+    # p_f = generator_input(bin, 640, 640, 8, 60, 5, -5)
+    # a = p_f[:,:,2] - c_f[:,:,2]
+    # print(a.max(), a.min(), c_f[:,:,2].max(), p_f[:,:,2].max())
 
     #
     #diff between model output
-    show_centeroffset(label)
-    # category = classify_pt_show(label)
-
-
-
-
-
-
+    #show_centeroffset(label, bin, png)
+#     category = classify_pt_show(label)
+    data_dir = '/home/users/tongyao.bai/data/tongyao.bai/kitti/training/velodyne'
+    bin_id = glob.glob('%s/*.bin' % (data_dir))
+    ref_render(bin_id)
 
 

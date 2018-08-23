@@ -199,6 +199,7 @@ class Cluster2D {
       }
     }
     CHECK_EQ(static_cast<size_t>(count_obstacles), obstacles_.size());
+    std::cout << "first num of obj: " << count_obstacles << std::endl;
   }
 
 
